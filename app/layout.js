@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
 
     return (
         <html lang="en">
-            <body className={`bg-white`}>
+            <body className={`bg-[#F5F6FA]`}>
                 {!hiddenpaths.includes(pathname) && <Header />}
                 {children}
             </body>
