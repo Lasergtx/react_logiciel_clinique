@@ -3,7 +3,7 @@ import logo from "@/public/images/logo-full.svg";
 
 export default function Login() {
     return (
-        <main className="bg-[#F5F6FA] h-[100vh] flex justify-center items-center">
+        <main className="h-[100vh] flex justify-center items-center">
             <div className="flex flex-col space-y-10">
                 <Image src={logo} alt="Logo de la clinique" className="w-96" />
                 <div className="flex flex-col bg-white rounded-xl p-10 justify-center items-center">
