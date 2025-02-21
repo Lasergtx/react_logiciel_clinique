@@ -1,8 +1,37 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
+import { useRouter } from "next/navigation";
 
-export default function Spendings() {
+const dataPages = [
+    [
+        { date: "17/02/2025", debiteur: "Jean Lagache", total: "+ 200€", raison: "Paiement facture" },
+        { date: "17/02/2025", debiteur: "Clément Al-Mahchese", total: "+ 250€", raison: "Paiement en plusieurs fois" },
+        { date: "18/02/2025", debiteur: "Paul Nilon", total: "+ 400€", raison: "Facturation services" },
+        { date: "18/02/2025", debiteur: "Alice Martin", total: "+ 150€", raison: "Paiement abonnement" },
+        { date: "18/02/2025", debiteur: "Théo Dupont", total: "+ 90€", raison: "Paiement en attente" },
+        { date: "19/02/2025", debiteur: "Samuel Gigoto", total: "+ 90€", raison: "Paiement en attente" },
+        { date: "19/02/2025", debiteur: "Théo Lavia", total: "+ 90€", raison: "Paiement en attente" },
+
+    ],
+    [
+        { date: "19/02/2025", debiteur: "Raoul Rama", total: "+ 150€", raison: "Paiement abonnement" },
+        { date: "19/02/2025", debiteur: "Lucas Bernard", total: "+ 75€", raison: "Paiement facture" },
+        { date: "20/02/2025", debiteur: "Emma Lefevre", total: "+ 320€", raison: "Vente de produits" },
+        { date: "20/02/2025", debiteur: "Jérémie Morel", total: "+ 500€", raison: "Paiement en plusieurs fois" },
+        { date: "20/02/2025", debiteur: "David Manone", total: "+ 500€", raison: "Paiement en plusieurs fois" },
+        { date: "21/02/2025", debiteur: "Santiago Alavez", total: "+ 90€", raison: "Paiement en attente" },
+        { date: "21/02/2025", debiteur: "Nabil Dupont", total: "+ 90€", raison: "Paiement en attente" },
+
+    ]
+];
+
+export default function Dashboard() {
+    const [currentPage, setCurrentPage] = useState(0);
+    const router = useRouter();
     return (
         <main className="h-[100vh] flex flex-col items-center px-14">
             <h1 className="text-3xl w-full text-strat mt-10">Revenus</h1>
@@ -13,127 +42,41 @@ export default function Spendings() {
                             <th className="py-2">Date</th>
                             <th className="py-2">Débiteur</th>
                             <th className="py-2">Montant</th>
+                            <th className="py-2">Raison</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody className="bg-white">
-                        <tr>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                12/10/2021
-                            </td>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                Jean Lagache
-                            </td>
-                            <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">
-                                + 200€
-                            </td>
-                            <td className="border-b-[1px] border-[#D5D5D5]">
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                12/10/2021
-                            </td>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                Dilan Poity
-                            </td>
-                            <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">
-                                + 40€
-                            </td>
-                            <td className="border-b-[1px] border-[#D5D5D5]">
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                10/10/2021
-                            </td>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                Paul Nilon
-                            </td>
-                            <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">
-                                + 400€
-                            </td>
-                            <td className="border-b-[1px] border-[#D5D5D5]">
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                5/10/2021
-                            </td>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                Théo Dupont
-                            </td>
-                            <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">
-                                + 90€
-                            </td>
-                            <td className="border-b-[1px] border-[#D5D5D5]">
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                31/09/2021
-                            </td>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                Paul Leborg
-                            </td>
-                            <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">
-                                + 120€
-                            </td>
-                            <td className="border-b-[1px] border-[#D5D5D5]">
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                28/09/2021
-                            </td>
-                            <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                Marie Haubon
-                            </td>
-                            <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">
-                                + 50€
-                            </td>
-                            <td className="border-b-[1px] border-[#D5D5D5]">
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="py-3">28/09/2021</td>
-                            <td className="py-3">Mathis Makaron</td>
-                            <td className="py-3 text-green-500">+ 20€</td>
-                            <td>
-                                <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                    Détails
-                                </button>
-                            </td>
-                        </tr>
+                        {dataPages[currentPage].map((client, index) => (
+                            <tr key={index}>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">{client.date}</td>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">{client.debiteur}</td>
+                                <td className="py-3 text-green-500 border-b-[1px] border-[#D5D5D5]">{client.total}</td>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">{client.raison}</td>
+                                <td className="border-b-[1px] border-[#D5D5D5]">
+                                    <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg" onClick={() => router.push("/details")}>Détails</button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
             <div className="flex justify-between w-full mt-5">
-                <p className="text-sm text-gray-500">Pages 1 sur 3</p>
+                <p className="text-sm text-gray-500">Page {currentPage + 1} sur {dataPages.length}</p>
                 <div className="flex">
-                    <button className="bg-white py-1 px-2 rounded-l-lg border-[1px] border-[#D5D5D5]">
+                    <button 
+                        className="bg-white py-1 px-2 rounded-l-lg border-[1px] border-[#D5D5D5] disabled:opacity-50" 
+                        onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                        disabled={currentPage === 0}
+                    >
                         <Image src={left} alt="left arrow" className="w-5" />
                     </button>
-                    <button className="bg-white py-1 px-2 rounded-r-lg border-y-[1px] border-r-[1px] border-[#D5D5D5]">
-                        <Image src={right} alt="left arrow" className="w-5" />
+                    <button 
+                        className="bg-white py-1 px-2 rounded-r-lg border-y-[1px] border-r-[1px] border-[#D5D5D5] disabled:opacity-50" 
+                        onClick={() => setCurrentPage(prev => Math.min(dataPages.length - 1, prev + 1))}
+                        disabled={currentPage === dataPages.length - 1}
+                    >
+                        <Image src={right} alt="right arrow" className="w-5" />
                     </button>
                 </div>
             </div>
