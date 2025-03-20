@@ -109,7 +109,7 @@ export default function Header() {
                                 alt="logo vente produit"
                                 className="w-5"
                             />
-                            <p>Tableau vente produits</p>
+                            <p>Ventes produits</p>
                         </a>
                     </div>
                 </div>
