@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
@@ -14,109 +15,129 @@ import revenueChart from "@/public/images/Component 19.png";
 import clientChart from "@/public/images/Group 323.png";
 
 export default function Dashboard() {
-    return (
-        <main className="h-[100vh] flex flex-col items-center px-14">
-            <h1 className="text-3xl w-full text-strat mt-10">Dashboard</h1>
-            
-            {/* Cards Section */}
-            <div className="flex justify-between w-full mt-5 gap-6">
-                <div className="flex flex-col items-center gap-4">
-                    {/* Nombre de clients */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Nombres de clients aujourd&apos;hui</p>
-                            <div className="text-xl font-semibold">21</div>
-                            <p className="text-green-500 text-sm flex items-center">
-                                <span className="mr-1">▲</span> 8.5% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={clientsIcone} alt="Clients Icone" className="w-10 h-10" />
-                    </div>
-                    {/* Meilleure vente */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex flex-col items-center">
-                        <div>
-                        <Image src={meilleurIcone} alt="Meilleure vente icone" className="w-213 h-156" />
-                        <p className="text-gray-500 text-sm mt-2 font-semibold">Meilleure vente</p>
-                        <div className="text-md font-semibold">Dalféine 500mg</div>
-                        </div>
-                    </div>
-                    {/* Revenus Chart */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-80 flex flex-col items-start">
-                        <div className="flex justify-between w-full">
-                            <p className="text-gray-900 text-md font-semibold">Revenues</p>
-                            <button className="text-blue-600 text-sm">Voir l&apos;historique</button>
-                        </div>
-                        <Image src={revenueChart} alt="Revenues Chart" className="w-full h-40 mt-2" />
-                    </div>
-                </div>
-
-                <div className="flex flex-col items-center gap-4">
-                    {/* Revenues */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Revenues</p>
-                            <div className="text-xl font-semibold">89000 €</div>
-                            <p className="text-red-500 text-sm flex items-center">
-                                <span className="mr-1">▼</span> 4.3% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={revenueIcone} alt="Revenues Icone" className="w-10 h-10" />
-                    </div>
-                </div>
-
-                <div className="flex flex-col items-center gap-4">
-                    {/* Dépenses */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Dépenses</p>
-                            <div className="text-xl font-semibold">89000 €</div>
-                            <p className="text-red-500 text-sm flex items-center">
-                                <span className="mr-1">▼</span> 4.3% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={depenseIcone} alt="Dépenses Icone" className="w-10 h-10" />
-                    </div>
-                </div>
-
-                <div className="flex flex-col items-center gap-4">
-                    {/* Bénéfice */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Bénéfices</p>
-                            <div className="text-xl font-semibold">+0 €</div>
-                            <p className="text-red-500 text-sm flex items-center">
-                                <span className="mr-1">▼</span> 4.3% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={profitIcone} alt="Profit Icone" className="w-213 h-10" />
-                    </div>
-                    {/* Pire vente */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex flex-col items-center">
-                        <div>
-                        <Image src={pireIcone} alt="Pire vente icone" className="w-213 h-156" />
-                        <p className="text-gray-500 text-sm mt-2 font-semibold">Pire vente</p>
-                            <div className="text-md font-semibold">Frontpro : 3 comprimés anti-infection</div>
-                        </div>
-                    </div>
-                    {/* Nombre de client Chart */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-80 flex flex-col items-start">
-                        <p className="text-gray-900 text-md font-semibold">Nombre de client</p>
-                        <Image src={clientChart} alt="Nombre de client Chart" className="w-full h-40 mt-2" />
-                    </div>
-                </div>
+  return (
+    <main className="p-28 h-screen">
+      <h1 className="text-3xl font-bold">Tableau de bord</h1>
+      <div className="grid grid-cols-4 h-full">
+        <div className="grid grid-rows-2">
+          <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
+            <div className="grid grid-cols-3">
+              <p className="col-span-2">Nombre de clients aujourd'hui :</p>
+              <Image
+                className="w-2/4"
+                src={clientsIcone}
+                alt="Picture of the author"
+              />
             </div>
-        </main>
-    );
+
+            <p className="text-3xl">21</p>
+            <span className="text-green-500">▲ 8.5 %</span>
+            <span> depuis hier</span>
+            <div className="mt-2">
+              <Link
+                className="bg-blue-200 p-2 rounded-lg text-blue-600"
+                href="/frequentation"
+              >
+                Voir l'historique
+              </Link>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg p-4 w-[80%]">
+            <p>Fréquentation dans la temps :</p>
+            <Image
+              className=""
+              src={clientChart}
+              alt="Picture of the author"
+            />
+          </div>
+        </div>
+        <div className="grid grid-rows-2">
+          <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
+            <div className="grid grid-cols-3">
+              <p className="col-span-2">Dépenses :</p>
+              <Image
+                className="w-2/4"
+                src={depenseIcone}
+                alt="Picture of the author"
+              />
+            </div>
+
+            <p className="text-3xl">89000 €</p>
+            <span className="text-red-500">▼ 4.3%</span>
+            <span> depuis hier</span>
+            <div className="mt-2">
+              <Link
+                className="bg-blue-200 p-2 rounded-lg text-blue-600"
+                href="/depenses"
+              >
+                Voir l'historique
+              </Link>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg p-4 w-[80%]">
+            <p>Meilleur vente :</p>
+            <Image
+                className=""
+                src={meilleurIcone}
+                alt="Picture of the author"
+              />
+          </div>
+        </div>
+        <div className="grid grid-rows-2">
+          <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
+            <div className="grid grid-cols-3">
+              <p className="col-span-2">Revenus :</p>
+              <Image
+                className="w-2/4"
+                src={revenueIcone}
+                alt="Picture of the author"
+              />
+            </div>
+
+            <p className="text-3xl">89000 €</p>
+            <span className="text-red-500">▼ 4.3%</span>
+            <span> depuis hier</span>
+            <div className="mt-2">
+              <Link
+                className="bg-blue-200 p-2 rounded-lg text-blue-600"
+                href="/revenus"
+              >
+                Voir l'historique
+              </Link>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
+            <p>Hello</p>
+          </div>
+        </div>
+        <div className="grid grid-rows-2">
+          <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
+            <div className="grid grid-cols-3">
+              <p className="col-span-2">Bénéfices :</p>
+              <Image
+                className="w-2/4"
+                src={profitIcone}
+                alt="Picture of the author"
+              />
+            </div>
+
+            <p className="text-3xl">+ 0</p>
+            <span className="text-red-500">▼ 4.3 %</span>
+            <span> depuis hier</span>
+            <div className="mt-2">
+              <Link
+                className="bg-blue-200 p-2 rounded-lg text-blue-600"
+                href="/benefices"
+              >
+                Voir l'historique
+              </Link>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
+            <p>Hello</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
 }
