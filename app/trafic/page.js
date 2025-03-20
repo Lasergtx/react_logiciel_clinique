@@ -6,42 +6,15 @@ import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
 
 const dataPages = [
-    { nom: "Jean Lagache", telephone: "0744512399", date: "17/02/2025" },
-    { nom: "Dilan Poity", telephone: "0741235896", date: "17/02/2025" },
-    { nom: "Clément Al-Mahchese", telephone: "0652341789", date: "17/02/2025" },
-    { nom: "David Fernandes", telephone: "0633214598", date: "17/02/2025" },
-    { nom: "Paul Nilon", telephone: "07442214589", date: "17/02/2025" },
-    { nom: "Rafael Toloi", telephone: "0749748348", date: "17/02/2025" },
-    { nom: "Théo Dupont", telephone: "07224415698", date: "18/02/2025" },
-    { nom: "Khashimov Sherzod", telephone: "0678123456", date: "18/02/2025" },
-    { nom: "Estebanne Zermi", telephone: "0745123986", date: "18/02/2025" },
-    { nom: "Jean-Louis David", telephone: "0689345678", date: "18/02/2025" },
-    {
-        nom: "Patrik da Silva Santos Júnior",
-        telephone: "0789632145",
-        date: "18/02/2025",
-    },
-    { nom: "Julian ", telephone: "0778965432", date: "18/02/2025" },
-    { nom: "Samuel Gigoto", telephone: "0654893214", date: "18/02/2025" },
-    { nom: "Xavier Dupont", telephone: "0754789631", date: "18/02/2025" },
-    { nom: "David Nehess", telephone: "0622412333", date: "18/02/2025" },
-    { nom: "Théo Lavia", telephone: "0787451263", date: "19/02/2025" },
-    { nom: "Raoul Rama", telephone: "0765894123", date: "19/02/2025" },
-    { nom: "Emma Lefévre", telephone: "0685741236", date: "19/02/2025" },
-    { nom: "Marie O'jack", telephone: "0698745632", date: "19/02/2025" },
-    { nom: "Santiago Alavez", telephone: "0698452314", date: "19/02/2025" },
-    { nom: "David Manone", telephone: "0667845123", date: "19/02/2025" },
-    { nom: "Patrice Clous", telephone: "0678123456", date: "20/02/2025" },
-    { nom: "Lucas Bernard", telephone: "0798745632", date: "20/02/2025" },
-    { nom: "Luis Fernandes", telephone: "0689345678", date: "20/02/2025" },
-    {
-        nom: "Pierre-émile Carotte",
-        telephone: "0667845123",
-        date: "20/02/2025",
-    },
-    { nom: "Raoul Rama", telephone: "0654893214", date: "20/02/2025" },
-    { nom: "Emma Lefevre", telephone: "0765894123", date: "21/02/2025" },
-    { nom: "Jérémie Morel", telephone: "0723148965", date: "21/02/2025" },
+    { clients: "35 clients", patients: "30 patients", date: "30/01/2025" },
+    { clients: "42 clients", patients: "19 patients", date: "29/01/2025" },
+    { clients: "45 clients", patients: "22 patients", date: "28/01/2025" },
+    { clients: "28 clients", patients: "13 patients", date: "27/01/2025" },
+    { clients: "33 clients", patients: "19 patients", date: "26/01/2025" },
+    { clients: "29 clients", patients: "16 patients", date: "25/01/2025" },
+    { clients: "36 clients", patients: "20 patients", date: "24/01/2025" },
+    { clients: "27 clients", patients: "17 patients", date: "23/01/2025" },
+    { clients: "45 clients", patients: "22 patients", date: "22/01/2025" },
 ];
 
 export default function Trafic() {
@@ -65,22 +38,22 @@ export default function Trafic() {
                 <table className="w-full text-center">
                     <thead>
                         <tr className="bg-[#FCFDFD] border-b-[1px] border-[#D5D5D5]">
-                            <th className="py-2">Nom Prénom</th>
-                            <th className="py-2">Numéro</th>
-                            <th className="py-2">Date de passage</th>
+                            <th className="py-2">Date</th>
+                            <th className="py-2">Nombre de passage</th>
+                            <th className="py-2">Nombre de prise en charge</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white">
                         {currentContracts.map((item, index) => (
                             <tr key={index}>
                                 <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                    {item.nom}
-                                </td>
-                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                    {item.telephone}
-                                </td>
-                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
                                     {item.date}
+                                </td>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
+                                    {item.clients}
+                                </td>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
+                                    {item.patients}
                                 </td>
                             </tr>
                         ))}
