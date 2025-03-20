@@ -44,11 +44,7 @@ export default function Dashboard() {
           </div>
           <div className="bg-white rounded-lg p-4 w-[80%]">
             <p>Fréquentation dans la temps :</p>
-            <Image
-              className=""
-              src={clientChart}
-              alt="Picture of the author"
-            />
+            <Image className="" src={clientChart} alt="Picture of the author" />
           </div>
         </div>
         <div className="grid grid-rows-2">
@@ -75,12 +71,12 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="bg-white rounded-lg p-4 w-[80%]">
-            <p>Meilleur vente :</p>
+            <p>Revenus dans le temps :</p>
             <Image
-                className=""
-                src={meilleurIcone}
-                alt="Picture of the author"
-              />
+              className=""
+              src={revenueChart}
+              alt="Picture of the author"
+            />
           </div>
         </div>
         <div className="grid grid-rows-2">
@@ -107,7 +103,12 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
-            <p>Hello</p>
+            <p className="col-span-2">Meilleurs vente :</p>
+            <Image
+              className=""
+              src={meilleurIcone}
+              alt="Picture of the author"
+            />
           </div>
         </div>
         <div className="grid grid-rows-2">
@@ -134,7 +135,12 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="bg-white rounded-lg p-4 w-[80%] h-[80%]">
-            <p>Hello</p>
+            <p className="col-span-2">Pire vente :</p>
+            <Image
+              className=""
+              src={pireIcone}
+              alt="Picture of the author"
+            />
           </div>
         </div>
       </div>
