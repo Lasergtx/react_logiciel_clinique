@@ -15,108 +15,99 @@ import clientChart from "@/public/images/Group 323.png";
 
 export default function Dashboard() {
     return (
-        <main className="h-[100vh] flex flex-col items-center px-14">
-            <h1 className="text-3xl w-full text-strat mt-10">Dashboard</h1>
-            
-            {/* Cards Section */}
-            <div className="flex justify-between w-full mt-5 gap-6">
-                <div className="flex flex-col items-center gap-4">
-                    {/* Nombre de clients */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Nombres de clients aujourd&apos;hui</p>
-                            <div className="text-xl font-semibold">21</div>
-                            <p className="text-green-500 text-sm flex items-center">
-                                <span className="mr-1">▲</span> 8.5% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={clientsIcone} alt="Clients Icone" className="w-10 h-10" />
-                    </div>
-                    {/* Meilleure vente */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex flex-col items-center">
-                        <div>
-                        <Image src={meilleurIcone} alt="Meilleure vente icone" className="w-213 h-156" />
-                        <p className="text-gray-500 text-sm mt-2 font-semibold">Meilleure vente</p>
-                        <div className="text-md font-semibold">Dalféine 500mg</div>
-                        </div>
-                    </div>
-                    {/* Revenus Chart */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-80 flex flex-col items-start">
-                        <div className="flex justify-between w-full">
-                            <p className="text-gray-900 text-md font-semibold">Revenues</p>
-                            <button className="text-blue-600 text-sm">Voir l&apos;historique</button>
-                        </div>
-                        <Image src={revenueChart} alt="Revenues Chart" className="w-full h-40 mt-2" />
-                    </div>
-                </div>
+        <main className="p-6 xl:p-10 bg-gray-50 min-h-screen">
+            <h1 className="text-3xl font-bold text-gray-800 mb-8">Tableau de bord</h1>
 
-                <div className="flex flex-col items-center gap-4">
-                    {/* Revenues */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Revenues</p>
-                            <div className="text-xl font-semibold">89000 €</div>
-                            <p className="text-red-500 text-sm flex items-center">
-                                <span className="mr-1">▼</span> 4.3% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={revenueIcone} alt="Revenues Icone" className="w-10 h-10" />
-                    </div>
-                </div>
+            {/* Statistiques principales */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <StatCard
+                    title="Nombres de clients aujourd'hui"
+                    value="21"
+                    variation="+8.5% Depuis hier"
+                    positive
+                    icon={clientsIcone}
+                />
+                <StatCard
+                    title="Dépenses"
+                    value="89000 €"
+                    variation="-4.3% Depuis hier"
+                    icon={depenseIcone}
+                />
+                <StatCard
+                    title="Revenues"
+                    value="89000 €"
+                    variation="-4.3% Depuis hier"
+                    icon={revenueIcone}
+                />
+                <StatCard
+                    title="Bénéfices"
+                    value="+0 €"
+                    variation="-4.3% Depuis hier"
+                    icon={profitIcone}
+                />
+            </div>
 
-                <div className="flex flex-col items-center gap-4">
-                    {/* Dépenses */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Dépenses</p>
-                            <div className="text-xl font-semibold">89000 €</div>
-                            <p className="text-red-500 text-sm flex items-center">
-                                <span className="mr-1">▼</span> 4.3% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={depenseIcone} alt="Dépenses Icone" className="w-10 h-10" />
-                    </div>
-                </div>
-
-                <div className="flex flex-col items-center gap-4">
-                    {/* Bénéfice */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex items-center justify-between">
-                        <div>
-                            <p className="text-gray-500 text-sm">Bénéfices</p>
-                            <div className="text-xl font-semibold">+0 €</div>
-                            <p className="text-red-500 text-sm flex items-center">
-                                <span className="mr-1">▼</span> 4.3% Depuis hier
-                            </p>
-                            <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-                                Voir l&apos;historique
-                            </button>
-                        </div>
-                        <Image src={profitIcone} alt="Profit Icone" className="w-213 h-10" />
-                    </div>
-                    {/* Pire vente */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-64 flex flex-col items-center">
-                        <div>
-                        <Image src={pireIcone} alt="Pire vente icone" className="w-213 h-156" />
-                        <p className="text-gray-500 text-sm mt-2 font-semibold">Pire vente</p>
-                            <div className="text-md font-semibold">Frontpro : 3 comprimés anti-infection</div>
-                        </div>
-                    </div>
-                    {/* Nombre de client Chart */}
-                    <div className="bg-white p-4 rounded-lg shadow-md w-80 flex flex-col items-start">
-                        <p className="text-gray-900 text-md font-semibold">Nombre de client</p>
-                        <Image src={clientChart} alt="Nombre de client Chart" className="w-full h-40 mt-2" />
-                    </div>
-                </div>
+            {/* Ligne ventes + graphiques */}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
+                <ProductCard
+                    title="Meilleure vente"
+                    product="Dalféine 500mg"
+                    image={meilleurIcone}
+                />
+                <ProductCard
+                    title="Pire vente"
+                    product="Frontpro : 3 comprimés anti-infection"
+                    image={pireIcone}
+                />
+                <ChartCard
+                    title="Revenues"
+                    image={revenueChart}
+                />
+                <ChartCard
+                    title="Nombre de client"
+                    image={clientChart}
+                />
             </div>
         </main>
+    );
+}
+
+function StatCard({ title, value, variation, positive = false, icon }) {
+    return (
+        <div className="bg-white rounded-xl shadow-md p-5 flex justify-between items-start">
+            <div>
+                <p className="text-sm text-gray-500 mb-1">{title}</p>
+                <p className="text-xl font-bold text-gray-800">{value}</p>
+                <p className={`text-sm mt-1 ${positive ? 'text-green-500' : 'text-red-500'}`}>
+                    {positive ? '▲' : '▼'} {variation}
+                </p>
+                <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
+                    Voir l'historique
+                </button>
+            </div>
+            <Image src={icon} alt="icon" className="w-10 h-10" />
+        </div>
+    );
+}
+
+function ProductCard({ title, product, image }) {
+    return (
+        <div className="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center">
+            <Image src={image} alt={title} className="w-full h-40 object-contain" />
+            <p className="text-sm text-gray-500 mt-3 font-semibold">{title}</p>
+            <p className="text-md font-medium text-gray-800 mt-1">{product}</p>
+        </div>
+    );
+}
+
+function ChartCard({ title, image }) {
+    return (
+        <div className="bg-white rounded-xl shadow-md p-5 flex flex-col justify-between">
+            <div className="flex justify-between items-center mb-3">
+                <p className="text-md font-semibold text-gray-800">{title}</p>
+                <button className="text-blue-600 text-sm">Voir l'historique</button>
+            </div>
+            <Image src={image} alt={`${title} Chart`} className="w-full h-40 object-contain" />
+        </div>
     );
 }
