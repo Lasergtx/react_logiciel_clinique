@@ -18,13 +18,6 @@ export default function AnimalDetail() {
     const [newContraTitle, setNewContraTitle] = useState("");
     const [newContraDesc, setNewContraDesc] = useState("");
     const [showForm, setShowForm] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-
-    const [animalName, setAnimalName] = useState("JUMBO");
-    const [birthDate, setBirthDate] = useState("2018-08-21");
-    const [race, setRace] = useState("Colley");
-    const [gender, setGender] = useState("Mâle");
-    const [ownerName, setOwnerName] = useState("Clément Marchesse");
 
     const handleAddContra = () => {
         if (!newContraTitle.trim()) return;
@@ -38,10 +31,6 @@ export default function AnimalDetail() {
         setContraindications(contraindications.filter((_, i) => i !== index));
     };
 
-    const handleSaveAnimal = () => {
-        setShowModal(false);
-    };
-
     return (
         <main className="h-full flex flex-col items-center px-10 py-10">
             <h1 className="text-3xl text-strat mb-6 w-full">Fiche Animal</h1>
@@ -49,17 +38,12 @@ export default function AnimalDetail() {
             {/* Informations principales */}
             <div className="w-full flex flex-col md:flex-row gap-8 mb-10">
                 <div className="bg-[#E6ECF4] rounded-xl p-6 w-full md:w-1/2">
-                    <h2 className="text-2xl font-bold mb-2">{animalName}</h2>
-                    <p className="mb-1">{race} (Chien) • {gender} • Pelage Noir</p>
-                    <p className="mb-1">Né le {birthDate.split("-").reverse().join("/")}</p>
+                    <h2 className="text-2xl font-bold mb-2">JUMBO</h2>
+                    <p className="mb-1">Colley (Chien) • Mâle • Pelage Noir</p>
+                    <p className="mb-1">Né le 21/08/2018</p>
                     <p className="mb-1">ID : 250268731234567</p>
-                    <p className="mb-3">Appartient à : {ownerName}</p>
-                    <button
-                        onClick={() => setShowModal(true)}
-                        className="bg-orange-400 text-white px-4 py-1 rounded hover:bg-orange-500"
-                    >
-                        Modifier
-                    </button>
+                    <p className="mb-3">Appartient à : Clément Marchesse</p>
+                    <button className="bg-orange-400 text-white px-4 py-1 rounded hover:bg-orange-500">Modifier</button>
                 </div>
 
                 <div className="bg-[#E6ECF4] rounded-xl p-6 w-full md:w-1/2">
@@ -90,13 +74,13 @@ export default function AnimalDetail() {
                                 placeholder="Nom du médicament"
                                 value={newContraTitle}
                                 onChange={(e) => setNewContraTitle(e.target.value)}
-                                className="w-full mb-2 p-2 rounded border border-gray-300 bg-[#E6ECF4]"
+                                className="w-full mb-2 p-2 rounded border border-gray-300"
                             />
                             <textarea
                                 placeholder="Détails ou effets"
                                 value={newContraDesc}
                                 onChange={(e) => setNewContraDesc(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
+                                className="w-full p-2 rounded border border-gray-300"
                             />
                             <button onClick={handleAddContra} className="mt-2 bg-blue-500 text-white px-4 py-1 rounded">Ajouter</button>
                         </div>
@@ -153,55 +137,6 @@ export default function AnimalDetail() {
                     </table>
                 </div>
             </div>
-
-            {/* Modal Popup */}
-            {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 animate-slide-in">
-                    <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg relative scale-100 transition-transform duration-300">
-                        <button
-                            onClick={() => setShowModal(false)}
-                            className="absolute top-3 right-3 text-red-500 hover:text-red-700 text-lg font-bold"
-                        >✕</button>
-                        <h2 className="text-2xl font-bold mb-6 text-center">Modifier les informations</h2>
-                        <div className="space-y-3">
-                            <label className="block text-sm font-medium">Nom de l'animal : </label>
-                            <input
-                                value={animalName}
-                                onChange={(e) => setAnimalName(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Date de naissance : </label>
-                            <input
-                                type="date"
-                                value={birthDate}
-                                onChange={(e) => setBirthDate(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Race : </label>
-                            <input
-                                value={race}
-                                onChange={(e) => setRace(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Sexe : </label>
-                            <input
-                                value={gender}
-                                onChange={(e) => setGender(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Propriétaire : </label>
-                            <input
-                                value={ownerName}
-                                onChange={(e) => setOwnerName(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                        </div>
-                        <div className="flex justify-end mt-6">
-                            <button onClick={handleSaveAnimal} className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">Enregistrer</button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </main>
     );
 }
