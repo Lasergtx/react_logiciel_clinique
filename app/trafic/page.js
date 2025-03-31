@@ -1,207 +1,86 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import left from "@/public/images/arrowleft.svg";
+import right from "@/public/images/arrowright.svg";
 
-export default function AnimalDetail() {
-    const [selectedTab, setSelectedTab] = useState("rappels");
-    const [contraindications, setContraindications] = useState([
-        {
-            title: "Doramectine",
-            description: "Provoque de fortes réactions allergiques. À ne surtout pas utiliser."
-        },
-        {
-            title: "Lopéramide",
-            description: "Dangereux pour les chiens."
+const dataPages = [
+    { clients: "35 clients", patients: "30 patients", date: "30/01/2025" },
+    { clients: "42 clients", patients: "19 patients", date: "29/01/2025" },
+    { clients: "45 clients", patients: "22 patients", date: "28/01/2025" },
+    { clients: "28 clients", patients: "13 patients", date: "27/01/2025" },
+    { clients: "33 clients", patients: "19 patients", date: "26/01/2025" },
+    { clients: "29 clients", patients: "16 patients", date: "25/01/2025" },
+    { clients: "36 clients", patients: "20 patients", date: "24/01/2025" },
+    { clients: "27 clients", patients: "17 patients", date: "23/01/2025" },
+    { clients: "45 clients", patients: "22 patients", date: "22/01/2025" },
+];
+
+export default function Trafic() {
+    const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
+    const itemsPerPage = 7; // Nombre d'éléments par page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentContracts = dataPages.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(dataPages.length / itemsPerPage);
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
         }
-    ]);
-    const [newContraTitle, setNewContraTitle] = useState("");
-    const [newContraDesc, setNewContraDesc] = useState("");
-    const [showForm, setShowForm] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-
-    const [animalName, setAnimalName] = useState("JUMBO");
-    const [birthDate, setBirthDate] = useState("2018-08-21");
-    const [race, setRace] = useState("Colley");
-    const [gender, setGender] = useState("Mâle");
-    const [ownerName, setOwnerName] = useState("Clément Marchesse");
-
-    const handleAddContra = () => {
-        if (!newContraTitle.trim()) return;
-        setContraindications([...contraindications, { title: newContraTitle, description: newContraDesc }]);
-        setNewContraTitle("");
-        setNewContraDesc("");
-        setShowForm(false);
     };
-
-    const handleRemoveContra = (index) => {
-        setContraindications(contraindications.filter((_, i) => i !== index));
-    };
-
-    const handleSaveAnimal = () => {
-        setShowModal(false);
-    };
-
     return (
-        <main className="h-full flex flex-col items-center px-10 py-10">
-            <h1 className="text-3xl text-strat mb-6 w-full">Fiche Animal</h1>
-
-            {/* Informations principales */}
-            <div className="w-full flex flex-col md:flex-row gap-8 mb-10">
-                <div className="bg-[#E6ECF4] rounded-xl p-6 w-full md:w-1/2">
-                    <h2 className="text-2xl font-bold mb-2">{animalName}</h2>
-                    <p className="mb-1">{race} (Chien) • {gender} • Pelage Noir</p>
-                    <p className="mb-1">Né le {birthDate.split("-").reverse().join("/")}</p>
-                    <p className="mb-1">ID : 250268731234567</p>
-                    <p className="mb-3">Appartient à : {ownerName}</p>
+        <main className="h-[100vh] flex flex-col items-center px-14">
+            <h1 className="text-3xl w-full text-strat mt-10">Trafic</h1>
+            <div className="flex justify-center mt-5 w-full bg-white border-[1px] rounded-xl border-[#D5D5D5] overflow-hidden">
+                <table className="w-full text-center">
+                    <thead>
+                        <tr className="bg-[#FCFDFD] border-b-[1px] border-[#D5D5D5]">
+                            <th className="py-2">Date</th>
+                            <th className="py-2">Nombre de passage</th>
+                            <th className="py-2">Nombre de prise en charge</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white">
+                        {currentContracts.map((item, index) => (
+                            <tr key={index}>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
+                                    {item.date}
+                                </td>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
+                                    {item.clients}
+                                </td>
+                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
+                                    {item.patients}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="flex justify-between w-full mt-5">
+                <p className="text-sm text-gray-500">
+                    Page {currentPage} sur {totalPages}
+                </p>
+                <div className="flex">
                     <button
-                        onClick={() => setShowModal(true)}
-                        className="bg-orange-400 text-white px-4 py-1 rounded hover:bg-orange-500"
+                        className="bg-white py-1 px-2 rounded-l-lg border-[1px] border-[#D5D5D5] disabled:opacity-50"
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
                     >
-                        Modifier
+                        <Image src={left} alt="left arrow" className="w-5" />
+                    </button>
+                    <button
+                        className="bg-white py-1 px-2 rounded-r-lg border-y-[1px] border-r-[1px] border-[#D5D5D5] disabled:opacity-50"
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                    >
+                        <Image src={right} alt="right arrow" className="w-5" />
                     </button>
                 </div>
-
-                <div className="bg-[#E6ECF4] rounded-xl p-6 w-full md:w-1/2">
-                    <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-lg font-semibold">Contre-indications</h3>
-                        <button className="text-green-500 text-xl font-bold" onClick={() => setShowForm(!showForm)}>+</button>
-                    </div>
-                    <ul>
-                        {contraindications.map((item, index) => (
-                            <li key={index} className="mb-2 flex justify-between items-start">
-                                <div>
-                                    <span className="font-medium">{item.title} :</span>
-                                    <span className="ml-2">{item.description}</span>
-                                </div>
-                                <button
-                                    className="ml-4 text-red-500 font-bold"
-                                    onClick={() => handleRemoveContra(index)}
-                                >
-                                    ✕
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                    {showForm && (
-                        <div className="mt-4">
-                            <input
-                                type="text"
-                                placeholder="Nom du médicament"
-                                value={newContraTitle}
-                                onChange={(e) => setNewContraTitle(e.target.value)}
-                                className="w-full mb-2 p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <textarea
-                                placeholder="Détails ou effets"
-                                value={newContraDesc}
-                                onChange={(e) => setNewContraDesc(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <button onClick={handleAddContra} className="mt-2 bg-blue-500 text-white px-4 py-1 rounded">Ajouter</button>
-                        </div>
-                    )}
-                </div>
             </div>
-
-            {/* Bloc Rappels & Antécédents */}
-            <div className="w-full flex flex-col md:flex-row gap-8">
-                {/* Bloc rappels */}
-                <div className="flex-1 bg-white p-6 rounded-xl shadow-md">
-                    <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-semibold">Rappels</h3>
-                        <button className="text-green-500 text-xl font-bold">+</button>
-                    </div>
-                    <div className="flex gap-4 mb-4">
-                        <button onClick={() => setSelectedTab("rappels")} className={`px-3 py-1 rounded ${selectedTab === "rappels" ? "bg-[#3B4B60] text-white" : "bg-gray-200"}`}>À venir</button>
-                        <button onClick={() => setSelectedTab("historique")} className={`px-3 py-1 rounded ${selectedTab === "historique" ? "bg-[#3B4B60] text-white" : "bg-gray-200"}`}>Historique</button>
-                    </div>
-                    <ul>
-                        <li className="mb-2">20/02/2025 : Vaccination contre la leptospirose</li>
-                        <li className="mb-2">14/04/2025 : Vaccination contre la rage</li>
-                        <li>14/04/2025 : Vaccination contre la piroplasmose</li>
-                    </ul>
-                </div>
-
-                {/* Bloc antécédents */}
-                <div className="flex-1 bg-white p-6 rounded-xl shadow-md">
-                    <h3 className="text-lg font-semibold mb-4">Antécédents</h3>
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="text-gray-600 text-sm">
-                                <th className="pb-2">Type</th>
-                                <th className="pb-2">Description ou motif</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="border-t text-sm">
-                                <td className="py-2">Soin</td>
-                                <td>Grippe</td>
-                                <td>
-                                    <button className="text-green-600 bg-green-100 px-2 py-1 rounded text-sm">Voir l'ordonnance</button>
-                                </td>
-                            </tr>
-                            <tr className="border-t text-sm">
-                                <td className="py-2">Opération</td>
-                                <td>Simple opération de castration à cause du comportement agité…</td>
-                                <td>
-                                    <button className="text-red-600 bg-red-100 px-2 py-1 rounded text-sm">Détails</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {/* Modal Popup */}
-            {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 animate-slide-in">
-                    <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg relative scale-100 transition-transform duration-300">
-                        <button
-                            onClick={() => setShowModal(false)}
-                            className="absolute top-3 right-3 text-red-500 hover:text-red-700 text-lg font-bold"
-                        >✕</button>
-                        <h2 className="text-2xl font-bold mb-6 text-center">Modifier les informations</h2>
-                        <div className="space-y-3">
-                            <label className="block text-sm font-medium">Nom de l'animal : </label>
-                            <input
-                                value={animalName}
-                                onChange={(e) => setAnimalName(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Date de naissance : </label>
-                            <input
-                                type="date"
-                                value={birthDate}
-                                onChange={(e) => setBirthDate(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Race : </label>
-                            <input
-                                value={race}
-                                onChange={(e) => setRace(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Sexe : </label>
-                            <input
-                                value={gender}
-                                onChange={(e) => setGender(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                            <label className="block text-sm font-medium">Propriétaire : </label>
-                            <input
-                                value={ownerName}
-                                onChange={(e) => setOwnerName(e.target.value)}
-                                className="w-full p-2 rounded border border-gray-300 bg-[#E6ECF4]"
-                            />
-                        </div>
-                        <div className="flex justify-end mt-6">
-                            <button onClick={handleSaveAnimal} className="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">Enregistrer</button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </main>
     );
 }
