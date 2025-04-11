@@ -107,7 +107,7 @@ export default function Clients() {
               <td className="p-2">
                 <button
                   className="text-green-600 bg-green-100 px-3 py-1 rounded text-xs"
-                  onClick={() => router.push(`/newclients-detail?id=${client.id}`)}
+                  onClick={() => router.push(`/VETERINAIRE/newclients-detail?id=${client.id}`)}
                 >Détail</button>
               </td>
             </tr>
