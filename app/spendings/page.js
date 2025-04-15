@@ -118,11 +118,6 @@ export default function Spendings() {
                                 <td className="py-3 text-red-500 border-b-[1px] border-[#D5D5D5]">
                                     {item.amount}
                                 </td>
-                                <td className="border-b-[1px] border-[#D5D5D5]">
-                                    <button className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg">
-                                        Détails
-                                    </button>
-                                </td>
                             </tr>
                         ))}
                     </tbody>
