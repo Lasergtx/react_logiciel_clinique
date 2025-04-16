@@ -15,9 +15,108 @@ const clientsData = [
     codePostal: "69000",
     genre: "Homme",
     animaux: [
-      { nom: "Jinx", type: "Chien", espece: "Chihuahua", dateNaissance: "2005-05-09", genre: "Mâle", couleur: "Beige", identifiant: "1234567890" },
-      { nom: "Luna", type: "Chat", espece: "Siamois", dateNaissance: "2017-12-17", genre: "Femelle", couleur: "Blanc", identifiant: "2345678901" },
-      { nom: "Nala", type: "Chien", espece: "Pitbull", dateNaissance: "2022-02-19", genre: "Femelle", couleur: "Noir", identifiant: "3456789012" }
+      {
+        nom: "Jinx",
+        type: "Chien",
+        espece: "Chihuahua",
+        dateNaissance: "2005-05-09",
+        genre: "Mâle",
+        couleur: "Beige",
+        identifiant: "1234567890",
+        antecedents: ["Vaccin antirabique", "Opération oeil droit"]
+      },
+      {
+        nom: "Luna",
+        type: "Chat",
+        espece: "Siamois",
+        dateNaissance: "2017-12-17",
+        genre: "Femelle",
+        couleur: "Blanc",
+        identifiant: "2345678901",
+        antecedents: []
+      },
+      {
+        nom: "Nala",
+        type: "Chien",
+        espece: "Pitbull",
+        dateNaissance: "2022-02-19",
+        genre: "Femelle",
+        couleur: "Noir",
+        identifiant: "3456789012",
+        antecedents: ["Allergie détectée"]
+      }
+    ]
+  },
+  {
+    id: "00002",
+    nom: "RAMA",
+    prenom: "Raoul",
+    telephone: "0744588952",
+    animaux: [
+      {
+        nom: "Moka",
+        type: "Chien",
+        espece: "Labrador",
+        dateNaissance: "2019-08-11",
+        genre: "Mâle",
+        couleur: "Noir",
+        identifiant: "9900000001",
+        antecedents: []
+      }
+    ]
+  },
+  {
+    id: "00003",
+    nom: "HETZEL",
+    prenom: "Mael",
+    telephone: "0654123589",
+    animaux: [
+      {
+        nom: "Neko",
+        type: "Chat",
+        espece: "Maine Coon",
+        dateNaissance: "2021-03-03",
+        genre: "Femelle",
+        couleur: "Gris",
+        identifiant: "9900000002",
+        antecedents: ["Stérilisation"]
+      }
+    ]
+  },
+  {
+    id: "00004",
+    nom: "FERNANDES",
+    prenom: "David",
+    telephone: "0635478900",
+    animaux: [
+      {
+        nom: "Bolt",
+        type: "Chien",
+        espece: "Border Collie",
+        dateNaissance: "2020-06-21",
+        genre: "Mâle",
+        couleur: "Noir et blanc",
+        identifiant: "9900000003",
+        antecedents: []
+      }
+    ]
+  },
+  {
+    id: "00005",
+    nom: "BARAGOUTOU",
+    prenom: "Tripathy",
+    telephone: "0641235478",
+    animaux: [
+      {
+        nom: "Bambou",
+        type: "Chat",
+        espece: "Chartreux",
+        dateNaissance: "2018-01-15",
+        genre: "Femelle",
+        couleur: "Bleu",
+        identifiant: "9900000004",
+        antecedents: ["Extraction dentaire"]
+      }
     ]
   }
 ];
@@ -106,10 +205,6 @@ export default function NewClientDetail() {
     setEditAnimal((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAnimalGenreChange = (genre) => {
-    setEditAnimal((prev) => ({ ...prev, genre }));
-  };
-
   const handleUpdateAnimal = () => {
     const updatedClient = { ...client };
     updatedClient.animaux[editAnimalIndex] = editAnimal;
@@ -133,7 +228,6 @@ export default function NewClientDetail() {
   const closeDetailModal = () => {
     setDetailAnimal(null);
   };
-
   if (!client) return <main className="p-10">Client introuvable.</main>;
 
   return (
@@ -141,16 +235,29 @@ export default function NewClientDetail() {
       {!isEditingClient ? (
         <div className="flex justify-between items-start gap-10 bg-white rounded-lg shadow p-6">
           <div className="flex-1">
-            <h2 className="text-2xl font-bold mb-4 text-gray-900">M. {client.prenom} {client.nom}</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-900">
+              M. {client.prenom} {client.nom}
+            </h2>
             <p className="mb-2 text-gray-700 text-lg">{client.telephone}</p>
             <p className="mb-2 text-gray-700 text-lg">{client.email}</p>
-            <p className="mb-2 text-gray-700 text-lg">Résident au {client.adresse}, {client.codePostal} {client.ville}</p>
-            <p className="mb-4 text-gray-700 text-lg">Est propriétaire de {client.animaux.length} patient(s) de la clinique</p>
-            <button onClick={() => setIsEditingClient(true)} className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded shadow transition-all duration-200 backdrop-blur-sm">Modifier</button>
+            <p className="mb-2 text-gray-700 text-lg">
+              Résident au {client.adresse}, {client.codePostal} {client.ville}
+            </p>
+            <p className="mb-4 text-gray-700 text-lg">
+              Est propriétaire de {client.animaux.length} patient(s)
+            </p>
+            <button
+              onClick={() => setIsEditingClient(true)}
+              className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded shadow transition-all"
+            >
+              Modifier
+            </button>
           </div>
-          <div className="w-40 h-40 bg-blue-700 rounded-full flex items-center justify-center shadow-md">
-            <span className="text-white text-6xl">🐾</span>
-          </div>
+          <img
+            src="/mdi_paw.png"
+            alt="Logo clinique"
+            className="w-40 h-40 object-contain rounded-full shadow-md"
+          />
         </div>
       ) : (
         <form onSubmit={handleClientSubmit} className="bg-white rounded-lg shadow p-6 flex gap-10 items-start">
@@ -181,17 +288,17 @@ export default function NewClientDetail() {
               <button type="button" onClick={handleCancel} className="bg-red-200 text-red-800 px-4 py-2 rounded hover:bg-red-300">Annuler</button>
             </div>
           </div>
-          <div className="w-40 h-40 rounded-full bg-blue-700 flex items-center justify-center">
-            <span className="text-6xl">🐾</span>
-          </div>
+          <img
+            src="/mdi_paw.png"
+            alt="Logo clinique"
+            className="w-40 h-40 object-contain rounded-full shadow-md"
+          />
         </form>
       )}
 
-<div>
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold text-gray-900">Liste des animaux</h3>
-          <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-lg shadow-md transition-all duration-200">+</button>
-        </div>
+      {/* Liste des animaux */}
+      <div className="mt-10">
+        <h3 className="text-xl font-semibold mb-4">Liste des animaux</h3>
         <table className="w-full bg-white rounded-lg shadow overflow-hidden text-sm">
           <thead className="bg-gray-100">
             <tr className="text-left">
@@ -212,9 +319,9 @@ export default function NewClientDetail() {
                 <td className="p-3">{animal.dateNaissance}</td>
                 <td className="p-3">{animal.genre}</td>
                 <td className="p-3 flex gap-2">
-                  <button onClick={() => openDetailModal(animal)} className="bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200 transition">Détail</button>
-                  <button onClick={() => openEditAnimalModal(index)} className="bg-orange-100 text-orange-700 px-3 py-1 rounded hover:bg-orange-200 transition">Modifier</button>
-                  <button onClick={() => openDeleteModal(index)} className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200 transition">Supprimer</button>
+                  <button onClick={() => openDetailModal(animal)} className="bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200">Détail</button>
+                  <button onClick={() => openEditAnimalModal(index)} className="bg-orange-100 text-orange-700 px-3 py-1 rounded hover:bg-orange-200">Modifier</button>
+                  <button onClick={() => openDeleteModal(index)} className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200">Supprimer</button>
                 </td>
               </tr>
             ))}
@@ -222,36 +329,50 @@ export default function NewClientDetail() {
         </table>
       </div>
 
-      {/* Modales */}
+      {/* MODALES */}
       {detailAnimal && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div ref={detailModalRef} className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg relative">
-            <button onClick={closeDetailModal} className="absolute top-4 right-4 text-white bg-blue-800 w-8 h-8 rounded-full text-center text-lg">×</button>
+            <button onClick={closeDetailModal} className="absolute top-4 right-4 text-white bg-blue-800 w-8 h-8 rounded-full text-lg">×</button>
             <h2 className="text-2xl font-bold mb-4">Détails de l'animal</h2>
             <div className="grid grid-cols-2 gap-4">
-              {Object.entries(detailAnimal).map(([key, value]) => (
-                <div key={key} className="col-span-2 flex flex-col">
-                  <label className="text-sm font-medium capitalize">{key}</label>
-                  <input disabled className="bg-gray-100 p-2 rounded" value={value} />
-                </div>
-              ))}
+              {Object.entries(detailAnimal).map(([key, value]) =>
+                key !== "antecedents" ? (
+                  <div key={key} className="col-span-2 flex flex-col">
+                    <label className="text-sm font-medium capitalize">{key}</label>
+                    <input disabled className="bg-gray-100 p-2 rounded" value={value} />
+                  </div>
+                ) : null
+              )}
             </div>
+            <h3 className="text-lg font-semibold mt-6 mb-2">Antécédents</h3>
+            <ul className="space-y-2">
+              {detailAnimal.antecedents?.length > 0 ? (
+                detailAnimal.antecedents.map((a, idx) => (
+                  <li key={idx} className="bg-gray-100 p-2 rounded">{a}</li>
+                ))
+              ) : (
+                <li className="text-gray-500">Aucun enregistré</li>
+              )}
+            </ul>
           </div>
         </div>
       )}
 
       {editAnimal && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div ref={editModalRef} className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg relative">
-            <button onClick={closeEditAnimalModal} className="absolute top-4 right-4 text-white bg-blue-800 w-8 h-8 rounded-full text-center text-lg">×</button>
+            <button onClick={closeEditAnimalModal} className="absolute top-4 right-4 text-white bg-blue-800 w-8 h-8 rounded-full text-lg">×</button>
             <h2 className="text-2xl font-bold mb-4">Modifier l'animal</h2>
             <div className="grid grid-cols-2 gap-4">
-              {Object.entries(editAnimal).map(([key, value]) => (
-                <div key={key} className="col-span-2 flex flex-col">
-                  <label className="capitalize">{key}</label>
-                  <input name={key} className="bg-gray-100 p-2 rounded" value={value} onChange={handleAnimalChange} />
-                </div>
-              ))}
+              {Object.entries(editAnimal).map(([key, value]) =>
+                key !== "antecedents" ? (
+                  <div key={key} className="col-span-2 flex flex-col">
+                    <label className="capitalize">{key}</label>
+                    <input name={key} className="bg-gray-100 p-2 rounded" value={value} onChange={handleAnimalChange} />
+                  </div>
+                ) : null
+              )}
             </div>
             <div className="mt-6">
               <button onClick={handleUpdateAnimal} className="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 w-full">Valider</button>
@@ -261,14 +382,14 @@ export default function NewClientDetail() {
       )}
 
       {deleteAnimalIndex !== null && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div ref={deleteModalRef} className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md relative">
-            <button onClick={closeDeleteModal} className="absolute top-4 right-4 text-white bg-red-600 w-8 h-8 rounded-full text-center text-lg">×</button>
+            <button onClick={closeDeleteModal} className="absolute top-4 right-4 text-white bg-red-600 w-8 h-8 rounded-full text-lg">×</button>
             <h2 className="text-xl font-semibold mb-4">Confirmation</h2>
-            <p className="text-gray-800 mb-6">Êtes-vous sûr de vouloir supprimer cet animal : <strong>{client.animaux[deleteAnimalIndex].nom}</strong> ?</p>
+            <p className="text-gray-800 mb-6">Supprimer <strong>{client.animaux[deleteAnimalIndex].nom}</strong> ?</p>
             <div className="flex justify-end gap-4">
-              <button onClick={closeDeleteModal} className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Annuler</button>
-              <button onClick={handleConfirmDelete} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Supprimer</button>
+              <button onClick={closeDeleteModal} className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Annuler</button>
+              <button onClick={handleConfirmDelete} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
             </div>
           </div>
         </div>
@@ -276,4 +397,3 @@ export default function NewClientDetail() {
     </main>
   );
 }
-
