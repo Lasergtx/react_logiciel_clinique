@@ -4,109 +4,212 @@ import { useState } from "react";
 import Image from "next/image";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
+import filterIcon from "@/public/images/filter.svg";
 
 const dataPages = [
-    {
-        product: "Croquettes Royal Canin (chien adulte)",
-        quantity: 32,
-        price: 25.5,
-    },
-    { product: "Litière agglomérante premium", quantity: 15, price: 10.5 },
-    { product: "Antiparasitaire Frontline (chat)", quantity: 27, price: 18.55 },
-    {
-        product: "Complément articulaire pour chien",
-        quantity: 18,
-        price: 17.99,
-    },
-    {
-        product: "Croquette pour chien stérélissé premium (12kg)",
-        quantity: 5,
-        price: 47.9,
-    },
-    { product: "Complément anti-stress pour chien", quantity: 5, price: 30.99 },
-    {
-        product: "Shampooing dermatologique hypoallergénique",
-        quantity: 22,
-        price: 12,
-    },
-    { product: "Os à mâcher pour l’hygiène dentaire", quantity: 25, price: 5 },
-    { product: "Dalféine 500mg", quantity: 32, price: 5.65 },
-    { product: "Vitamine liquide pour animaux", quantity: 10, price: 10.99 },
-    { product: "Frontpro", quantity: 4, price: 5 },
-    { product: "Litiére pour chat", quantity: 18, price: 19.99 },
-    { product: "Fontaine pour chat", quantity: 7, price: 45.99 },
+  {
+    date: "21/02/2025",
+    client: "Jean Lagache",
+    produits: [
+      { nom: "Croquettes chien 5kg", prix: 25 },
+      { nom: "Vaccin rage", prix: 30 }
+    ]
+  },
+  {
+    date: "21/02/2025",
+    client: "Clément Al-Mahchese",
+    produits: [
+      { nom: "Antipuces chat", prix: 15 },
+      { nom: "Consultation", prix: 50 },
+      { nom: "Nettoyage oreilles", prix: 12 }
+    ]
+  },
+  {
+    date: "20/02/2025",
+    client: "Alice Martin",
+    produits: [
+      { nom: "Vermifuge", prix: 20 },
+      { nom: "Analyse sanguine", prix: 60 }
+    ]
+  },
+  {
+    date: "19/02/2025",
+    client: "Paul Nilon",
+    produits: [
+      { nom: "Consultation", prix: 50 }
+    ]
+  },
+  {
+    date: "18/02/2025",
+    client: "Samuel Gigoto",
+    produits: [
+      { nom: "Laisse cuir", prix: 22 },
+      { nom: "Shampoing hypoallergénique", prix: 18 }
+    ]
+  },
+  {
+    date: "17/02/2025",
+    client: "Emma Lefevre",
+    produits: [
+      { nom: "Carnet de santé", prix: 5 },
+      { nom: "Consultation", prix: 50 },
+      { nom: "Vaccin", prix: 30 }
+    ]
+  },
+  {
+    date: "17/02/2025",
+    client: "Nicolas Bertin",
+    produits: [
+      { nom: "Croquettes chat", prix: 22 },
+      { nom: "Nettoyant yeux", prix: 14 }
+    ]
+  },
+  {
+    date: "16/02/2025",
+    client: "Léa Dupuis",
+    produits: [
+      { nom: "Consultation", prix: 50 }
+    ]
+  },
+  {
+    date: "16/02/2025",
+    client: "David Morel",
+    produits: [
+      { nom: "Coupe griffes", prix: 10 },
+      { nom: "Shampoing", prix: 15 },
+      { nom: "Peigne", prix: 8 }
+    ]
+  },
+  {
+    date: "15/02/2025",
+    client: "Chloé Robert",
+    produits: [
+      { nom: "Vaccin", prix: 30 },
+      { nom: "Analyse sanguine", prix: 60 }
+    ]
+  },
+  {
+    date: "15/02/2025",
+    client: "Julien Garnier",
+    produits: [
+      { nom: "Consultation", prix: 50 },
+      { nom: "Vermifuge", prix: 20 }
+    ]
+  }
 ];
 
-export default function VenteProduits() {
-    const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-    const itemsPerPage = 7; // Nombre d'éléments par page
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentContracts = dataPages.slice(indexOfFirstItem, indexOfLastItem);
+export default function Ventes() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedDate, setSelectedDate] = useState("");
 
-    const totalPages = Math.ceil(dataPages.length / itemsPerPage);
+  const itemsPerPage = 10;
 
-    const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= totalPages) {
-            setCurrentPage(newPage);
-        }
-    };
-    return (
-        <main className="h-[100vh] flex flex-col items-center px-14">
-            <h1 className="text-3xl w-full text-strat mt-10">
-                Tableau des ventes produits
-            </h1>
-            <div className="flex justify-center mt-5 w-full bg-white border-[1px] rounded-xl border-[#D5D5D5] overflow-hidden">
-                <table className="w-full text-center">
-                    <thead>
-                        <tr className="bg-[#FCFDFD] border-b-[1px] border-[#D5D5D5]">
-                            <th className="py-2">Produit</th>
-                            <th className="py-2">Quantité vendue</th>
-                            <th className="py-2">Prix unitaire (€)</th>
-                            <th className="py-2">Total (€)</th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white">
-                        {currentContracts.map((item, index) => (
-                            <tr key={index}>
-                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                    {item.product}
-                                </td>
-                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                    {item.quantity}
-                                </td>
-                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                    {item.price}
-                                </td>
-                                <td className="py-3 border-b-[1px] border-[#D5D5D5]">
-                                    {item.quantity * item.price}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div className="flex justify-between w-full mt-5">
-                <p className="text-sm text-gray-500">
-                    Page {currentPage} sur {totalPages}
-                </p>
-                <div className="flex">
-                    <button
-                        className="bg-white py-1 px-2 rounded-l-lg border-[1px] border-[#D5D5D5] disabled:opacity-50"
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        <Image src={left} alt="left arrow" className="w-5" />
-                    </button>
-                    <button
-                        className="bg-white py-1 px-2 rounded-r-lg border-y-[1px] border-r-[1px] border-[#D5D5D5] disabled:opacity-50"
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                    >
-                        <Image src={right} alt="right arrow" className="w-5" />
-                    </button>
-                </div>
-            </div>
-        </main>
-    );
+  const filteredData = selectedDate
+    ? dataPages.filter((item) => item.date === selectedDate)
+    : dataPages;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentTickets = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+  const resetFilters = () => {
+    setSelectedDate("");
+  };
+
+  return (
+    <main className="min-h-screen p-6 xl:p-10 bg-gray-50">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Historique des ventes :</h1>
+
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 bg-white px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+            <Image src={filterIcon} alt="filter" width={16} height={16} />
+            <span className="text-sm text-gray-700">Filtrer par date :</span>
+          </div>
+          <input
+            type="date"
+            className="border border-gray-300 rounded-md px-3 py-2 text-sm"
+            onChange={(e) => setSelectedDate(e.target.value.split("-").reverse().join("/"))}
+          />
+        </div>
+        {selectedDate && (
+          <button
+            className="text-sm text-blue-600 underline"
+            onClick={resetFilters}
+          >
+            Réinitialiser les filtres
+          </button>
+        )}
+      </div>
+
+      <div className="bg-white border rounded-xl overflow-hidden">
+        <table className="w-full text-left">
+          <thead className="bg-gray-100 text-gray-600 text-sm">
+            <tr>
+              <th className="py-3 px-4">Date</th>
+              <th className="py-3 px-4">Client</th>
+              <th className="py-3 px-4">Produits</th>
+              <th className="py-3 px-4">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentTickets.map((ticket, index) => (
+              <tr key={index} className="border-t">
+                <td className="py-3 px-4 align-top whitespace-nowrap">{ticket.date}</td>
+                <td className="py-3 px-4 align-top whitespace-nowrap">{ticket.client}</td>
+                <td className="py-3 px-4">
+                  <ul className="list-disc pl-4">
+                    {ticket.produits.map((prod, idx) => (
+                      <li key={idx}>{prod.nom} — {prod.prix}€</li>
+                    ))}
+                  </ul>
+                </td>
+                <td className="py-3 px-4 font-semibold text-green-600">
+                  {ticket.produits.reduce((total, p) => total + p.prix, 0)}€
+                </td>
+              </tr>
+            ))}
+            {currentTickets.length === 0 && (
+              <tr>
+                <td colSpan={4} className="py-4 text-center text-gray-500">
+                  Aucune vente trouvée avec ce filtre.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {filteredData.length > itemsPerPage && (
+        <div className="flex justify-between items-center mt-6">
+          <p className="text-sm text-gray-500">
+            Page {currentPage} sur {totalPages}
+          </p>
+          <div className="flex">
+            <button
+              className="bg-white py-1 px-2 rounded-l-lg border border-gray-300 disabled:opacity-50"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <Image src={left} alt="left arrow" className="w-5" />
+            </button>
+            <button
+              className="bg-white py-1 px-2 rounded-r-lg border-y border-r border-gray-300 disabled:opacity-50"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <Image src={right} alt="right arrow" className="w-5" />
+            </button>
+          </div>
+        </div>
+      )}
+    </main>
+  );
 }

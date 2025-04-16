@@ -45,7 +45,7 @@ const PrescriptionCreator = () => {
   return (
     <div className="p-6 max-w-2xl mx-auto space-y-6">
       <div className="bg-white rounded-2xl shadow-md p-6">
-        <h2 className="text-xl font-semibold mb-4">Création d'ordonnance</h2>
+        <h2 className="text-2xl font-semibold mb-4">Création d'ordonnance</h2>
 
         <div className="space-y-4">
           <div>
