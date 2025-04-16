@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const appointmentsData = [
   { id: "00001", nom: "MARCHESSE", animal: "Drizzy", espece: "Chien", type: "Soin", date: "2024-01-27T15:00", veterinaire: "Dr. Dupont" },
@@ -21,6 +22,7 @@ export default function RendezVous() {
   const [searchNom, setSearchNom] = useState("");
   const [showNomDropdown, setShowNomDropdown] = useState(false);
   const nomRef = useRef();
+  const router = useRouter(); // ✅ placé dans le composant
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -152,7 +154,10 @@ export default function RendezVous() {
               </td>
               <td className="p-2">{app.veterinaire}</td>
               <td className="p-2 flex gap-2 justify-center">
-                <button className="text-green-600 bg-green-100 px-3 py-1 rounded text-xs">
+                <button
+                  onClick={() => router.push(`/PERSONNELS/DetailRdv?id=${app.id}`)}
+                  className="text-green-600 bg-green-100 px-3 py-1 rounded text-xs"
+                >
                   Détail
                 </button>
                 <button className="text-blue-600 bg-blue-100 px-3 py-1 rounded text-xs">
