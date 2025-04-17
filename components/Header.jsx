@@ -13,6 +13,7 @@ import spendw from "../public/images/logoHeader/incomes-spendings-white.svg";
 import prodb from "../public/images/logoHeader/product-box-black.svg";
 import prodw from "../public/images/logoHeader/product-box-white.svg";
 import logout from "../public/images/logoHeader/btn_deco.svg";
+import collab from "../public/images/logoHeader/icon-collaborateur.png";
 
 export default function Header() {
     const pathname = usePathname();
@@ -120,6 +121,25 @@ export default function Header() {
                             />
                             <p>Produits</p>
                         </Link>
+                        <Link
+  href="/collaborateurs"
+  className={
+    pathname === "/collaborateurs"
+      ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]"
+      : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"
+  }
+>
+  <Image
+    src={collab}
+    alt="logo collaborateurs"
+    className="w-5 invert-[0%] dark:invert"
+    style={{
+      filter: pathname === "/collaborateurs" ? "brightness(0) invert(1)" : "none"
+    }}
+  />
+  <p>Collaborateurs</p>
+</Link>
+
                     </div>
                 </div>
             </div>

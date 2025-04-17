@@ -104,8 +104,8 @@ export default function DetailRdv() {
         </section>
 
         <div className="flex justify-end gap-4">
-          <button className="bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200">
-            Modifier
+        <button className="bg-orange-100 text-orange-700 px-4 py-2 rounded hover:bg-orange-200">
+        Modifier
           </button>
           <button className="bg-red-100 text-red-700 px-4 py-2 rounded hover:bg-red-200">
             Supprimer

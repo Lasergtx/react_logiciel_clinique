@@ -124,9 +124,17 @@ export default function RendezVous() {
 
         <button onClick={resetFilters} className="text-red-500 text-sm h-8 mt-auto">
           Reset Filter
-        </button>
+        </button> 
       </div>
 
+      <div className="flex justify mb-4">
+  <button
+    onClick={() => router.push("rdv-creation")}
+    className="bg-blue-600 text-white px-4 py-2 rounded text-sm shadow hover:bg-blue-700 transition"
+  >
+    + Ajouter un RDV
+  </button>
+</div>
       {/* Tableau */}
       <table className="w-full text-sm text-left bg-white rounded shadow">
         <thead className="bg-gray-100">
@@ -160,8 +168,8 @@ export default function RendezVous() {
                 >
                   Détail
                 </button>
-                <button className="text-blue-600 bg-blue-100 px-3 py-1 rounded text-xs">
-                  Modifier
+                <button className="text-orange-600 bg-orange-100 px-3 py-1 rounded text-xs">
+                Modifier
                 </button>
                 <button className="text-red-600 bg-red-100 px-3 py-1 rounded text-xs">
                   Supprimer
