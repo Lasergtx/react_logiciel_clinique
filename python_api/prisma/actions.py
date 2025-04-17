@@ -13599,7 +13599,9 @@ class productsActions(Generic[_PrismaModelT]):
                 'name': 'gchfgbcec',
                 'sellingprice': Decimal('1872952907.179328'),
                 'cost': Decimal('1814397249.192309'),
-                'producttypeid': 1277244455,
+                'tva': Decimal('1277244455.116085'),
+                'quantity': 361230461,
+                'producttypeid': 1406511986,
             },
         )
         ```
@@ -13654,17 +13656,21 @@ class productsActions(Generic[_PrismaModelT]):
             data=[
                 {
                     # data to create a products record
-                    'name': 'bbgaifhdaa',
-                    'sellingprice': Decimal('361230461.140651'),
-                    'cost': Decimal('1482877891.56662'),
-                    'producttypeid': 229119865,
+                    'name': 'beicihhijb',
+                    'sellingprice': Decimal('566623296.22911'),
+                    'cost': Decimal('1750011070.41094'),
+                    'tva': Decimal('909024364.75561'),
+                    'quantity': 1802188490,
+                    'producttypeid': 294916155,
                 },
                 {
                     # data to create a products record
-                    'name': 'bhfaabbaha',
-                    'sellingprice': Decimal('410943775.90902'),
-                    'cost': Decimal('755610165.180218'),
-                    'producttypeid': 294916155,
+                    'name': 'fgeahddae',
+                    'sellingprice': Decimal('380648625.103061'),
+                    'cost': Decimal('816411927.108409'),
+                    'tva': Decimal('1079702253.75575'),
+                    'quantity': 1128680371,
+                    'producttypeid': 259061104,
                 },
             ],
             skip_duplicates=True,
@@ -13718,7 +13724,7 @@ class productsActions(Generic[_PrismaModelT]):
         ```py
         products = await products.prisma().delete(
             where={
-                'productid': 564073304,
+                'productid': 1115738345,
             },
         )
         ```
@@ -13770,7 +13776,7 @@ class productsActions(Generic[_PrismaModelT]):
         ```py
         products = await products.prisma().find_unique(
             where={
-                'productid': 380648625,
+                'productid': 1303781742,
             },
         )
         ```
@@ -13821,7 +13827,7 @@ class productsActions(Generic[_PrismaModelT]):
         ```py
         products = await products.prisma().find_unique_or_raise(
             where={
-                'productid': 1030616470,
+                'productid': 1573908495,
             },
         )
         ```
@@ -14073,7 +14079,7 @@ class productsActions(Generic[_PrismaModelT]):
         ```py
         products = await products.prisma().update(
             where={
-                'productid': 816411927,
+                'productid': 1195899036,
             },
             data={
                 # data to update the products record to
@@ -14130,21 +14136,25 @@ class productsActions(Generic[_PrismaModelT]):
         ```py
         products = await products.prisma().upsert(
             where={
-                'productid': 1084099844,
+                'productid': 739021477,
             },
             data={
                 'create': {
-                    'productid': 1084099844,
-                    'name': 'bhfaabbaha',
-                    'sellingprice': Decimal('410943775.90902'),
-                    'cost': Decimal('755610165.180218'),
-                    'producttypeid': 294916155,
+                    'productid': 739021477,
+                    'name': 'fgeahddae',
+                    'sellingprice': Decimal('380648625.103061'),
+                    'cost': Decimal('816411927.108409'),
+                    'tva': Decimal('1079702253.75575'),
+                    'quantity': 1128680371,
+                    'producttypeid': 259061104,
                 },
                 'update': {
-                    'name': 'bhfaabbaha',
-                    'sellingprice': Decimal('410943775.90902'),
-                    'cost': Decimal('755610165.180218'),
-                    'producttypeid': 294916155,
+                    'name': 'fgeahddae',
+                    'sellingprice': Decimal('380648625.103061'),
+                    'cost': Decimal('816411927.108409'),
+                    'tva': Decimal('1079702253.75575'),
+                    'quantity': 1128680371,
+                    'producttypeid': 259061104,
                 },
             },
         )
@@ -14192,7 +14202,7 @@ class productsActions(Generic[_PrismaModelT]):
         # update all products records
         total = await products.prisma().update_many(
             data={
-                'producttypeid': 1079702253
+                'tva': Decimal('1722214010.126913')
             },
             where={}
         )
@@ -14256,7 +14266,7 @@ class productsActions(Generic[_PrismaModelT]):
         results = await products.prisma().count(
             select={
                 '_all': True,
-                'tva': True,
+                'quantity': True,
             },
         )
         ```
@@ -14323,7 +14333,7 @@ class productsActions(Generic[_PrismaModelT]):
         results = await products.prisma().count(
             select={
                 '_all': True,
-                'quantity': True,
+                'producttypeid': True,
             },
         )
         ```
@@ -14555,7 +14565,7 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         users = await users.prisma().query_raw(
             'SELECT * FROM users WHERE userid = $1',
-            755750178,
+            573178504,
         )
         ```
         """
@@ -14595,7 +14605,7 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         user = await users.prisma().query_first(
             'SELECT * FROM users WHERE username = $1',
-            'bbcigiadhb',
+            'beeacgfcej',
         )
         ```
         """
@@ -14634,8 +14644,8 @@ class usersActions(Generic[_PrismaModelT]):
         users = await users.prisma().create(
             data={
                 # data to create a users record
-                'username': 'cfjagbbae',
-                'password': 'bbbfhdidef',
+                'username': 'bbifhdiicc',
+                'password': 'bgjeccejad',
                 'role': enums.roles.DIRECTEUR,
             },
         )
@@ -14691,14 +14701,14 @@ class usersActions(Generic[_PrismaModelT]):
             data=[
                 {
                     # data to create a users record
-                    'username': 'bdadhibhec',
-                    'password': 'bfhdjaiejf',
+                    'username': 'bjagdgabbg',
+                    'password': 'bjbbcffdij',
                     'role': enums.roles.DIRECTEUR,
                 },
                 {
                     # data to create a users record
-                    'username': 'bbjfijjadg',
-                    'password': 'hdjacbehh',
+                    'username': 'begcgchdi',
+                    'password': 'bhbjceagbb',
                     'role': enums.roles.DIRECTEUR,
                 },
             ],
@@ -14753,7 +14763,7 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         users = await users.prisma().delete(
             where={
-                'userid': 1722214010,
+                'userid': 1948555936,
             },
         )
         ```
@@ -14805,7 +14815,7 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         users = await users.prisma().find_unique(
             where={
-                'userid': 1269136939,
+                'userid': 1383253593,
             },
         )
         ```
@@ -14856,7 +14866,7 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         users = await users.prisma().find_unique_or_raise(
             where={
-                'userid': 573178504,
+                'userid': 354664990,
             },
         )
         ```
@@ -15108,7 +15118,7 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         users = await users.prisma().update(
             where={
-                'userid': 1440265249,
+                'userid': 647166719,
             },
             data={
                 # data to update the users record to
@@ -15165,18 +15175,18 @@ class usersActions(Generic[_PrismaModelT]):
         ```py
         users = await users.prisma().upsert(
             where={
-                'userid': 1185738822,
+                'userid': 357089484,
             },
             data={
                 'create': {
-                    'userid': 1185738822,
-                    'username': 'bbjfijjadg',
-                    'password': 'hdjacbehh',
+                    'userid': 357089484,
+                    'username': 'begcgchdi',
+                    'password': 'bhbjceagbb',
                     'role': enums.roles.DIRECTEUR,
                 },
                 'update': {
-                    'username': 'bbjfijjadg',
-                    'password': 'hdjacbehh',
+                    'username': 'begcgchdi',
+                    'password': 'bhbjceagbb',
                     'role': enums.roles.DIRECTEUR,
                 },
             },
@@ -15225,7 +15235,7 @@ class usersActions(Generic[_PrismaModelT]):
         # update all users records
         total = await users.prisma().update_many(
             data={
-                'username': 'bgjeccejad'
+                'username': 'gbcdjgicb'
             },
             where={}
         )

@@ -19,7 +19,7 @@ async def get_product_by_id(id: int = Path(..., alias="id")):
     return ResponseSchema(detail="Successfully fetched data", result=result)
 
 @router.post("", response_model=ResponseSchema, response_model_exclude_none=True)
-async def create_products(data: CreateProduct):
+async def create_product(data: CreateProduct):
     result = await ProductService.create(data)
     return ResponseSchema(detail="Successfully created data", result=result)
 

@@ -22,14 +22,6 @@ class ProductTypesRepository:
         })
 
     @staticmethod
-    async def delete(productType_id: int):
-        await prisma_connection.prisma.product_types.delete(
-            where={
-                'producttypeid': productType_id
-            }
-        )
-
-    @staticmethod
     async def update(productType_id: int, productType: CreateProductType):
         await prisma_connection.prisma.product_types.update(
             where={
@@ -37,5 +29,13 @@ class ProductTypesRepository:
             },
             data={
                 'name': productType.name,
+            }
+        )
+
+    @staticmethod
+    async def delete(productType_id: int):
+        await prisma_connection.prisma.product_types.delete(
+            where={
+                'producttypeid': productType_id
             }
         )

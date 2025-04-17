@@ -1,7 +1,8 @@
 generator client {
-  provider             = "prisma-client-py"
-  interface            = "asyncio"
-  recursive_type_depth = "5"
+  provider                    = "prisma-client-py"
+  recursive_type_depth        = "5"
+  enable_experimental_decimal = "true"
+  interface                   = "asyncio"
 }
 
 datasource db {
@@ -44,7 +45,7 @@ model clients {
 
 model earnings {
   earningid     Int        @id @default(autoincrement())
-  amount        Decimal    @db.Decimal(4, 2)
+  amount        Decimal    @db.Decimal(6, 2)
   description   String?    @db.VarChar(255)
   created_at    DateTime   @default(now()) @db.Timestamp(6)
   paymentstatus payment?
@@ -71,14 +72,14 @@ model events {
 
 model expenses {
   expenseid   Int      @id @default(autoincrement())
-  amount      Decimal  @db.Decimal(4, 2)
+  amount      Decimal  @db.Decimal(6, 2)
   description String?  @db.VarChar(255)
   created_at  DateTime @default(now()) @db.Timestamp(6)
 }
 
 model invoices {
   invoiceid   Int      @id @default(autoincrement())
-  amount      Decimal  @db.Decimal(4, 2)
+  amount      Decimal  @db.Decimal(6, 2)
   invoicelink String   @db.VarChar(512)
   created_at  DateTime @default(now()) @db.Timestamp(6)
   clientid    Int
@@ -149,9 +150,9 @@ model products {
   productid     Int           @id @default(autoincrement())
   name          String        @db.VarChar(50)
   description   String?       @db.VarChar(512)
-  sellingprice  Decimal       @db.Decimal(4, 2)
-  cost          Decimal       @db.Decimal(4, 2)
-  tva           Decimal       @db.Decimal(2, 2)
+  sellingprice  Decimal       @db.Decimal(6, 2)
+  cost          Decimal       @db.Decimal(6, 2)
+  tva           Decimal       @db.Decimal(6, 2)
   quantity      Int
   producttypeid Int
   product_types product_types @relation(fields: [producttypeid], references: [producttypeid], onDelete: NoAction, onUpdate: NoAction)
@@ -196,7 +197,7 @@ enum statuses {
 }
 
 enum statuts {
-  A_FAIRE  @map("A-FAIRE")
+  A_FAIRE  @map("A FAIRE")
   REPORTER
   ANNULER
   TERMINER

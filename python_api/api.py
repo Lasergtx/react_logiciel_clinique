@@ -33,9 +33,15 @@ def init_app():
 
     from Controler import productTypes
     from Controler import products
+    from Controler import users
+    from Controler import clients
+    from Controler import earnings
 
     app.include_router(productTypes.router)
     app.include_router(products.router)
+    app.include_router(users.router)
+    app.include_router(clients.router)
+    app.include_router(earnings.router)
 
     return app
 
