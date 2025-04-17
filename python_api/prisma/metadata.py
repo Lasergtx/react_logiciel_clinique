@@ -39,7 +39,6 @@ RELATIONAL_FIELD_MAPPINGS: dict[str, dict[str, str]] = {
     'earnings': {
         'clients': 'clients',
         'invoices': 'invoices',
-        'items_sold': 'items_sold',
     },
     'events': {
         'clients': 'clients',
@@ -47,19 +46,14 @@ RELATIONAL_FIELD_MAPPINGS: dict[str, dict[str, str]] = {
         'users': 'users',
     },
     'expenses': {
-        'items_bought': 'items_bought',
     },
     'invoices': {
         'clients': 'clients',
         'earnings': 'earnings',
     },
     'items_bought': {
-        'expenses': 'expenses',
-        'products': 'products',
     },
     'items_sold': {
-        'earnings': 'earnings',
-        'products': 'products',
     },
     'patients': {
         'booster_shots': 'booster_shots',
@@ -79,8 +73,6 @@ RELATIONAL_FIELD_MAPPINGS: dict[str, dict[str, str]] = {
         'products': 'products',
     },
     'products': {
-        'items_bought': 'items_bought',
-        'items_sold': 'items_sold',
         'product_types': 'product_types',
     },
     'users': {
