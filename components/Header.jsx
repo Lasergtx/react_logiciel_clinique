@@ -55,7 +55,7 @@ export default function Header() {
                         >
                             <Image
                                 src={pathname === "/trafic" ? freqw : freqb}
-                                alt="logo frequentation"
+                                alt="logo fréquentation"
                                 className="w-5"
                             />
                             <p>Fréquentation</p>
@@ -69,10 +69,8 @@ export default function Header() {
                             }
                         >
                             <Image
-                                src={
-                                    pathname === "/spendings" ? spendw : spendb
-                                }
-                                alt="logo revenus et depense"
+                                src={pathname === "/spendings" ? spendw : spendb}
+                                alt="logo dépenses"
                                 className="w-5"
                             />
                             <p>Dépense</p>
@@ -87,12 +85,12 @@ export default function Header() {
                         >
                             <Image
                                 src={pathname === "/incomes" ? spendw : spendb}
-                                alt="logo revenus et depense"
+                                alt="logo revenus"
                                 className="w-5"
                             />
                             <p>Revenus</p>
                         </Link>
-                        <a
+                        <Link
                             href="/product-sales"
                             className={
                                 pathname === "/product-sales"
@@ -101,16 +99,27 @@ export default function Header() {
                             }
                         >
                             <Image
-                                src={
-                                    pathname === "/product-sales"
-                                        ? prodw
-                                        : prodb
-                                }
+                                src={pathname === "/product-sales" ? prodw : prodb}
                                 alt="logo vente produit"
                                 className="w-5"
                             />
                             <p>Ventes produits</p>
-                        </a>
+                        </Link>
+                        <Link
+                            href="/products"
+                            className={
+                                pathname === "/products"
+                                    ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]"
+                                    : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"
+                            }
+                        >
+                            <Image
+                                src={pathname === "/products" ? prodw : prodb}
+                                alt="logo produits"
+                                className="w-5"
+                            />
+                            <p>Produits</p>
+                        </Link>
                     </div>
                 </div>
             </div>
