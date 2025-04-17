@@ -1,21 +1,46 @@
+import uvicorn
 from fastapi import FastAPI
-from pydantic import BaseModel
+from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
+from Config.Connection import prisma_connection
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("Starting up...")
+    await prisma_connection.connect()
+    yield
+    print("Shutting down...")
+    await prisma_connection.disconnect()
 
-origins = [
-    "http://localhost:3000",  # Next.js frontend
-]
+def init_app():
+    app = FastAPI(lifespan = lifespan)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET", "POST"],  # Allow specific methods
-    allow_headers=["*"],  # Allow all headers
-)
+    origins = [
+        "http://localhost:3000",  # Next.js frontend
+    ]
 
-@app.get("/message/")
-async def root():
-    return "Hello World";
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["GET", "POST"],  # Allow specific methods
+        allow_headers=["*"],  # Allow all headers
+    )
+
+    @app.get("/")
+    async def root():
+        return "Hello World";
+
+    from Controler import productTypes
+    from Controler import products
+
+    app.include_router(productTypes.router)
+    app.include_router(products.router)
+
+    return app
+
+app = init_app()
+
+if __name__ == '__main__':
+    uvicorn.run('api:app', host="localhost", port=8000, reload=True)
+
