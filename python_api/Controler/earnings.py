@@ -2,7 +2,7 @@ from fastapi import APIRouter, Path
 from schema import ResponseSchema
 from Service.earnings import EarningService
 from Model.earnings import CreateEarning
-from Model.items_sold import CreateItemSold
+from Model.items import CreateItem
 
 router = APIRouter(
     prefix="/earnings",
@@ -20,7 +20,7 @@ async def get_earning_by_id(id: int = Path(..., alias="id")):
     return ResponseSchema(detail="Successfully fetched data", result=result)
 
 @router.post("", response_model=ResponseSchema, response_model_exclude_none=True)
-async def create_earning(earning: CreateEarning, items_sold: list[CreateItemSold] = None):
+async def create_earning(earning: CreateEarning, items_sold: list[CreateItem] = None):
     result = await EarningService.create(earning, items_sold)
     return ResponseSchema(detail="Successfully created data", result=result)
 

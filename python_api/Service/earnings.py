@@ -1,6 +1,6 @@
 from Repository.earnings import EarningRepository
 from Model.earnings import CreateEarning
-from Model.items_sold import CreateItemSold
+from Model.items import CreateItem
 
 class EarningService:
 
@@ -13,7 +13,7 @@ class EarningService:
         return await EarningRepository.get_by_id(id)
 
     @staticmethod
-    async def create(earning: CreateEarning, items_sold: list[CreateItemSold] | None):
+    async def create(earning: CreateEarning, items_sold: list[CreateItem] | None):
         return await EarningRepository.create(earning, items_sold)
 
     @staticmethod

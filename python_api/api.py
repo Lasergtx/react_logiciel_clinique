@@ -31,17 +31,17 @@ def init_app():
     async def root():
         return "Hello World";
 
-    from Controler import productTypes
-    from Controler import products
-    from Controler import users
-    from Controler import clients
-    from Controler import earnings
+    from Controler import productTypes, products, users, clients, earnings, expenses, items_sold, items_bought, invoices
 
     app.include_router(productTypes.router)
     app.include_router(products.router)
     app.include_router(users.router)
     app.include_router(clients.router)
     app.include_router(earnings.router)
+    app.include_router(expenses.router)
+    app.include_router(items_sold.router)
+    app.include_router(items_bought.router)
+    app.include_router(invoices.router)
 
     return app
 

@@ -1,5 +1,5 @@
 from Model.earnings import CreateEarning
-from Model.items_sold import CreateItemSold
+from Model.items import CreateItem
 from Config.Connection import prisma_connection
 
 class EarningRepository:
@@ -17,7 +17,7 @@ class EarningRepository:
         )
 
     @staticmethod
-    async def create(earning: CreateEarning, items_sold: list[CreateItemSold] | None):
+    async def create(earning: CreateEarning, items_sold: list[CreateItem] | None):
         newEarning = await prisma_connection.prisma.earnings.create(
             data={
                 'amount': earning.amount,
@@ -33,6 +33,26 @@ class EarningRepository:
                         'earningid': newEarning.earningid,
                         'productid': item.productid,
                         'quantity': item.quantity,
+                    }
+                )
+                product = await prisma_connection.prisma.products.find_first(
+                    where={
+                        'productid': item.productid,
+                    }
+                )
+                newQuantity = product.quantity - item.quantity
+                await prisma_connection.prisma.products.update(
+                    where={
+                        'productid': item.productid,
+                    },
+                    data={
+                        'name': product.name,
+                        'description': product.description,
+                        'sellingprice': product.sellingprice,
+                        'cost': product.cost,
+                        'tva': product.tva,
+                        'quantity': newQuantity,
+                        'producttypeid': product.productid,
                     }
                 )
         return newEarning

@@ -1,20 +1,20 @@
 from enum import Enum
 
 class EventType(str, Enum):
-    RENDEZ_VOUS = "RENDEZ-VOUS"
+    RENDEZVOUS = "RENDEZVOUS"
     OPERATION = "OPERATION"
     AUTRE = "AUTRE"
 
 class Gender(str, Enum):
     M = "M"
     F = "F"
-    N_A = "N/A"
+    NA = "NA"
 
 class Payment(str, Enum):
     PAYER = "PAYER"
-    A_PAYER = "A PAYER"
-    EN_COURS_DE_PAIEMENT = "EN COURS DE PAIEMENT"
-    NON_PAYER = "NON PAYER"
+    APAYER = "APAYER"
+    ENCOURSDEPAIEMENT = "ENCOURSDEPAIEMENT"
+    NONPAYER = "NONPAYER"
 
 class Role(str, Enum):
     DIRECTEUR = "DIRECTEUR"
@@ -26,7 +26,7 @@ class Status(str, Enum):
     INACTIF = "INACTIF"
 
 class Statut(str, Enum):
-    A_FAIRE = "A FAIRE"
+    AFAIRE = "AFAIRE"
     REPORTER = "REPORTER"
     ANNULER = "ANNULER"
     TERMINER = "TERMINER"
