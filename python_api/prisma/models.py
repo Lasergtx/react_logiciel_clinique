@@ -606,6 +606,7 @@ class events(bases.Baseevents):
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
     userid: _int
     patientid: Optional[_int] = None
     clientid: Optional[_int] = None
@@ -2347,6 +2348,14 @@ _events_fields: Dict['types.eventsKeys', PartialModelField] = OrderedDict(
             'is_list': False,
             'optional': False,
             'type': 'datetime.datetime',
+            'is_relational': False,
+            'documentation': None,
+        }),
+        ('status', {
+            'name': 'status',
+            'is_list': False,
+            'optional': False,
+            'type': 'enums.statuts',
             'is_relational': False,
             'documentation': None,
         }),

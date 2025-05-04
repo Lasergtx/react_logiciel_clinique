@@ -9897,6 +9897,7 @@ class eventsCreateInput(eventsOptionalCreateInput):
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
 
 
 # TODO: remove this in favour of without explicit relations
@@ -9918,6 +9919,7 @@ class eventsCreateWithoutRelationsInput(eventsOptionalCreateWithoutRelationsInpu
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
 
 class eventsConnectOrCreateWithoutRelationsInput(TypedDict):
     create: 'eventsCreateWithoutRelationsInput'
@@ -9954,6 +9956,7 @@ class eventsUpdateInput(TypedDict, total=False):
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
     clients: 'clientsUpdateOneWithoutRelationsInput'
     patients: 'patientsUpdateOneWithoutRelationsInput'
     users: 'usersUpdateOneWithoutRelationsInput'
@@ -9968,6 +9971,7 @@ class eventsUpdateManyMutationInput(TypedDict, total=False):
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
 
 
 class eventsUpdateManyWithoutRelationsInput(TypedDict, total=False):
@@ -10058,6 +10062,14 @@ _events_endhour_OrderByInput = TypedDict(
     total=True
 )
 
+_events_status_OrderByInput = TypedDict(
+    '_events_status_OrderByInput',
+    {
+        'status': 'SortOrder',
+    },
+    total=True
+)
+
 _events_userid_OrderByInput = TypedDict(
     '_events_userid_OrderByInput',
     {
@@ -10108,6 +10120,7 @@ eventsOrderByInput = Union[
     '_events_eventdate_OrderByInput',
     '_events_starthour_OrderByInput',
     '_events_endhour_OrderByInput',
+    '_events_status_OrderByInput',
     '_events_userid_OrderByInput',
     '_events_patientid_OrderByInput',
     '_events_clientid_OrderByInput',
@@ -11775,6 +11788,7 @@ class eventsWhereInput(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntFilter']
     patientid: Union[None, _int, 'types.IntFilter']
     clientid: Union[None, _int, 'types.IntFilter']
@@ -11798,6 +11812,7 @@ class eventsWhereInputRecursive1(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntFilter']
     patientid: Union[None, _int, 'types.IntFilter']
     clientid: Union[None, _int, 'types.IntFilter']
@@ -11821,6 +11836,7 @@ class eventsWhereInputRecursive2(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntFilter']
     patientid: Union[None, _int, 'types.IntFilter']
     clientid: Union[None, _int, 'types.IntFilter']
@@ -11844,6 +11860,7 @@ class eventsWhereInputRecursive3(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntFilter']
     patientid: Union[None, _int, 'types.IntFilter']
     clientid: Union[None, _int, 'types.IntFilter']
@@ -11867,6 +11884,7 @@ class eventsWhereInputRecursive4(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntFilter']
     patientid: Union[None, _int, 'types.IntFilter']
     clientid: Union[None, _int, 'types.IntFilter']
@@ -11890,6 +11908,7 @@ class eventsScalarWhereWithAggregatesInput(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntWithAggregatesFilter']
     patientid: Union[_int, 'types.IntWithAggregatesFilter']
     clientid: Union[_int, 'types.IntWithAggregatesFilter']
@@ -11908,6 +11927,7 @@ class eventsScalarWhereWithAggregatesInputRecursive1(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntWithAggregatesFilter']
     patientid: Union[_int, 'types.IntWithAggregatesFilter']
     clientid: Union[_int, 'types.IntWithAggregatesFilter']
@@ -11926,6 +11946,7 @@ class eventsScalarWhereWithAggregatesInputRecursive2(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntWithAggregatesFilter']
     patientid: Union[_int, 'types.IntWithAggregatesFilter']
     clientid: Union[_int, 'types.IntWithAggregatesFilter']
@@ -11944,6 +11965,7 @@ class eventsScalarWhereWithAggregatesInputRecursive3(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntWithAggregatesFilter']
     patientid: Union[_int, 'types.IntWithAggregatesFilter']
     clientid: Union[_int, 'types.IntWithAggregatesFilter']
@@ -11962,6 +11984,7 @@ class eventsScalarWhereWithAggregatesInputRecursive4(TypedDict, total=False):
     eventdate: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     starthour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     endhour: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
+    status: 'enums.statuts'
     userid: Union[_int, 'types.IntWithAggregatesFilter']
     patientid: Union[_int, 'types.IntWithAggregatesFilter']
     clientid: Union[_int, 'types.IntWithAggregatesFilter']
@@ -11976,6 +11999,7 @@ class eventsGroupByOutput(TypedDict, total=False):
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
     userid: _int
     patientid: _int
     clientid: _int
@@ -12011,6 +12035,7 @@ class eventsScalarAggregateOutput(TypedDict, total=False):
     eventdate: datetime.datetime
     starthour: datetime.datetime
     endhour: datetime.datetime
+    status: 'enums.statuts'
     userid: _int
     patientid: _int
     clientid: _int
@@ -12029,6 +12054,7 @@ class eventsMaxAggregateInput(TypedDict, total=False):
     eventdate: bool
     starthour: bool
     endhour: bool
+    status: bool
     userid: bool
     patientid: bool
     clientid: bool
@@ -12043,6 +12069,7 @@ class eventsMinAggregateInput(TypedDict, total=False):
     eventdate: bool
     starthour: bool
     endhour: bool
+    status: bool
     userid: bool
     patientid: bool
     clientid: bool
@@ -12070,6 +12097,7 @@ eventsCountAggregateInput = TypedDict(
         'eventdate': bool,
         'starthour': bool,
         'endhour': bool,
+        'status': bool,
         'userid': bool,
         'patientid': bool,
         'clientid': bool,
@@ -12088,6 +12116,7 @@ eventsCountAggregateOutput = TypedDict(
         'eventdate': int,
         'starthour': int,
         'endhour': int,
+        'status': int,
         'userid': int,
         'patientid': int,
         'clientid': int,
@@ -12105,6 +12134,7 @@ eventsKeys = Literal[
     'eventdate',
     'starthour',
     'endhour',
+    'status',
     'userid',
     'patientid',
     'clientid',
@@ -12120,6 +12150,7 @@ eventsScalarFieldKeys = Literal[
     'eventdate',
     'starthour',
     'endhour',
+    'status',
     'userid',
     'patientid',
     'clientid',

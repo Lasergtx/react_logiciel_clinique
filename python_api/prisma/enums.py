@@ -67,7 +67,7 @@ class statuses(StrEnum):
     INACTIF = 'INACTIF'
 
 class statuts(StrEnum):
-    AFAIRE = 'AFAIRE'
+    AVENIR = 'AVENIR'
     REPORTER = 'REPORTER'
     ANNULER = 'ANNULER'
     TERMINER = 'TERMINER'

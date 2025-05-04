@@ -62,6 +62,7 @@ model events {
   eventdate   DateTime   @db.Date
   starthour   DateTime   @db.Time(6)
   endhour     DateTime   @db.Time(6)
+  status      statuts
   userid      Int
   patientid   Int?
   clientid    Int?
@@ -197,7 +198,7 @@ enum statuses {
 }
 
 enum statuts {
-  AFAIRE
+  AVENIR
   REPORTER
   ANNULER
   TERMINER

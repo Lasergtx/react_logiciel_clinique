@@ -31,7 +31,7 @@ def init_app():
     async def root():
         return "Hello World";
 
-    from Controler import productTypes, products, users, clients, earnings, expenses, items_sold, items_bought, invoices
+    from Controler import productTypes, products, users, clients, earnings, expenses, items_sold, items_bought, invoices, events, patients, boostershots, prescriptions
 
     app.include_router(productTypes.router)
     app.include_router(products.router)
@@ -42,6 +42,10 @@ def init_app():
     app.include_router(items_sold.router)
     app.include_router(items_bought.router)
     app.include_router(invoices.router)
+    app.include_router(events.router)
+    app.include_router(patients.router)
+    app.include_router(boostershots.router)
+    app.include_router(prescriptions.router)
 
     return app
 

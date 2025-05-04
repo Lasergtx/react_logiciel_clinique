@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from Customtypes import Gender
+from typing import Optional
 
 
 class CreateClients(BaseModel):
@@ -7,7 +8,7 @@ class CreateClients(BaseModel):
     firstname: str
     gender: Gender
     phonenumber: str
-    email: str
-    address: str
-    zipcode: str
-    city: str
+    email: Optional[str] = None
+    address: Optional[str] = None
+    zipcode: Optional[str] = None
+    city: Optional[str] = None

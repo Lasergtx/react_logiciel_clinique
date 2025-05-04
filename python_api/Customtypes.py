@@ -26,7 +26,7 @@ class Status(str, Enum):
     INACTIF = "INACTIF"
 
 class Statut(str, Enum):
-    AFAIRE = "AFAIRE"
+    AVENIR = "AVENIR"
     REPORTER = "REPORTER"
     ANNULER = "ANNULER"
     TERMINER = "TERMINER"
