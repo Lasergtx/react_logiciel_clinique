@@ -8,6 +8,10 @@ class ItemsBoughtService:
         return await ItemsBoughtRepository().get_all()
 
     @staticmethod
+    async def get_by_id(expenseid: int, productid: int):
+        return await ItemsBoughtRepository().get_by_id(expenseid, productid)
+
+    @staticmethod
     async def get_by_expenseid(id: int):
         return await ItemsBoughtRepository().get_by_expenseid(id)
 

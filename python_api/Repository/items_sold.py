@@ -7,6 +7,15 @@ class ItemsSoldRepository:
         return await prisma_connection.prisma.items_sold.find_many()
 
     @staticmethod
+    async def get_by_id(earningid: int, productid: int):
+        return await prisma_connection.prisma.items_sold.find_first(
+            where={
+                "earningid": earningid,
+                "productid": productid
+            }
+        )
+
+    @staticmethod
     async def get_by_earningid(id: int):
         return await prisma_connection.prisma.items_sold.find_many(
             where={

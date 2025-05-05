@@ -12,12 +12,17 @@ async def get_all_items_bought():
     result = await ItemsBoughtService.get_all()
     return ResponseSchema(detail="Successfully fetched all data", result=result)
 
-@router.get("depense/{id}", response_model=ResponseSchema, response_model_exclude_none=True)
+@router.get("/{expenseid}/{productid}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_item_bought_by_id(expenseid: int, productid: int):
+    result = await ItemsBoughtService.get_by_id(expenseid, productid)
+    return ResponseSchema(detail="Successfully fetched data", result=result)
+
+@router.get("_depense/{id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_items_bought_by_expenseid(id: int = Path(..., alias="id")):
     result = await ItemsBoughtService.get_by_expenseid(id)
     return ResponseSchema(detail="Successfully fetched all data", result=result)
 
-@router.get("produit/{id}", response_model=ResponseSchema, response_model_exclude_none=True)
+@router.get("_produit/{id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_items_bought_by_productid(id: int = Path(..., alias="id")):
     result = await ItemsBoughtService.get_by_productid(id)
     return ResponseSchema(detail="Successfully fetched all data", result=result)
