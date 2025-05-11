@@ -42,20 +42,20 @@ from ._compat import StrEnum
 
 
 class event_type(StrEnum):
-    RENDEZ_VOUS = 'RENDEZ_VOUS'
+    RENDEZVOUS = 'RENDEZVOUS'
     OPERATION = 'OPERATION'
     AUTRE = 'AUTRE'
 
 class genders(StrEnum):
     M = 'M'
     F = 'F'
-    N_A = 'N_A'
+    NA = 'NA'
 
 class payment(StrEnum):
     PAYER = 'PAYER'
-    A_PAYER = 'A_PAYER'
-    EN_COURS_DE_PAIEMENT = 'EN_COURS_DE_PAIEMENT'
-    NON_PAYER = 'NON_PAYER'
+    APAYER = 'APAYER'
+    ENCOURSDEPAIEMENT = 'ENCOURSDEPAIEMENT'
+    NONPAYER = 'NONPAYER'
 
 class roles(StrEnum):
     DIRECTEUR = 'DIRECTEUR'
@@ -67,7 +67,7 @@ class statuses(StrEnum):
     INACTIF = 'INACTIF'
 
 class statuts(StrEnum):
-    A_FAIRE = 'A_FAIRE'
+    AVENIR = 'AVENIR'
     REPORTER = 'REPORTER'
     ANNULER = 'ANNULER'
     TERMINER = 'TERMINER'

@@ -1200,7 +1200,7 @@ class booster_shotsActions(Generic[_PrismaModelT]):
                 # data to create a booster_shots record
                 'type': 'hjaecfifb',
                 'initialdate': datetime.datetime.utcnow(),
-                'status': enums.statuts.A_FAIRE,
+                'status': enums.statuts.AVENIR,
                 'patientid': 2111915288,
             },
         )
@@ -1258,14 +1258,14 @@ class booster_shotsActions(Generic[_PrismaModelT]):
                     # data to create a booster_shots record
                     'type': 'bbejhfidcb',
                     'initialdate': datetime.datetime.utcnow(),
-                    'status': enums.statuts.A_FAIRE,
+                    'status': enums.statuts.AVENIR,
                     'patientid': 1644289366,
                 },
                 {
                     # data to create a booster_shots record
                     'type': 'bdiicjafbj',
                     'initialdate': datetime.datetime.utcnow(),
-                    'status': enums.statuts.A_FAIRE,
+                    'status': enums.statuts.AVENIR,
                     'patientid': 1647418052,
                 },
             ],
@@ -1739,13 +1739,13 @@ class booster_shotsActions(Generic[_PrismaModelT]):
                     'boostershotid': 675780521,
                     'type': 'bdiicjafbj',
                     'initialdate': datetime.datetime.utcnow(),
-                    'status': enums.statuts.A_FAIRE,
+                    'status': enums.statuts.AVENIR,
                     'patientid': 1647418052,
                 },
                 'update': {
                     'type': 'bdiicjafbj',
                     'initialdate': datetime.datetime.utcnow(),
-                    'status': enums.statuts.A_FAIRE,
+                    'status': enums.statuts.AVENIR,
                     'patientid': 1647418052,
                 },
             },
@@ -4303,10 +4303,11 @@ class eventsActions(Generic[_PrismaModelT]):
             data={
                 # data to create a events record
                 'title': 'bcciijbibg',
-                'type': enums.event_type.RENDEZ_VOUS,
+                'type': enums.event_type.RENDEZVOUS,
                 'eventdate': datetime.datetime.utcnow(),
                 'starthour': datetime.datetime.utcnow(),
                 'endhour': datetime.datetime.utcnow(),
+                'status': enums.statuts.AVENIR,
                 'userid': 255202753,
             },
         )
@@ -4363,19 +4364,21 @@ class eventsActions(Generic[_PrismaModelT]):
                 {
                     # data to create a events record
                     'title': 'bccdfhdigc',
-                    'type': enums.event_type.RENDEZ_VOUS,
+                    'type': enums.event_type.RENDEZVOUS,
                     'eventdate': datetime.datetime.utcnow(),
                     'starthour': datetime.datetime.utcnow(),
                     'endhour': datetime.datetime.utcnow(),
+                    'status': enums.statuts.AVENIR,
                     'userid': 541269159,
                 },
                 {
                     # data to create a events record
                     'title': 'bageiegghg',
-                    'type': enums.event_type.RENDEZ_VOUS,
+                    'type': enums.event_type.RENDEZVOUS,
                     'eventdate': datetime.datetime.utcnow(),
                     'starthour': datetime.datetime.utcnow(),
                     'endhour': datetime.datetime.utcnow(),
+                    'status': enums.statuts.AVENIR,
                     'userid': 508382461,
                 },
             ],
@@ -4848,18 +4851,20 @@ class eventsActions(Generic[_PrismaModelT]):
                 'create': {
                     'eventid': 769267518,
                     'title': 'bageiegghg',
-                    'type': enums.event_type.RENDEZ_VOUS,
+                    'type': enums.event_type.RENDEZVOUS,
                     'eventdate': datetime.datetime.utcnow(),
                     'starthour': datetime.datetime.utcnow(),
                     'endhour': datetime.datetime.utcnow(),
+                    'status': enums.statuts.AVENIR,
                     'userid': 508382461,
                 },
                 'update': {
                     'title': 'bageiegghg',
-                    'type': enums.event_type.RENDEZ_VOUS,
+                    'type': enums.event_type.RENDEZVOUS,
                     'eventdate': datetime.datetime.utcnow(),
                     'starthour': datetime.datetime.utcnow(),
                     'endhour': datetime.datetime.utcnow(),
+                    'status': enums.statuts.AVENIR,
                     'userid': 508382461,
                 },
             },
@@ -5039,7 +5044,7 @@ class eventsActions(Generic[_PrismaModelT]):
         results = await events.prisma().count(
             select={
                 '_all': True,
-                'userid': True,
+                'status': True,
             },
         )
         ```
@@ -5179,10 +5184,10 @@ class eventsActions(Generic[_PrismaModelT]):
         Example
         -------
         ```py
-        # group events records by patientid values
+        # group events records by userid values
         # and count how many records are in each group
         results = await events.prisma().group_by(
-            ['patientid'],
+            ['userid'],
             count=True,
         )
         ```
