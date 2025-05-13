@@ -62,8 +62,7 @@ export default function CollaborateursPage() {
       <table className="w-full bg-white text-sm rounded-lg shadow-md">
         <thead className="bg-gray-100 text-left">
           <tr>
-            <th className="p-4 font-semibold text-gray-700">Nom</th>
-            <th className="p-4 font-semibold text-gray-700">Prénom</th>
+            <th className="p-4 font-semibold text-gray-700">Nom d'utilisateur</th>
             <th className="p-4 font-semibold text-gray-700">Rôle</th>
             <th className="p-4 font-semibold text-gray-700 text-center">Actions</th>
           </tr>
@@ -71,8 +70,7 @@ export default function CollaborateursPage() {
         <tbody>
           {filteredCollaborators.map((collab) => (
             <tr key={collab.userid} className="border-t hover:bg-gray-50 transition">
-              <td className="p-4 text-gray-600 font-medium">{collab.username.split(" ")[0]}</td>
-              <td className="p-4 text-gray-600 font-medium">{collab.username.split(" ")[1]}</td>
+              <td className="p-4 text-gray-600 font-medium">{collab.username}</td>
               <td className="p-4 text-gray-600 font-medium">{collab.role}</td>
               <td className="p-4 text-center space-x-2">
                 <button className="bg-orange-100 text-orange-600 px-3 py-1 rounded text-xs hover:bg-orange-200">Modifier</button>
@@ -90,7 +88,7 @@ export default function CollaborateursPage() {
           ))}
           {filteredCollaborators.length === 0 && (
             <tr>
-              <td colSpan={4} className="p-6 text-center text-gray-500">Aucun collaborateur trouvé pour ce rôle.</td>
+              <td colSpan={3} className="p-6 text-center text-gray-500">Aucun collaborateur trouvé pour ce rôle.</td>
             </tr>
           )}
         </tbody>

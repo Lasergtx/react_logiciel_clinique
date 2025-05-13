@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 export default function AjouterCollaborateur() {
   const router = useRouter();
 
-  const [nom, setNom] = useState("");
-  const [prenom, setPrenom] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const [roles, setRoles] = useState(["Directeur", "Personnels", "Vétérinaire"]);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     const fetchRoles = async () => {
@@ -18,9 +18,8 @@ export default function AjouterCollaborateur() {
         const data = await response.json();
         const apiRoles = [...new Set(data.result.map((user) => user.role))];
 
-        if (apiRoles.length > 0) {
-          setRoles(apiRoles);
-        }
+        const allRoles = [...new Set([...roles, ...apiRoles])];
+        setRoles(allRoles);
       } catch (error) {
         console.error("Erreur lors de la récupération des rôles :", error);
       }
@@ -38,7 +37,12 @@ export default function AjouterCollaborateur() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username: `${prenom} ${nom}`, role })
+        body: JSON.stringify({
+          userid: Date.now(),
+          username,
+          password,
+          role
+        })
       });
 
       if (response.ok) {
@@ -59,22 +63,22 @@ export default function AjouterCollaborateur() {
 
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Nom</label>
+          <label className="block text-sm font-medium mb-1">Nom d'utilisateur</label>
           <input
             type="text"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="w-full border px-3 py-2 rounded text-sm"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Prénom</label>
+          <label className="block text-sm font-medium mb-1">Mot de passe</label>
           <input
-            type="text"
-            value={prenom}
-            onChange={(e) => setPrenom(e.target.value)}
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border px-3 py-2 rounded text-sm"
             required
           />
