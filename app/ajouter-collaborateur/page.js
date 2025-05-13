@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AjouterCollaborateur() {
@@ -9,15 +9,48 @@ export default function AjouterCollaborateur() {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
   const [role, setRole] = useState("");
+  const [roles, setRoles] = useState(["Directeur", "Personnels", "Vétérinaire"]);
 
-  const handleSubmit = (e, ReactFormEvent) => {
+  useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/users");
+        const data = await response.json();
+        const apiRoles = [...new Set(data.result.map((user) => user.role))];
+
+        if (apiRoles.length > 0) {
+          setRoles(apiRoles);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des rôles :", error);
+      }
+    };
+
+    fetchRoles();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Données simulées (pas de POST pour l'instant)
-    console.log("Collaborateur ajouté :", { nom, prenom, role });
+    try {
+      const response = await fetch("http://127.0.0.1:8000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username: `${prenom} ${nom}`, role })
+      });
 
-    // Redirection simulée
-    router.push("/collaborateurs");
+      if (response.ok) {
+        console.log("Collaborateur ajouté avec succès");
+        router.push("/collaborateurs");
+      } else {
+        const errorData = await response.json();
+        console.error("Erreur lors de l'ajout du collaborateur :", errorData.message);
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi des données :", error);
+    }
   };
 
   return (
@@ -56,9 +89,9 @@ export default function AjouterCollaborateur() {
             required
           >
             <option value="">-- Sélectionner un rôle --</option>
-            <option value="Vétérinaire">Vétérinaire</option>
-            <option value="Assistant">Assistant</option>
-            <option value="Secrétaire">Secrétaire</option>
+            {roles.map((role, index) => (
+              <option key={index} value={role}>{role}</option>
+            ))}
           </select>
         </div>
 
