@@ -2,45 +2,27 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
 
 export default function Produits() {
   const [products, setProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortAmount, setSortAmount] = useState("");
   const itemsPerPage = 10;
+  const router = useRouter();
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/products")
       .then((res) => res.json())
-      .then((data) => {
-        setProducts(data.result);
-        setSortedProducts(data.result);
-      })
+      .then((data) => setProducts(data.result))
       .catch((err) => console.error("Erreur lors du chargement des produits :", err));
   }, []);
 
-  const handleSortChange = (e) => {
-    const value = e.target.value;
-    setSortAmount(value);
-
-    let sortedData = [...products];
-
-    if (value === "asc") {
-      sortedData.sort((a, b) => a.quantity - b.quantity);
-    } else if (value === "desc") {
-      sortedData.sort((a, b) => b.quantity - a.quantity);
-    }
-
-    setSortedProducts(sortedData);
-  };
-
-  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstItem, indexOfLastItem);
+  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -48,32 +30,36 @@ export default function Produits() {
     }
   };
 
+  const openEditModal = (index) => {
+    console.log(`Modifier produit à l'index : ${index}`);
+  };
+
+  const openDeleteModal = (index) => {
+    console.log(`Supprimer produit à l'index : ${index}`);
+  };
+
   return (
     <main className="min-h-screen p-6 xl:p-10 bg-gray-50">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Liste des produits :</h1>
-
-      {/* Filtre de quantité placé juste en dessous du titre */}
-      <div className="mb-6">
-        <select
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm"
-          onChange={handleSortChange}
-          value={sortAmount}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-gray-800">Stock des produits :</h1>
+        <button
+          onClick={() => router.push("produit-creation")}
+          className="bg-blue-600 text-white px-4 py-2 rounded text-sm shadow hover:bg-blue-700 transition"
         >
-          <option value="">Quantité</option>
-          <option value="asc">Croissant</option>
-          <option value="desc">Décroissant</option>
-        </select>
+          + Ajouter un produit
+        </button>
       </div>
 
-      <div className="bg-white border rounded-xl overflow-hidden">
+      <div className="bg-white border rounded-xl overflow-hidden shadow">
         <table className="w-full text-left">
           <thead className="bg-gray-100 text-gray-600 text-sm">
             <tr>
-              <th className="py-3 px-4">Produit</th>
-              <th className="py-3 px-4">Description</th>
-              <th className="py-3 px-4">Quantité</th>
-              <th className="py-3 px-4">Prix d’achat (€)</th>
-              <th className="py-3 px-4">Prix de vente (€)</th>
+              <th className="py-3 px-4">PRODUIT</th>
+              <th className="py-3 px-4">DESCRIPTION</th>
+              <th className="py-3 px-4">QUANTITÉ</th>
+              <th className="py-3 px-4">PRIX D’ACHAT (€)</th>
+              <th className="py-3 px-4">PRIX DE VENTE (€)</th>
+              <th className="py-3 px-4 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -87,11 +73,25 @@ export default function Produits() {
                   <td className="py-3 px-4 text-green-600 font-semibold">
                     {parseFloat(product.sellingprice).toFixed(2)}€
                   </td>
+                  <td className="py-3 px-4 flex justify-center space-x-2">
+                    <button
+                      onClick={() => openEditModal(index)}
+                      className="text-orange-600 bg-orange-100 px-3 py-1 rounded text-sm"
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      onClick={() => openDeleteModal(index)}
+                      className="text-red-600 bg-red-100 px-3 py-1 rounded text-sm"
+                    >
+                      Supprimer
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="py-4 text-center text-gray-500">
+                <td colSpan={6} className="py-4 text-center text-gray-500">
                   Aucun produit trouvé.
                 </td>
               </tr>
@@ -100,7 +100,7 @@ export default function Produits() {
         </table>
       </div>
 
-      {sortedProducts.length > itemsPerPage && (
+      {products.length > itemsPerPage && (
         <div className="flex justify-between items-center mt-6">
           <p className="text-sm text-gray-500">
             Page {currentPage} sur {totalPages}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
 import filterIcon from "@/public/images/filter.svg";
+import { useRouter } from "next/navigation";
 
 const dataPages = [
   {
@@ -32,58 +33,14 @@ const dataPages = [
     description: "Achat d'un nouvel équipement vétérinaire",
     amount: "- 400€",
   },
-  {
-    date: "07/02/2025",
-    description: "Achat de matériel de soins",
-    amount: "- 200€",
-  },
-  {
-    date: "10/02/2025",
-    description: "Réparation d'un appareil de diagnostic",
-    amount: "- 40€",
-  },
-  {
-    date: "10/02/2025",
-    description: "Frais de déplacement pour visite à domicile",
-    amount: "- 70€",
-  },
-  {
-    date: "12/02/2025",
-    description: "Campagne de sensibilisation en ligne",
-    amount: "- 90€",
-  },
-  {
-    date: "13/02/2025",
-    description: "Remboursement prêt pour équipement",
-    amount: "- 320€",
-  },
-  {
-    date: "17/02/2025",
-    description: "Stock de vaccins et médicaments",
-    amount: "- 500€",
-  },
-  {
-    date: "19/02/2025",
-    description: "Formation du personnel sur nouvelles techniques",
-    amount: "- 250€",
-  },
-  {
-    date: "19/02/2025",
-    description: "Frais administratifs de la clinique",
-    amount: "- 60€",
-  },
-  {
-    date: "20/02/2025",
-    description: "Réparation du matériel chirurgical",
-    amount: "- 180€",
-  },
 ];
 
 export default function Spendings() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
-
+  const router = useRouter();
   const itemsPerPage = 7;
+
   const filteredData = selectedDate
     ? dataPages.filter((item) => item.date === selectedDate)
     : dataPages;
@@ -136,19 +93,29 @@ export default function Spendings() {
               <th className="py-3 px-4">Date</th>
               <th className="py-3 px-4">Description</th>
               <th className="py-3 px-4">Montant</th>
+              <th className="py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {currentContracts.map((item, index) => (
-              <tr key={index} className="border-t">
-                <td className="py-3 px-4">{item.date}</td>
-                <td className="py-3 px-4">{item.description}</td>
-                <td className="py-3 px-4 text-red-500">{item.amount}</td>
-              </tr>
-            ))}
-            {currentContracts.length === 0 && (
+            {currentContracts.length > 0 ? (
+              currentContracts.map((item, index) => (
+                <tr key={index} className="border-t">
+                  <td className="py-3 px-4">{item.date}</td>
+                  <td className="py-3 px-4">{item.description}</td>
+                  <td className="py-3 px-4 text-red-500">{item.amount}</td>
+                  <td className="py-3 px-4">
+                    <button
+                      className="bg-[#4AD991] bg-opacity-20 text-[#4AD991] text-sm py-1 px-4 rounded-lg"
+                      onClick={() => router.push("/details")}
+                    >
+                      Détails
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
-                <td colSpan={3} className="py-4 text-gray-500">
+                <td colSpan={4} className="py-4 text-gray-500">
                   Aucune dépense trouvée pour cette date.
                 </td>
               </tr>

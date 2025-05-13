@@ -107,21 +107,6 @@ export default function Header() {
                             <p>Ventes produits</p>
                         </Link>
                         <Link
-                            href="/products"
-                            className={
-                                pathname === "/products"
-                                    ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]"
-                                    : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"
-                            }
-                        >
-                            <Image
-                                src={pathname === "/products" ? prodw : prodb}
-                                alt="logo produits"
-                                className="w-5"
-                            />
-                            <p>Produits</p>
-                        </Link>
-                        <Link
   href="/collaborateurs"
   className={
     pathname === "/collaborateurs"
