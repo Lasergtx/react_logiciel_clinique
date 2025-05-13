@@ -1,4 +1,3 @@
-/* Import police professionnelle */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
@@ -9,12 +8,6 @@
 :root {
   --background: #ffffff;
   --foreground: #111827;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #f3f4f6;
 }
 
 /* Styles globaux */
@@ -44,5 +37,4 @@ body {
       transform: translateY(0) scale(1);
     }
   }
-}
 }
