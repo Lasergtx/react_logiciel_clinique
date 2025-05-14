@@ -73,6 +73,10 @@ export default function Header() {
                             <Image src={pathname === "/spendings" ? spendw : spendb} alt="Dépense" className="w-5" />
                             <p>Dépense</p>
                         </Link>
+                        <Link href="/incomes" className={pathname === "/incomes" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
+                            <Image src={pathname === "/incomes" ? spendw : spendb} alt="Dépense" className="w-5" />
+                            <p>Revenues</p>
+                        </Link>
                         <Link href="/product-sales" className={pathname === "/product-sales" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
                             <Image src={pathname === "/product-sales" ? prodw : prodb} alt="Ventes produits" className="w-5" />
                             <p>Ventes produits</p>

@@ -177,5 +177,3 @@ const InvoiceCreator = () => {
   };
   
   export default InvoiceCreator;
-
-// C'est bon, j’ai intégré la deuxième page dans le même fichier React, avec un design plus professionnel : cartes, champs stylisés, et bouton de génération. Tout est prêt pour que tu ajoutes la logique de génération PDF plus tard. Si tu veux que je t’aide à intégrer cette partie (avec jsPDF, html2pdf ou autre), je peux te le faire aussi !

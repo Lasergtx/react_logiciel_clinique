@@ -6,6 +6,7 @@ import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
 import filterIcon from "@/public/images/filter.svg";
 import { useRouter } from "next/navigation";
+import RoleGuard from "@/components/RoleGuard";
 
 const dataPages = [
     { date: "17/02/2025", debiteur: "Jean Lagache", total: "+ 200€", raison: "Paiement facture" },
@@ -61,6 +62,7 @@ export default function Dashboard() {
     };
 
     return (
+            <RoleGuard allowedRoles={["DIRECTEUR"]}>
         <main className="min-h-screen p-6 xl:p-10 bg-gray-50">
             <h1 className="text-3xl font-bold text-gray-800 mb-6">Revenus :</h1>
 
@@ -160,5 +162,6 @@ export default function Dashboard() {
                 </div>
             )}
         </main>
-    );
+        </RoleGuard>
+    ); 
 }

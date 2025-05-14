@@ -1,5 +1,6 @@
 "use client";
 
+import RoleGuard from "@/components/RoleGuard";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -58,6 +59,7 @@ export default function AjouterCollaborateur() {
   };
 
   return (
+        <RoleGuard allowedRoles={["DIRECTEUR"]}>
     <main className="p-10 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">Ajouter un collaborateur</h1>
 
@@ -109,5 +111,6 @@ export default function AjouterCollaborateur() {
         </div>
       </form>
     </main>
-  );
-}
+        </RoleGuard>
+    );
+}  
