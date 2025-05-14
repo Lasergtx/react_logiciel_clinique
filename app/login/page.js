@@ -2,25 +2,37 @@
 
 import Image from 'next/image';
 import logo from '@/public/images/logo-full.svg';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isMounted, setIsMounted] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!isMounted) return;
+
         try {
             const response = await fetch('http://127.0.0.1:8000/users');
             if (!response.ok) throw new Error('Erreur serveur');
             const data = await response.json();
             const users = data.result;
             const user = users.find(
-              (user) => user.username === username && user.password === password
+                (user) => user.username.toLowerCase() === username.toLowerCase() && user.password === password
             );
+
             if (user) {
-                window.location.href = '/dashboard';
+                sessionStorage.setItem('userRole', user.role);
+                sessionStorage.setItem('userId', user.userid);
+                router.push('/dashboard');
                 setError('');
             } else {
                 setError('Identifiant ou mot de passe incorrect');
