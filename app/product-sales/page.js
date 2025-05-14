@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
+import RoleGuard from "@/components/RoleGuard";
 
 export default function Produits() {
   const [products, setProducts] = useState([]);
@@ -49,6 +50,8 @@ export default function Produits() {
   };
 
   return (
+          <RoleGuard allowedRoles={["DIRECTEUR"]}>
+    
     <main className="min-h-screen p-6 xl:p-10 bg-gray-50">
       <h1 className="text-3xl font-bold text-gray-800 mb-4">Liste des produits :</h1>
 
@@ -124,5 +127,6 @@ export default function Produits() {
         </div>
       )}
     </main>
+  </RoleGuard>
   );
 }

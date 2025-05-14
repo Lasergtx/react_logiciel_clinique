@@ -5,6 +5,7 @@ import Image from "next/image";
 import left from "@/public/images/arrowleft.svg";
 import right from "@/public/images/arrowright.svg";
 import filterIcon from "@/public/images/filter.svg";
+import RoleGuard from "@/components/RoleGuard";
 
 const dataPages = [
     { clients: "35 clients", patients: "30 patients", date: "30/01/2025" },
@@ -40,6 +41,7 @@ export default function Trafic() {
     };
 
     return (
+ <RoleGuard allowedRoles={["DIRECTEUR"]}>
         <main className="min-h-screen p-6 xl:p-10 bg-gray-50">
             <h1 className="text-3xl font-bold text-gray-800 mb-6">Fréquentation :</h1>
 
@@ -122,5 +124,6 @@ export default function Trafic() {
                 </div>
             )}
         </main>
+    </RoleGuard>
     );
 }
