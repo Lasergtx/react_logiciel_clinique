@@ -52,6 +52,7 @@ model earnings {
   clientid      Int
   clients       clients    @relation(fields: [clientid], references: [clientid], onDelete: NoAction, onUpdate: NoAction)
   invoices      invoices[]
+  items_sold items_sold[]
 }
 
 model events {
@@ -72,10 +73,11 @@ model events {
 }
 
 model expenses {
-  expenseid   Int      @id @default(autoincrement())
-  amount      Decimal  @db.Decimal(6, 2)
-  description String?  @db.VarChar(255)
-  created_at  DateTime @default(now()) @db.Timestamp(6)
+  expenseid    Int            @id @default(autoincrement())
+  amount       Decimal        @db.Decimal(6, 2)
+  description  String?        @db.VarChar(255)
+  created_at   DateTime       @default(now()) @db.Timestamp(6)
+  items_bought items_bought[]
 }
 
 model invoices {
@@ -93,6 +95,8 @@ model items_bought {
   expenseid Int
   productid Int
   quantity  Int
+  expenses  expenses @relation(fields: [expenseid], references: [expenseid], onDelete: Cascade)
+  products  products @relation(fields: [productid], references: [productid], onDelete: Cascade)
 
   @@id([expenseid, productid])
 }
@@ -101,6 +105,8 @@ model items_sold {
   earningid Int
   productid Int
   quantity  Int
+  earnings  earnings @relation(fields: [earningid], references: [earningid], onDelete: Cascade)
+  products  products @relation(fields: [productid], references: [productid], onDelete: Cascade)
 
   @@id([earningid, productid])
 }
@@ -148,15 +154,17 @@ model product_types {
 }
 
 model products {
-  productid     Int           @id @default(autoincrement())
-  name          String        @db.VarChar(50)
-  description   String?       @db.VarChar(512)
-  sellingprice  Decimal       @db.Decimal(6, 2)
-  cost          Decimal       @db.Decimal(6, 2)
-  tva           Decimal       @db.Decimal(6, 2)
+  productid     Int            @id @default(autoincrement())
+  name          String         @db.VarChar(50)
+  description   String?        @db.VarChar(512)
+  sellingprice  Decimal        @db.Decimal(6, 2)
+  cost          Decimal        @db.Decimal(6, 2)
+  tva           Decimal        @db.Decimal(6, 2)
   quantity      Int
   producttypeid Int
-  product_types product_types @relation(fields: [producttypeid], references: [producttypeid], onDelete: NoAction, onUpdate: NoAction)
+  product_types product_types  @relation(fields: [producttypeid], references: [producttypeid], onDelete: NoAction, onUpdate: NoAction)
+  items_bought  items_bought[]
+  items_sold    items_sold[]
 }
 
 model users {
