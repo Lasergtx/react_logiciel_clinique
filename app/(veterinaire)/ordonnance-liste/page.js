@@ -1,135 +1,192 @@
-// a faire
+"use client"; // Directive pour indiquer que ce code doit être exécuté côté client
 
-"use client";  // rajouter a dash-reunis
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import jsPDF from "jspdf";
 
-import { useEffect, useState } from "react";
-
-const appointments = [
-  { id: 1, nom: "VOULZY Laurent", animal: "Jeanne", date: "2025-02-21", heure: "09:00", type: "Consultation", description: "Contrôle annuel de routine." },
-  { id: 2, nom: "PERMAN OVE Jean", animal: "Kenny", date: "2025-02-21", heure: "10:30", type: "Soin", description: "Traitement contre les puces." },
-  { id: 3, nom: "PAYET Dimitri", animal: "Pasok", date: "2025-04-21", heure: "11:00", type: "Vaccination", description: "Vaccination contre la rage." },
-  { id: 4, nom: "BARAGOU TOU Tripathy", animal: "Caramel", date: "2025-04-04", heure: "13:30", type: "Opération", description: "Castration planifiée." },
-  { id: 5, nom: "MAURICE Jean", animal: "Claudio", date: "2025-04-03", heure: "15:45", type: "Soin", description: "Problème digestif à surveiller." },
-  { id: 6, nom: "BELMADI Djamel", animal: "Ryad", date: "2025-04-03", heure: "09:30", type: "Consultation", description: "Suivi après traitement." },
-  { id: 7, nom: "MAURICE Florent", animal: "Claudio", date: "2025-04-03", heure: "11:00", type: "Vaccination", description: "Rappel de vaccin annuel." }
+const logoPath = "/images/logo_avec_titre.png";
+const prescriptionsData = [
+  {
+    id: "001",
+    type: "Vaccin",
+    initialdate: "2025-05-15",
+    executiondate: "2025-05-15",
+    status: "AVENIR",
+    patientid: 1,
+    patient: "Jean Dupont"
+  },
+  {
+    id: "002",
+    type: "Antibiotique",
+    initialdate: "2025-05-16",
+    executiondate: "2025-05-16",
+    status: "AVENIR",
+    patientid: 2,
+    patient: "Marie Martin"
+  },
+  {
+    id: "003",
+    type: "Analgésique",
+    initialdate: "2025-05-17",
+    executiondate: "2025-05-17",
+    status: "AVENIR",
+    patientid: 3,
+    patient: "Luc Picard"
+  }
 ];
 
-export default function AccueilVeterinaire() {
-  const [groupedAppointments, setGroupedAppointments] = useState({});
+export default function Ordonnances() {
+  const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+  const [selectedPrescription, setSelectedPrescription] = useState(null);
+  const modalRef = useRef(null);
+  const [closing, setClosing] = useState(false);
+
+  const openModal = (prescription) => {
+    setSelectedPrescription(prescription);
+    setShowModal(true);
+  };
+
+  const handleDownloadPDF = (prescription) => {
+    const { patient, type, initialdate, executiondate, status } = prescription;
+    const doc = new jsPDF();
+    const img = new Image();
+    img.src = "/images/logo_avec_titre.png";
+    const aspectRatio = 536 / 236;
+    const logoWidth = 50;
+    const logoHeight = logoWidth / aspectRatio;
+
+    img.onload = () => {
+      doc.addImage(img, "PNG", 15, 10, logoWidth, logoHeight);
+      doc.setFontSize(22);
+      doc.setTextColor("#333");
+      doc.text("ORDONNANCE", 105, 20, { align: "center" });
+
+      doc.setFontSize(14);
+      doc.setTextColor("#555");
+      doc.text(`Patient: ${patient}`, 20, 50);
+      doc.text(`Type: ${type}`, 20, 60);
+      doc.text(`Date initiale: ${initialdate}`, 20, 70);
+      doc.text(`Date d'exécution: ${executiondate}`, 20, 80);
+      doc.text(`Statut: ${status}`, 20, 90);
+      doc.line(20, 95, 190, 95);
+
+      doc.save(`ordonnance_${prescription.id}.pdf`);
+    };
+  };
+
+  const closeModal = () => {
+    setClosing(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setSelectedPrescription(null);
+      setClosing(false);
+    }, 200);
+  };
 
   useEffect(() => {
-    const now = new Date();
-    const upcoming = appointments.filter(app => {
-      const appDate = new Date(`${app.date}T${app.heure}`);
-      return appDate > now;
-    }).sort((a, b) => new Date(`${a.date}T${a.heure}`) - new Date(`${b.date}T${b.heure}`));
-
-    const groups = {};
-    for (const app of upcoming) {
-      const date = new Date(app.date);
-      const today = new Date();
-      const tomorrow = new Date();
-      const afterTomorrow = new Date();
-      tomorrow.setDate(today.getDate() + 1);
-      afterTomorrow.setDate(today.getDate() + 2);
-
-      let key = app.date;
-      if (date.toDateString() === today.toDateString()) key = "Aujourd'hui";
-      else if (date.toDateString() === tomorrow.toDateString()) key = "Demain";
-      else if (date.toDateString() === afterTomorrow.toDateString()) key = "Après-demain";
-
-      if (!groups[key]) groups[key] = [];
-      groups[key].push(app);
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        closeModal();
+      }
+    };
+    if (showModal) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
-    setGroupedAppointments(groups);
-  }, []);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showModal]);
 
   return (
-    <>
-      <h1 className="text-2xl font-bold px-10 pt-6">Tableau de bord</h1>
-      <main className="flex flex-col lg:flex-row gap-8 p-10">
-      {/* Tableau des patients à venir */}
-      <div className="flex-1">
-        <h2 className="text-xl font-semibold mb-4">Patients à venir :</h2>
-        <table className="w-full bg-white rounded-lg shadow overflow-hidden text-sm">
-          <thead className="bg-gray-100">
-            <tr className="text-left">
-              <th className="p-3">Nom et prénom</th>
-              <th className="p-3">Animal</th>
-              <th className="p-3">Date</th>
-              <th className="p-3">Heure</th>
-              <th className="p-3">Type</th>
-              <th className="p-3"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {appointments.map(app => (
-              <tr key={app.id} className="border-t">
-                <td className="p-3">{app.nom}</td>
-                <td className="p-3">{app.animal}</td>
-                <td className="p-3">{app.date}</td>
-                <td className="p-3">{app.heure}</td>
-                <td className="p-3">{app.type}</td>
-                <td className="p-3">
-                  <button className="text-green-600 bg-green-100 px-3 py-1 rounded text-xs">Détail</button>
+    <main className="p-10">
+      <h1 className="text-2xl font-semibold mb-6">Ordonnances :</h1>
+
+      <div className="flex justify-between mb-4">
+        <div className="flex gap-4">
+          <input
+            type="text"
+            placeholder="Rechercher un patient..."
+            className="border p-2 rounded"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <input
+            type="date"
+            className="border p-2 rounded"
+            onChange={(e) => setDateFilter(e.target.value)}
+          />
+        </div>
+        <button
+          onClick={() => router.push("ordonnance-creation")}
+          className="bg-blue-600 text-white px-4 py-2 rounded text-sm shadow hover:bg-blue-700 transition"
+        >
+          + Créer une nouvelle ordonnance
+        </button>
+      </div>
+
+      <table className="w-full text-sm text-left bg-white rounded shadow">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="p-2">ID</th>
+            <th className="p-2">Patient</th>
+            <th className="p-2">Type</th>
+            <th className="p-2">Date initiale</th>
+            <th className="p-2">Date d&apos;exécution</th>
+            <th className="p-2">Statut</th>
+            <th className="p-2 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {prescriptionsData
+            .filter((prescription) =>
+              prescription.patient.toLowerCase().includes(searchTerm.toLowerCase()) &&
+              (dateFilter ? prescription.initialdate.startsWith(dateFilter) : true)
+            )
+            .map((prescription) => (
+              <tr key={prescription.id} className="border-t">
+                <td className="p-2">{prescription.id}</td>
+                <td className="p-2">{prescription.patient}</td>
+                <td className="p-2">{prescription.type}</td>
+                <td className="p-2">{prescription.initialdate}</td>
+                <td className="p-2">{prescription.executiondate}</td>
+                <td className="p-2">{prescription.status}</td>
+                <td className="p-2 flex gap-2 justify-center">
+                  <button onClick={() => openModal(prescription)} className="text-green-600 bg-green-100 px-3 py-1 rounded text-xs">
+                    Détail
+                  </button>
+
+                  <button className="text-blue-600 bg-blue-100 px-3 py-1 rounded text-xs" onClick={() => handleDownloadPDF(prescription)}>Télécharger</button>
+                  <button className="text-red-600 bg-red-100 px-3 py-1 rounded text-xs">Supprimer</button>
                 </td>
               </tr>
             ))}
-          </tbody>
-        </table>
-        <div className="w-full flex justify-center mt-6">
-          <button className="text-white bg-[#7D8AA7] px-5 py-2 rounded-full text-sm font-medium shadow">Voir la liste des Rendez-vous</button>
-        </div>
-      </div>
+        </tbody>
+      </table>
 
-      {/* Bloc des 3 prochains RDV */}
-      <div className="w-full lg:w-1/3">
-  <h3 className="text-lg font-semibold mb-4">Les prochaines rendez-vous</h3>
-  {
-    (() => {
-      const now = new Date();
-      const upcoming = appointments
-        .filter(app => new Date(`${app.date}T${app.heure}`) > now)
-        .sort((a, b) => new Date(`${a.date}T${a.heure}`) - new Date(`${b.date}T${b.heure}`))
-        .slice(0, 3);
+      {showModal && selectedPrescription && (
+        <div className={`fixed inset-0 backdrop-blur-sm bg-black/50 flex items-center justify-center z-50 ${closing ? 'animate-fadeOut' : 'animate-fadeIn'}`}>
+          <div ref={modalRef} className={`bg-white rounded-xl shadow-xl w-full max-w-md p-6 relative ${closing ? 'animate-slideOutDown' : 'animate-slideInUp'}`}>
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-red-600 text-xl"
+            >×</button>
+            <h2 className="text-xl font-bold mb-4">Détails de l&apos;Ordonnance</h2>
+            <p className="mb-2">Patient : {selectedPrescription.patient}</p>
+            <p className="mb-2">Type : {selectedPrescription.type}</p>
+            <p className="mb-2">Date initiale : {selectedPrescription.initialdate}</p>
+            <p className="mb-2">Date d&apos;exécution : {selectedPrescription.executiondate}</p>
+            <p className="mb-2">Statut : {selectedPrescription.status}</p>
 
-      const grouped = {};
-      const today = new Date();
-      const tomorrow = new Date();
-      const afterTomorrow = new Date();
-      tomorrow.setDate(today.getDate() + 1);
-      afterTomorrow.setDate(today.getDate() + 2);
-
-      for (const app of upcoming) {
-        const appDate = new Date(`${app.date}T${app.heure}`);
-        let key = app.date;
-        if (appDate.toDateString() === today.toDateString()) key = "Aujourd’hui";
-        else if (appDate.toDateString() === tomorrow.toDateString()) key = "Demain";
-        else if (appDate.toDateString() === afterTomorrow.toDateString()) key = "Après-demain";
-        else key = app.date;
-
-        if (!grouped[key]) grouped[key] = [];
-        grouped[key].push(app);
-      }
-
-      return Object.entries(grouped).map(([label, apps], idx) => (
-        <div key={idx} className="mb-4">
-          <h4 className="text-md font-bold text-gray-800 mb-2">{label}</h4>
-          {apps.map((app, i) => (
-            <div key={i} className="bg-white p-4 rounded-lg shadow-md mb-3 border border-gray-100">
-              <p className="font-bold text-sm text-gray-800">{app.nom}</p>
-              <p className="text-xs text-gray-600 mb-1">Pour {app.animal}</p>
-              <hr className="my-2 border-gray-300" />
-              <p className="text-xs text-gray-500">{app.description}</p>
-              <p className="text-sm font-semibold text-gray-700 mt-2">{app.date} à {app.heure}</p>
+            <div className="mt-6 text-right">
+              <button onClick={closeModal} className="bg-blue-600 text-white px-4 py-2 rounded">
+                Fermer
+              </button>
             </div>
-          ))}
+          </div>
         </div>
-      ));
-    })()
-  }
-</div>
-        </main>
-        </>
-    );                 
+      )}
+    </main>
+  );
 }

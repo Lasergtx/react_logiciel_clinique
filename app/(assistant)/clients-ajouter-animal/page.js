@@ -135,7 +135,7 @@ export default function AjouterAnimal() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Numéro d'identification <span className="text-red-500">*</span></label>
+          <label className="block text-sm font-medium mb-1">Numéro d&apos;identification <span className="text-red-500">*</span></label>
           <input
             type="text"
             value={numberid}
