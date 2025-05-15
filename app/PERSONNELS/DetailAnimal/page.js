@@ -123,7 +123,7 @@ export default function AnimalDetail() {
                                 <td className="py-2">Soin</td>
                                 <td>Grippe</td>
                                 <td>
-                                    <button className="text-green-600 bg-green-100 px-2 py-1 rounded text-sm">Voir l'ordonnance</button>
+                                    <button className="text-green-600 bg-green-100 px-2 py-1 rounded text-sm">Voir l&apos;ordonnance</button>
                                 </td>
                             </tr>
                             <tr className="border-t text-sm">

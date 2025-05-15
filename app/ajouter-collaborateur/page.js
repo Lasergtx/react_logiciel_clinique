@@ -27,7 +27,7 @@ export default function AjouterCollaborateur() {
     };
 
     fetchRoles();
-  }, []);
+  }, [roles]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ export default function AjouterCollaborateur() {
 
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Nom d'utilisateur</label>
+          <label className='block text-sm font-medium mb-1'>Nom d&apos;utilisateur</label>
           <input
             type="text"
             value={username}

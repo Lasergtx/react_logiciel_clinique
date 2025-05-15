@@ -64,7 +64,7 @@ export default function CollaborateursPage() {
         <table className="w-full bg-white text-sm rounded-lg shadow-md">
           <thead className="bg-gray-100 text-left">
             <tr>
-              <th className="p-4 font-semibold text-gray-700">Nom d'utilisateur</th>
+              <th className="p-4 font-semibold text-gray-700">Nom d&apos;utilisateur</th>
               <th className="p-4 font-semibold text-gray-700">Rôle</th>
               <th className="p-4 font-semibold text-gray-700 text-center">Actions</th>
             </tr>

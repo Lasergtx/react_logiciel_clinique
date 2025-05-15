@@ -152,7 +152,7 @@ function StatCard({ title, value, variation, positive = false, icon }) {
           {positive ? "▲" : "▼"} {variation}
         </p>
         <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-          Voir l'historique
+          Voir l&apos;historique
         </button>
       </div>
       <Image src={icon} alt="icon" className="w-10 h-10" />

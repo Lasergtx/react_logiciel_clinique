@@ -52,7 +52,7 @@ export default function Login() {
                     <form className="flex flex-col space-y-8 mt-12 w-full" onSubmit={handleLogin}>
                         <div className="flex flex-col min-h-44 space-y-4">
                             <div className="flex flex-col space-y-1">
-                                <label>Nom d'utilisateur</label>
+                                <label>Nom d&apos;utilisateur</label>
                                 <input
                                     type="text"
                                     placeholder="Nom d'utilisateur"

@@ -92,7 +92,7 @@ export default function Clients() {
           <tr>
             <th className="p-2">ID</th>
             <th className="p-2">Nom et prénom</th>
-            <th className="p-2">Nombre d'animaux</th>
+            <th className="p-2">Nombre d&apos;animaux</th>
             <th className="p-2">Numéro de téléphone</th>
             <th className="p-2"></th>
           </tr>

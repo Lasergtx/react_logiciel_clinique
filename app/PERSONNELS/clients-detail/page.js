@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 const clientsData = [
   {
@@ -253,11 +254,13 @@ export default function NewClientDetail() {
               Modifier
             </button>
           </div>
-          <img
-            src="/mdi_paw.png"
-            alt="Logo clinique"
-            className="w-40 h-40 object-contain rounded-full shadow-md"
-          />
+<Image
+  src="/mdi_paw.png"
+  alt="Logo clinique"
+  width={160}
+  height={160}
+  className="object-contain rounded-full shadow-md"
+/>
         </div>
       ) : (
         <form onSubmit={handleClientSubmit} className="bg-white rounded-lg shadow p-6 flex gap-10 items-start">
@@ -288,11 +291,13 @@ export default function NewClientDetail() {
               <button type="button" onClick={handleCancel} className="bg-red-200 text-red-800 px-4 py-2 rounded hover:bg-red-300">Annuler</button>
             </div>
           </div>
-          <img
-            src="/mdi_paw.png"
-            alt="Logo clinique"
-            className="w-40 h-40 object-contain rounded-full shadow-md"
-          />
+<Image
+  src="/mdi_paw.png"
+  alt="Logo clinique"
+  width={160}
+  height={160}
+  className="object-contain rounded-full shadow-md"
+/>
         </form>
       )}
 
@@ -334,7 +339,7 @@ export default function NewClientDetail() {
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div ref={detailModalRef} className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg relative">
             <button onClick={closeDetailModal} className="absolute top-4 right-4 text-white bg-blue-800 w-8 h-8 rounded-full text-lg">×</button>
-            <h2 className="text-2xl font-bold mb-4">Détails de l'animal</h2>
+            <h2 className="text-2xl font-bold mb-4">Détails de l&apos;animal</h2>
             <div className="grid grid-cols-2 gap-4">
               {Object.entries(detailAnimal).map(([key, value]) =>
                 key !== "antecedents" ? (
@@ -363,7 +368,7 @@ export default function NewClientDetail() {
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div ref={editModalRef} className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg relative">
             <button onClick={closeEditAnimalModal} className="absolute top-4 right-4 text-white bg-blue-800 w-8 h-8 rounded-full text-lg">×</button>
-            <h2 className="text-2xl font-bold mb-4">Modifier l'animal</h2>
+            <h2 className="text-2xl font-bold mb-4">Modifier l&apos;animal</h2>
             <div className="grid grid-cols-2 gap-4">
               {Object.entries(editAnimal).map(([key, value]) =>
                 key !== "antecedents" ? (
