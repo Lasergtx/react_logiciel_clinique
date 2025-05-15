@@ -67,6 +67,10 @@ export default function Clients() {
           onClick={() => router.push("./clients-ajouter")}
           className="bg-blue-700 text-white px-4 py-2 rounded h-fit transition-all duration-200 hover:bg-blue-800 hover:scale-105 animate-bounce-once"
         >Ajouter un client</button>
+                <button
+          onClick={() => router.push("./clients-ajouter-animal")}
+          className="bg-blue-700 text-white px-4 py-2 rounded h-fit transition-all duration-200 hover:bg-blue-800 hover:scale-105 animate-bounce-once"
+        >Ajouter un animal</button>
       </div>
 
       <table className="w-full text-sm text-left bg-white rounded shadow">
