@@ -6,7 +6,27 @@ class EarningRepository:
 
     @staticmethod
     async def get_all():
-        return await prisma_connection.prisma.earnings.find_many()
+        earnings = await prisma_connection.prisma.earnings.find_many(
+            include={
+                'clients': True,
+                'items_sold': {
+                    'include': {
+                        'product': True
+                    }
+                }
+            }
+        )
+
+        for earning in earnings:
+            for attr in list(vars(earning.clients).keys()):
+                if attr not in ['lastname', 'firstname']:
+                    delattr(earning.clients, attr)
+            for item in earning.items_sold:
+                for attr in list(vars(item.product).keys()):
+                    if attr not in ['name', 'sellingprice']:
+                        delattr(item.product, attr)
+
+        return earnings
 
     @staticmethod
     async def get_by_id(id: int):
