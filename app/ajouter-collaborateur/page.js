@@ -1,4 +1,4 @@
-"use client";
+"use client"; // DYNAMIQUE
 
 import RoleGuard from "@/components/RoleGuard";
 import { useState, useEffect } from "react";

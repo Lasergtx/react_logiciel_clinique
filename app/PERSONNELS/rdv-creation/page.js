@@ -1,4 +1,4 @@
-"use client";
+"use client"; // a rendre dynamique
 
 import { useState } from "react";
 

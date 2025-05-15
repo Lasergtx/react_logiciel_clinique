@@ -1,4 +1,4 @@
-"use client";
+"use client"; // dynamique
 
 import { useEffect, useState } from "react";
 import Image from "next/image";

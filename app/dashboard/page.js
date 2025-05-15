@@ -1,4 +1,4 @@
-"use client";
+"use client";   // rajouter a dash-reunis
 
 import { useEffect } from "react";
 import Image from "next/image";

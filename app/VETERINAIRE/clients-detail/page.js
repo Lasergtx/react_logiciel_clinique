@@ -1,4 +1,4 @@
-"use client";
+"use client"; // a rendre dynamique
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";

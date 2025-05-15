@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // je sais pas ce qu'il fout la sah, a voir
 
 const PaymentDetails = () => {
   return (

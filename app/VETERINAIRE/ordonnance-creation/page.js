@@ -1,17 +1,6 @@
-"use client";
+"use client"; // a faire dynamiquement + avec jspdf comme avec les factures
 
 import { useState } from "react";
-import Image from "next/image";
-import left from "@/public/images/arrowleft.svg";
-import right from "@/public/images/arrowright.svg";
-import clientsIcone from "@/public/images/Icon.png";
-import revenueIcone from "@/public/images/Icon-1.png";
-import depenseIcone from "@/public/images/Icon-1.png";
-import profitIcone from "@/public/images/Icon-1.png";
-import meilleurIcone from "@/public/images/meilleur.png";
-import pireIcone from "@/public/images/pire.png";
-import revenueChart from "@/public/images/Component 19.png";
-import clientChart from "@/public/images/Group 323.png";
 
 
 const PrescriptionCreator = () => {

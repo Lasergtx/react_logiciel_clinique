@@ -1,4 +1,4 @@
-"use client";
+"use client"; // a faire dynamiquement
 
 import { useState, useEffect, useRef } from "react";
 

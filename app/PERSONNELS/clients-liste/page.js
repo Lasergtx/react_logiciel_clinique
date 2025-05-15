@@ -1,4 +1,4 @@
-"use client";
+"use client"; // a rendre dynamique (recuperer sur veterinaire)
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";

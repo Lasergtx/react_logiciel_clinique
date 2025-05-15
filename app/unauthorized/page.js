@@ -1,4 +1,4 @@
-"use client";
+"use client"; // DYNAMIQUE
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
