@@ -1,7 +1,7 @@
 "use client"; // a rendre dynamique
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 const clientsData = [
@@ -122,10 +122,7 @@ const clientsData = [
   }
 ];
 
-export default function NewClientDetail() {
-  const searchParams = useSearchParams();
-  const clientId = searchParams.get("id");
-
+function ClientDetailComponent({ clientId }) {
   const [client, setClient] = useState(null);
   const [form, setForm] = useState(null);
   const [isEditingClient, setIsEditingClient] = useState(false);
@@ -229,6 +226,7 @@ export default function NewClientDetail() {
   const closeDetailModal = () => {
     setDetailAnimal(null);
   };
+
   if (!client) return <main className="p-10">Client introuvable.</main>;
 
   return (
@@ -254,13 +252,13 @@ export default function NewClientDetail() {
               Modifier
             </button>
           </div>
-<Image
-  src="/mdi_paw.png"
-  alt="Logo clinique"
-  width={160}
-  height={160}
-  className="object-contain rounded-full shadow-md"
-/>
+          <Image
+            src="/mdi_paw.png"
+            alt="Logo clinique"
+            width={160}
+            height={160}
+            className="object-contain rounded-full shadow-md"
+          />
         </div>
       ) : (
         <form onSubmit={handleClientSubmit} className="bg-white rounded-lg shadow p-6 flex gap-10 items-start">
@@ -291,13 +289,13 @@ export default function NewClientDetail() {
               <button type="button" onClick={handleCancel} className="bg-red-200 text-red-800 px-4 py-2 rounded hover:bg-red-300">Annuler</button>
             </div>
           </div>
-<Image
-  src="/mdi_paw.png"
-  alt="Logo clinique"
-  width={160}
-  height={160}
-  className="object-contain rounded-full shadow-md"
-/>
+          <Image
+            src="/mdi_paw.png"
+            alt="Logo clinique"
+            width={160}
+            height={160}
+            className="object-contain rounded-full shadow-md"
+          />
         </form>
       )}
 
@@ -402,3 +400,16 @@ export default function NewClientDetail() {
     </main>
   );
 }
+
+function NewClientDetailComponent() {
+  const searchParams = useSearchParams();
+  const clientId = searchParams.get('id');
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ClientDetailComponent clientId={clientId} />
+    </Suspense>
+  );
+}
+
+export default NewClientDetailComponent;

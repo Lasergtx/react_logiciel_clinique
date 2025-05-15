@@ -12,6 +12,8 @@ import meilleurIcone from "@/public/images/meilleur.png";
 import pireIcone from "@/public/images/pire.png";
 import revenueChart from "@/public/images/Component 19.png";
 import clientChart from "@/public/images/Group 323.png";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   useEffect(() => {
@@ -75,38 +77,32 @@ export default function Dashboard() {
     }
   }, []);
 
-  return (
-    <main className="p-6 xl:p-10 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Tableau de bord</h1>
+return (
+  <main className="p-6 xl:p-10 bg-gray-50 min-h-screen flex flex-col items-center justify-center">
+    <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Tableau de bord</h1>
 
-      {/* Statistiques principales */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <StatCard
-          title="Nombres de clients aujourd'hui"
-          value="40"
-          variation="-8.5% Depuis hier"
-          negative
-          icon={clientsIcone}
-        />
-        <StatCard
-          title="Dépenses"
-          value="4050 €"
-          variation="+5% Depuis hier"
-          icon={depenseIcone}
-        />
-        <StatCard
-          title="Revenues"
-          value="4050 €"
-          variation="+5% Depuis hier"
-          icon={revenueIcone}
-        />
-        <StatCard
-          title="Bénéfices"
-          value="+0 €"
-          variation="-4.3% Depuis hier"
-          icon={profitIcone}
-        />
-      </div>
+    {/* Statistiques principales */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <StatCard
+        title="Nombres de clients aujourd'hui"
+        value="40"
+        variation="-8.5% Depuis hier"
+        negative
+        icon={clientsIcone}
+      />
+      <StatCard
+        title="Dépenses"
+        value="4050 €"
+        variation="+5% Depuis hier"
+        icon={depenseIcone}
+      />
+      <StatCard
+        title="Revenues"
+        value="4050 €"
+        variation="+5% Depuis hier"
+        icon={revenueIcone}
+      />
+    </div>
 
       {/* Ligne ventes + graphiques */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
@@ -151,9 +147,11 @@ function StatCard({ title, value, variation, positive = false, icon }) {
         >
           {positive ? "▲" : "▼"} {variation}
         </p>
-        <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm">
-          Voir l&apos;historique
-        </button>
+<Link href="/frequentation">
+  <button className="mt-2 text-blue-600 bg-blue-100 px-3 py-1 rounded-md text-sm hover:bg-blue-200 transition">
+    Voir l&apos;historique
+  </button>
+</Link>
       </div>
       <Image src={icon} alt="icon" className="w-10 h-10" />
     </div>

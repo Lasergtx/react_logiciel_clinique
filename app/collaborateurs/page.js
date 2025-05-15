@@ -13,7 +13,7 @@ export default function CollaborateursPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/users");
+        const response = await fetch("http://127.0.0.1:8000/users"); // Remplacez par l'URL de votre API
         const data = await response.json();
         setCollaborators(data.result);
       } catch (error) {

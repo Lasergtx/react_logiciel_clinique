@@ -65,20 +65,20 @@ export default function Header() {
                             <Image src={pathname === "/dashboard" ? dashw : dashb} alt="Dashboard" className="w-5" />
                             <p>Dashboard</p>
                         </Link>
-                        <Link href="/trafic" className={pathname === "/trafic" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
-                            <Image src={pathname === "/trafic" ? freqw : freqb} alt="Fréquentation" className="w-5" />
+                        <Link href="/frequentation" className={pathname === "/frequentation" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
+                            <Image src={pathname === "/frequentation" ? freqw : freqb} alt="Fréquentation" className="w-5" />
                             <p>Fréquentation</p>
                         </Link>
-                        <Link href="/spendings" className={pathname === "/spendings" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
-                            <Image src={pathname === "/spendings" ? spendw : spendb} alt="Dépense" className="w-5" />
+                        <Link href="/depenses" className={pathname === "/depenses" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
+                            <Image src={pathname === "/depenses" ? spendw : spendb} alt="Dépense" className="w-5" />
                             <p>Dépense</p>
                         </Link>
-                        <Link href="/incomes" className={pathname === "/incomes" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
-                            <Image src={pathname === "/incomes" ? spendw : spendb} alt="Dépense" className="w-5" />
+                        <Link href="/revenues" className={pathname === "/revenues" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
+                            <Image src={pathname === "/revenues" ? spendw : spendb} alt="Revenues" className="w-5" />
                             <p>Revenues</p>
                         </Link>
-                        <Link href="/product-sales" className={pathname === "/product-sales" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
-                            <Image src={pathname === "/product-sales" ? prodw : prodb} alt="Ventes produits" className="w-5" />
+                        <Link href="/ventes" className={pathname === "/ventes" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
+                            <Image src={pathname === "/ventes" ? prodw : prodb} alt="Ventes produits" className="w-5" />
                             <p>Ventes produits</p>
                         </Link>
                         <Link href="/collaborateurs" className={pathname === "/collaborateurs" ? "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem] text-white bg-[#374C78]" : "flex space-x-2 items-center justify-center py-2 px-5 rounded-[0.225rem]"}>
