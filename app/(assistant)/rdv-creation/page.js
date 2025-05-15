@@ -7,12 +7,14 @@ const AppointmentCreator = () => {
     const router = useRouter();
     const [clients, setClients] = useState([]);
     const [patients, setPatients] = useState([]);
+    const [filteredPatients, setFilteredPatients] = useState([]);
     const [vets, setVets] = useState([]);
     const [selectedClient, setSelectedClient] = useState('');
     const [selectedPatient, setSelectedPatient] = useState('');
     const [type, setType] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
+    const [endTime, setEndTime] = useState(''); // Ajout de l'état pour endTime
     const [selectedVet, setSelectedVet] = useState('');
     const [description, setDescription] = useState('');
 
@@ -38,10 +40,34 @@ const AppointmentCreator = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        if (selectedClient) {
+            const client = clients.find(client => `${client.firstname} ${client.lastname}` === selectedClient);
+            if (client) {
+                const filtered = patients.filter(patient => patient.clientid === client.clientid);
+                setFilteredPatients(filtered);
+            }
+        } else {
+            setFilteredPatients([]);
+        }
+    }, [selectedClient, clients, patients]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            const client = clients.find(client => `${client.firstname} ${client.lastname}` === selectedClient);
+            const patient = patients.find(patient => patient.name === selectedPatient);
+            const vet = vets.find(vet => vet.username === selectedVet);
+
+            if (!client || !patient || !vet || !type || !date || !time || !endTime) {
+                console.error("Un ou plusieurs champs obligatoires sont manquants.");
+                return;
+            }
+
+            const formattedStartTime = `${time}:00`;
+            const formattedEndTime = `${endTime}:00`;
+
             const response = await fetch("http://127.0.0.1:8000/events", {
                 method: "POST",
                 headers: {
@@ -49,15 +75,15 @@ const AppointmentCreator = () => {
                 },
                 body: JSON.stringify({
                     title: `Rendez-vous pour ${selectedPatient}`,
-                    description: description,
+                    description: description || "",
                     type: type,
-                    eventdate: date,
-                    starthour: time,
-                    endhour: time,
+                    eventdate: date, // Format YYYY-MM-DD
+                    starthour: formattedStartTime, // Format HH:MM:SS
+                    endhour: formattedEndTime, // Format HH:MM:SS
                     status: "AVENIR",
-                    userid: vets.find(vet => vet.username === selectedVet)?.userid || 1,
-                    clientid: clients.find(client => `${client.firstname} ${client.lastname}` === selectedClient)?.clientid || 1,
-                    patientid: patients.find(patient => patient.name === selectedPatient)?.patientid || 1
+                    userid: vet.userid,
+                    clientid: client.clientid,
+                    patientid: patient.patientid
                 })
             });
 
@@ -103,9 +129,10 @@ const AppointmentCreator = () => {
                 value={selectedPatient}
                 onChange={(e) => setSelectedPatient(e.target.value)}
                 required
+                disabled={!selectedClient}
               >
                 <option value="">Choisir un animal</option>
-                {patients.map((patient, index) => (
+                {filteredPatients.map((patient, index) => (
                   <option key={index} value={patient.name}>
                     {patient.name}
                   </option>
@@ -143,12 +170,22 @@ const AppointmentCreator = () => {
                     />
                   </div>
                   <div className="flex-1">
-                    <label className="font-medium">Heure :</label>
+                    <label className="font-medium">Heure de début :</label>
                     <input
                       type="time"
                       className="w-full mt-2 p-2 border rounded-md"
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="font-medium">Heure de fin :</label>
+                    <input
+                      type="time"
+                      className="w-full mt-2 p-2 border rounded-md"
+                      value={endTime}
+                      onChange={(e) => setEndTime(e.target.value)}
                       required
                     />
                   </div>
