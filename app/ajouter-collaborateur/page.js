@@ -25,7 +25,7 @@ export default function AjouterCollaborateur() {
     };
 
     fetchRoles();
-  }, []); // Supprimez la dépendance à `roles` pour éviter les boucles infinies
+  }, []); // Empty dependency array ensures this effect runs only once on mount
 
   const handleSubmit = async (e) => {
     e.preventDefault();

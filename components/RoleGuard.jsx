@@ -1,23 +1,29 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-/**
- * RoleGuard Component
- * @param {Array} allowedRoles - Les rôles autorisés pour accéder à la page
- * @param {React.ReactNode} children - Le contenu de la page protégée
- */
 export default function RoleGuard({ allowedRoles, children }) {
-    const router = useRouter();
-    const userRole = sessionStorage.getItem("userRole");
+  const [isClient, setIsClient] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+  const router = useRouter();
 
-    useEffect(() => {
-        if (!allowedRoles.includes(userRole)) {
-            router.push("/unauthorized");
-        }
-    }, [userRole, allowedRoles, router]);
+  useEffect(() => {
+    setIsClient(true);
+    if (typeof window !== "undefined") {
+      const role = sessionStorage.getItem("userRole");
+      setUserRole(role);
+    }
+  }, []);
 
-    // Si l'utilisateur a le bon rôle, on affiche le contenu
-    return allowedRoles.includes(userRole) ? children : null;
+  if (!isClient) {
+    return null; // Ou un loader si tu veux indiquer le chargement
+  }
+
+  if (!allowedRoles.includes(userRole)) {
+    router.push("/unauthorized");
+    return null;
+  }
+
+  return <>{children}</>;
 }
