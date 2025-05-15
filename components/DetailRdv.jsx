@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-export default function DetailRdv() {
+function DetailRdvComponent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -104,8 +104,8 @@ export default function DetailRdv() {
         </section>
 
         <div className="flex justify-end gap-4">
-        <button className="bg-orange-100 text-orange-700 px-4 py-2 rounded hover:bg-orange-200">
-        Modifier
+          <button className="bg-orange-100 text-orange-700 px-4 py-2 rounded hover:bg-orange-200">
+            Modifier
           </button>
           <button className="bg-red-100 text-red-700 px-4 py-2 rounded hover:bg-red-200">
             Supprimer
@@ -122,5 +122,13 @@ function DetailItem({ label, value }) {
       <p className="text-sm text-gray-500">{label}</p>
       <p className="text-base font-medium text-gray-900">{value}</p>
     </div>
+  );
+}
+
+export default function DetailRdv() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DetailRdvComponent />
+    </Suspense>
   );
 }
