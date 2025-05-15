@@ -1,7 +1,7 @@
-"use client"; // DYNAMIQUE (a revoir malgrés tout, doute)
+"use client"; // DYNAMIQUE
 
 import RoleGuard from "@/components/RoleGuard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AjouterClient() {
@@ -19,7 +19,7 @@ export default function AjouterClient() {
     e.preventDefault();
 
     try {
-      const response = await fetch("./clients-liste", {
+      const response = await fetch("http://127.0.0.1:8000/clients", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -144,5 +144,5 @@ export default function AjouterClient() {
           </div>
         </form>
       </main>
-    );
+  );
 }

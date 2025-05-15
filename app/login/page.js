@@ -2,23 +2,17 @@
 
 import Image from 'next/image';
 import logo from '@/public/images/logo-full.svg';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (!isMounted) return;
 
         try {
             const response = await fetch('http://127.0.0.1:8000/users');

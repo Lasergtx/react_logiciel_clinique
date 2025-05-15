@@ -13,7 +13,7 @@ export default function Clients() {
 
   const fetchClients = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/clients");
+      const response = await fetch("http://127.0.0.1:8000/clients", { cache: 'no-store' });
       const data = await response.json();
       setClientsData(data.result);
     } catch (error) {
@@ -63,8 +63,8 @@ export default function Clients() {
           onChange={e => setSearch(e.target.value)}
           className="border p-2 rounded w-72"
         />
-        <button 
-          onClick={() => router.push("./clients-ajouter")} 
+        <button
+          onClick={() => router.push("./clients-ajouter")}
           className="bg-blue-700 text-white px-4 py-2 rounded h-fit transition-all duration-200 hover:bg-blue-800 hover:scale-105 animate-bounce-once"
         >Ajouter un client</button>
       </div>
