@@ -29,6 +29,7 @@ export default function Header() {
     const [userName, setUserName] = useState("Chargement...");
     const [role, setRole] = useState("");
     const [menu, setMenu] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -46,6 +47,9 @@ export default function Header() {
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_API_URL}/users/${userId}`
                 );
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const data = await response.json();
                 const connectedUser = data.result;
 
@@ -59,6 +63,7 @@ export default function Header() {
                     "Erreur lors de la récupération du nom d'utilisateur :",
                     error
                 );
+                setError("Erreur de connexion: " + error.message);
                 setUserName("Erreur de connexion");
             }
         };
@@ -69,7 +74,7 @@ export default function Header() {
         if (role === "DIRECTEUR") {
             setMenu([
                 {
-                    href: "/dashboard",
+                    href: "/dash-reunis",
                     label: "Dashboard",
                     iconActive: dashw,
                     iconInactive: dashb,
@@ -108,7 +113,7 @@ export default function Header() {
         } else if (role === "VETERINAIRE") {
             setMenu([
                 {
-                    href: "/dashboard-v",
+                    href: "/dash-reunis",
                     label: "Dashboard",
                     iconActive: dashw,
                     iconInactive: dashb,
@@ -135,7 +140,7 @@ export default function Header() {
         } else if (role === "ASSISTANT") {
             setMenu([
                 {
-                    href: "/dashboard-a",
+                    href: "/dash-reunis",
                     label: "Dashboard",
                     iconActive: dashw,
                     iconInactive: dashb,
@@ -174,7 +179,7 @@ export default function Header() {
     };
 
     return (
-        <header className="flex justify-between items-center text-black bg-white px-5 ">
+        <header className="flex flex-col items-center justify-center text-black bg-white px-5 py-3">
             <div className="flex items-center space-x-6">
                 <div>
                     <Image
@@ -183,7 +188,7 @@ export default function Header() {
                         className="w-18"
                     />
                 </div>
-                <div className="flex w-full space-x-4 h-full">
+                <div className="flex w-full space-x-4 h-full justify-center">
                     <div className="flex space-x-4 justify-between w-full">
                         {menu.map(
                             ({ href, label, iconActive, iconInactive }) => (
@@ -218,17 +223,18 @@ export default function Header() {
                         )}
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-col items-center text-sm my-2 space-y-1">
-                <button onClick={handleLogout}>
-                    {" "}
-                    <Image
-                        src={logout}
-                        alt="Déconnexion"
-                        className="w-8"
-                    />{" "}
-                </button>
-                <p>{userName}</p>
+                <div className="flex flex-col items-center text-sm my-2 space-y-1">
+                    <button onClick={handleLogout}>
+                        {" "}
+                        <Image
+                            src={logout}
+                            alt="Déconnexion"
+                            className="w-8"
+                        />{" "}
+                    </button>
+                    <p>{userName}</p>
+                    {error && <p className="text-red-500">{error}</p>}
+                </div>
             </div>
         </header>
     );

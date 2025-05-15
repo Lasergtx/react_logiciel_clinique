@@ -74,7 +74,7 @@ export default function Trafic() {
                     <thead>
                         <tr className="bg-gray-100 text-gray-600 text-sm">
                             <th className="py-3 px-4">Date</th>
-                            <th className="py-3 px-4">Nombre de passage</th>
+                            <th className="py-3 px-4">Nombre de ventes</th>
                             <th className="py-3 px-4">Nombre de prise en charge</th>
                         </tr>
                     </thead>

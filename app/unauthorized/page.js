@@ -13,7 +13,7 @@ export default function Unauthorized() {
         }, 1000);
 
         if (countdown === 0) {
-            router.push("/dashboard");
+            router.push("/dash-reunis");
         }
 
         return () => clearInterval(timer);

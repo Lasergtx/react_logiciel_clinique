@@ -17,10 +17,17 @@ export default function RoleGuard({ allowedRoles, children }) {
   }, []);
 
   if (!isClient) {
-    return null; // Ou un loader si tu veux indiquer le chargement
+    return null; // Ou un loader si vous voulez indiquer le chargement
+  }
+
+  if (!userRole) {
+    // Si le rôle n'est pas défini, redirigez vers une page de connexion ou d'erreur
+    router.push("/login");
+    return null;
   }
 
   if (!allowedRoles.includes(userRole)) {
+    // Si le rôle n'est pas autorisé, redirigez vers une page non autorisée
     router.push("/unauthorized");
     return null;
   }

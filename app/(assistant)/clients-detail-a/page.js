@@ -4,124 +4,6 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
-const clientsData = [
-  {
-    id: "00001",
-    nom: "AL-MARCHESSE",
-    prenom: "Clément",
-    email: "clement.marchesse@gmail.com",
-    telephone: "07 78 55 40 99",
-    adresse: "54 rue des Pruniers",
-    ville: "Lyon",
-    codePostal: "69000",
-    genre: "Homme",
-    animaux: [
-      {
-        nom: "Jinx",
-        type: "Chien",
-        espece: "Chihuahua",
-        dateNaissance: "2005-05-09",
-        genre: "Mâle",
-        couleur: "Beige",
-        identifiant: "1234567890",
-        antecedents: ["Vaccin antirabique", "Opération oeil droit"]
-      },
-      {
-        nom: "Luna",
-        type: "Chat",
-        espece: "Siamois",
-        dateNaissance: "2017-12-17",
-        genre: "Femelle",
-        couleur: "Blanc",
-        identifiant: "2345678901",
-        antecedents: []
-      },
-      {
-        nom: "Nala",
-        type: "Chien",
-        espece: "Pitbull",
-        dateNaissance: "2022-02-19",
-        genre: "Femelle",
-        couleur: "Noir",
-        identifiant: "3456789012",
-        antecedents: ["Allergie détectée"]
-      }
-    ]
-  },
-  {
-    id: "00002",
-    nom: "RAMA",
-    prenom: "Raoul",
-    telephone: "0744588952",
-    animaux: [
-      {
-        nom: "Moka",
-        type: "Chien",
-        espece: "Labrador",
-        dateNaissance: "2019-08-11",
-        genre: "Mâle",
-        couleur: "Noir",
-        identifiant: "9900000001",
-        antecedents: []
-      }
-    ]
-  },
-  {
-    id: "00003",
-    nom: "HETZEL",
-    prenom: "Mael",
-    telephone: "0654123589",
-    animaux: [
-      {
-        nom: "Neko",
-        type: "Chat",
-        espece: "Maine Coon",
-        dateNaissance: "2021-03-03",
-        genre: "Femelle",
-        couleur: "Gris",
-        identifiant: "9900000002",
-        antecedents: ["Stérilisation"]
-      }
-    ]
-  },
-  {
-    id: "00004",
-    nom: "FERNANDES",
-    prenom: "David",
-    telephone: "0635478900",
-    animaux: [
-      {
-        nom: "Bolt",
-        type: "Chien",
-        espece: "Border Collie",
-        dateNaissance: "2020-06-21",
-        genre: "Mâle",
-        couleur: "Noir et blanc",
-        identifiant: "9900000003",
-        antecedents: []
-      }
-    ]
-  },
-  {
-    id: "00005",
-    nom: "BARAGOUTOU",
-    prenom: "Tripathy",
-    telephone: "0641235478",
-    animaux: [
-      {
-        nom: "Bambou",
-        type: "Chat",
-        espece: "Chartreux",
-        dateNaissance: "2018-01-15",
-        genre: "Femelle",
-        couleur: "Bleu",
-        identifiant: "9900000004",
-        antecedents: ["Extraction dentaire"]
-      }
-    ]
-  }
-];
-
 function ClientDetailComponent({ clientId }) {
   const [client, setClient] = useState(null);
   const [form, setForm] = useState(null);
@@ -138,11 +20,24 @@ function ClientDetailComponent({ clientId }) {
 
   useEffect(() => {
     if (clientId) {
-      const foundClient = clientsData.find((c) => c.id === clientId);
-      setClient(foundClient);
-      setForm(foundClient);
+      fetchClient(clientId);
     }
   }, [clientId]);
+
+  const fetchClient = async (clientId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/clients/${clientId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Data received from API:", data); // Ajoutez cette ligne pour vérifier les données reçues
+      setClient(data);
+      setForm(data);
+    } catch (error) {
+      console.error("Erreur lors de la récupération du client :", error);
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -166,13 +61,28 @@ function ClientDetailComponent({ clientId }) {
   };
 
   const handleGenreChange = (value) => {
-    setForm((prev) => ({ ...prev, genre: value }));
+    setForm((prev) => ({ ...prev, gender: value }));
   };
 
-  const handleClientSubmit = (e) => {
+  const handleClientSubmit = async (e) => {
     e.preventDefault();
-    setClient(form);
-    setIsEditingClient(false);
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/clients/${clientId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setClient(data);
+      setIsEditingClient(false);
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du client :", error);
+    }
   };
 
   const handleCancel = () => {
@@ -182,7 +92,7 @@ function ClientDetailComponent({ clientId }) {
 
   const openEditAnimalModal = (index) => {
     setEditAnimalIndex(index);
-    setEditAnimal(client.animaux[index]);
+    setEditAnimal(client.patients[index]);
   };
 
   const closeEditAnimalModal = () => {
@@ -203,20 +113,45 @@ function ClientDetailComponent({ clientId }) {
     setEditAnimal((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleUpdateAnimal = () => {
-    const updatedClient = { ...client };
-    updatedClient.animaux[editAnimalIndex] = editAnimal;
-    setClient(updatedClient);
-    setForm(updatedClient);
-    closeEditAnimalModal();
+  const handleUpdateAnimal = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/patients/${editAnimal.patientid}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editAnimal),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      const updatedClient = { ...client };
+      updatedClient.patients[editAnimalIndex] = data;
+      setClient(updatedClient);
+      setForm(updatedClient);
+      closeEditAnimalModal();
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour de l'animal :", error);
+    }
   };
 
-  const handleConfirmDelete = () => {
-    const updatedClient = { ...client };
-    updatedClient.animaux.splice(deleteAnimalIndex, 1);
-    setClient(updatedClient);
-    setForm(updatedClient);
-    closeDeleteModal();
+  const handleConfirmDelete = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/patients/${client.patients[deleteAnimalIndex].patientid}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const updatedClient = { ...client };
+      updatedClient.patients.splice(deleteAnimalIndex, 1);
+      setClient(updatedClient);
+      setForm(updatedClient);
+      closeDeleteModal();
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'animal :", error);
+    }
   };
 
   const openDetailModal = (animal) => {
@@ -235,15 +170,15 @@ function ClientDetailComponent({ clientId }) {
         <div className="flex justify-between items-start gap-10 bg-white rounded-lg shadow p-6">
           <div className="flex-1">
             <h2 className="text-2xl font-bold mb-4 text-gray-900">
-              M. {client.prenom} {client.nom}
+              {client.gender === "M" ? "M." : "Mme."} {client.firstname} {client.lastname}
             </h2>
-            <p className="mb-2 text-gray-700 text-lg">{client.telephone}</p>
+            <p className="mb-2 text-gray-700 text-lg">{client.phonenumber}</p>
             <p className="mb-2 text-gray-700 text-lg">{client.email}</p>
             <p className="mb-2 text-gray-700 text-lg">
-              Résident au {client.adresse}, {client.codePostal} {client.ville}
+              Résident au {client.address}, {client.zipcode} {client.city}
             </p>
             <p className="mb-4 text-gray-700 text-lg">
-              Est propriétaire de {client.animaux.length} patient(s)
+              Est propriétaire de {client.patients ? client.patients.length : 0} patient(s)
             </p>
             <button
               onClick={() => setIsEditingClient(true)}
@@ -264,23 +199,23 @@ function ClientDetailComponent({ clientId }) {
         <form onSubmit={handleClientSubmit} className="bg-white rounded-lg shadow p-6 flex gap-10 items-start">
           <div className="flex-1 space-y-4">
             <div className="flex gap-4">
-              <input type="text" name="prenom" value={form.prenom} onChange={handleFormChange} className="flex-1 p-2 border rounded" placeholder="Prénom" />
-              <input type="text" name="nom" value={form.nom} onChange={handleFormChange} className="flex-1 p-2 border rounded" placeholder="Nom" />
+              <input type="text" name="firstname" value={form.firstname} onChange={handleFormChange} className="flex-1 p-2 border rounded" placeholder="Prénom" />
+              <input type="text" name="lastname" value={form.lastname} onChange={handleFormChange} className="flex-1 p-2 border rounded" placeholder="Nom" />
             </div>
             <input type="email" name="email" value={form.email} onChange={handleFormChange} className="w-full p-2 border rounded" placeholder="Email" />
-            <input type="text" name="adresse" value={form.adresse} onChange={handleFormChange} className="w-full p-2 border rounded" placeholder="Adresse" />
+            <input type="text" name="address" value={form.address} onChange={handleFormChange} className="w-full p-2 border rounded" placeholder="Adresse" />
             <div className="flex gap-4">
-              <input type="text" name="codePostal" value={form.codePostal} onChange={handleFormChange} className="w-1/3 p-2 border rounded" placeholder="Code postal" />
-              <input type="text" name="ville" value={form.ville} onChange={handleFormChange} className="w-1/2 p-2 border rounded" placeholder="Ville" />
-              <input type="text" name="telephone" value={form.telephone} onChange={handleFormChange} className="w-1/2 p-2 border rounded" placeholder="Téléphone" />
+              <input type="text" name="zipcode" value={form.zipcode} onChange={handleFormChange} className="w-1/3 p-2 border rounded" placeholder="Code postal" />
+              <input type="text" name="city" value={form.city} onChange={handleFormChange} className="w-1/2 p-2 border rounded" placeholder="Ville" />
+              <input type="text" name="phonenumber" value={form.phonenumber} onChange={handleFormChange} className="w-1/2 p-2 border rounded" placeholder="Téléphone" />
             </div>
             <div className="flex items-center gap-6">
               <label className="flex items-center gap-2">
-                <input type="checkbox" checked={form.genre === "Homme"} onChange={() => handleGenreChange("Homme")} />
+                <input type="checkbox" checked={form.gender === "M"} onChange={() => handleGenreChange("M")} />
                 Homme
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" checked={form.genre === "Femme"} onChange={() => handleGenreChange("Femme")} />
+                <input type="checkbox" checked={form.gender === "F"} onChange={() => handleGenreChange("F")} />
                 Femme
               </label>
             </div>
@@ -314,13 +249,13 @@ function ClientDetailComponent({ clientId }) {
             </tr>
           </thead>
           <tbody>
-            {client.animaux.map((animal, index) => (
+            {client.patients && client.patients.map((animal, index) => (
               <tr key={index} className="border-t hover:bg-gray-50 transition-all">
-                <td className="p-3 font-medium text-gray-800">{animal.nom}</td>
+                <td className="p-3 font-medium text-gray-800">{animal.name}</td>
                 <td className="p-3">{animal.type}</td>
-                <td className="p-3">{animal.espece}</td>
-                <td className="p-3">{animal.dateNaissance}</td>
-                <td className="p-3">{animal.genre}</td>
+                <td className="p-3">{animal.species}</td>
+                <td className="p-3">{animal.birthdate}</td>
+                <td className="p-3">{animal.gender}</td>
                 <td className="p-3 flex gap-2">
                   <button onClick={() => openDetailModal(animal)} className="bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200">Détail</button>
                   <button onClick={() => openEditAnimalModal(index)} className="bg-orange-100 text-orange-700 px-3 py-1 rounded hover:bg-orange-200">Modifier</button>
@@ -389,7 +324,7 @@ function ClientDetailComponent({ clientId }) {
           <div ref={deleteModalRef} className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md relative">
             <button onClick={closeDeleteModal} className="absolute top-4 right-4 text-white bg-red-600 w-8 h-8 rounded-full text-lg">×</button>
             <h2 className="text-xl font-semibold mb-4">Confirmation</h2>
-            <p className="text-gray-800 mb-6">Supprimer <strong>{client.animaux[deleteAnimalIndex].nom}</strong> ?</p>
+            <p className="text-gray-800 mb-6">Supprimer <strong>{client.patients[deleteAnimalIndex].name}</strong> ?</p>
             <div className="flex justify-end gap-4">
               <button onClick={closeDeleteModal} className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Annuler</button>
               <button onClick={handleConfirmDelete} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
