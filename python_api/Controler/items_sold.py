@@ -26,3 +26,8 @@ async def get_items_sold_by_earningid(id: int = Path(..., alias="id")):
 async def get_items_sold_by_productid(id: int = Path(..., alias="id")):
     result = await ItemsSoldService.get_by_productid(id)
     return ResponseSchema(detail="Successfully fetched all data", result=result)
+
+@router.get("_amount_sold/{id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_amount_sold_by_productid(id: int = Path(..., alias="id")):
+    result = await ItemsSoldService.get_by_amount_sold(id)
+    return ResponseSchema(detail="Successfully fetched all data", result=result)

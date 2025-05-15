@@ -472,6 +472,7 @@ class earnings(bases.Baseearnings):
     clientid: _int
     clients: Optional['models.clients'] = None
     invoices: Optional[List['models.invoices']] = None
+    items_sold: Optional[List['models.items_sold']] = None
 
     # take *args and **kwargs so that other metaclasses can define arguments
     def __init_subclass__(
@@ -744,6 +745,7 @@ class expenses(bases.Baseexpenses):
     amount: decimal.Decimal
     description: Optional[_str] = None
     created_at: datetime.datetime
+    items_bought: Optional[List['models.items_bought']] = None
 
     # take *args and **kwargs so that other metaclasses can define arguments
     def __init_subclass__(
@@ -825,9 +827,33 @@ class expenses(bases.Baseexpenses):
                 for field in optional:
                     fields[field]['optional'] = True
 
+            if exclude_relational_fields:
+                fields = {
+                    key: data
+                    for key, data in fields.items()
+                    if key not in _expenses_relational_fields
+                }
 
             if relations:
-                raise ValueError('Model: "expenses" has no relational fields.')
+                for field, type_ in relations.items():
+                    if field not in _expenses_relational_fields:
+                        raise errors.UnknownRelationalFieldError('expenses', field)
+
+                    # TODO: this method of validating types is not ideal
+                    # as it means we cannot two create partial types that
+                    # reference each other
+                    if type_ not in _created_partial_types:
+                        raise ValueError(
+                            f'Unknown partial type: "{type_}". '
+                            f'Did you remember to generate the {type_} type before this one?'
+                        )
+
+                    # TODO: support non prisma.partials models
+                    info = fields[field]
+                    if info['is_list']:
+                        info['type'] = f'List[\'partials.{type_}\']'
+                    else:
+                        info['type'] = f'\'partials.{type_}\''
         except KeyError as exc:
             raise ValueError(
                 f'{exc.args[0]} is not a valid expenses / {name} field.'
@@ -985,6 +1011,8 @@ class items_bought(bases.Baseitems_bought):
     expenseid: _int
     productid: _int
     quantity: _int
+    expense: Optional['models.expenses'] = None
+    product: Optional['models.products'] = None
 
     # take *args and **kwargs so that other metaclasses can define arguments
     def __init_subclass__(
@@ -1066,9 +1094,33 @@ class items_bought(bases.Baseitems_bought):
                 for field in optional:
                     fields[field]['optional'] = True
 
+            if exclude_relational_fields:
+                fields = {
+                    key: data
+                    for key, data in fields.items()
+                    if key not in _items_bought_relational_fields
+                }
 
             if relations:
-                raise ValueError('Model: "items_bought" has no relational fields.')
+                for field, type_ in relations.items():
+                    if field not in _items_bought_relational_fields:
+                        raise errors.UnknownRelationalFieldError('items_bought', field)
+
+                    # TODO: this method of validating types is not ideal
+                    # as it means we cannot two create partial types that
+                    # reference each other
+                    if type_ not in _created_partial_types:
+                        raise ValueError(
+                            f'Unknown partial type: "{type_}". '
+                            f'Did you remember to generate the {type_} type before this one?'
+                        )
+
+                    # TODO: support non prisma.partials models
+                    info = fields[field]
+                    if info['is_list']:
+                        info['type'] = f'List[\'partials.{type_}\']'
+                    else:
+                        info['type'] = f'\'partials.{type_}\''
         except KeyError as exc:
             raise ValueError(
                 f'{exc.args[0]} is not a valid items_bought / {name} field.'
@@ -1091,6 +1143,8 @@ class items_sold(bases.Baseitems_sold):
     earningid: _int
     productid: _int
     quantity: _int
+    earning: Optional['models.earnings'] = None
+    product: Optional['models.products'] = None
 
     # take *args and **kwargs so that other metaclasses can define arguments
     def __init_subclass__(
@@ -1172,9 +1226,33 @@ class items_sold(bases.Baseitems_sold):
                 for field in optional:
                     fields[field]['optional'] = True
 
+            if exclude_relational_fields:
+                fields = {
+                    key: data
+                    for key, data in fields.items()
+                    if key not in _items_sold_relational_fields
+                }
 
             if relations:
-                raise ValueError('Model: "items_sold" has no relational fields.')
+                for field, type_ in relations.items():
+                    if field not in _items_sold_relational_fields:
+                        raise errors.UnknownRelationalFieldError('items_sold', field)
+
+                    # TODO: this method of validating types is not ideal
+                    # as it means we cannot two create partial types that
+                    # reference each other
+                    if type_ not in _created_partial_types:
+                        raise ValueError(
+                            f'Unknown partial type: "{type_}". '
+                            f'Did you remember to generate the {type_} type before this one?'
+                        )
+
+                    # TODO: support non prisma.partials models
+                    info = fields[field]
+                    if info['is_list']:
+                        info['type'] = f'List[\'partials.{type_}\']'
+                    else:
+                        info['type'] = f'\'partials.{type_}\''
         except KeyError as exc:
             raise ValueError(
                 f'{exc.args[0]} is not a valid items_sold / {name} field.'
@@ -1739,6 +1817,8 @@ class products(bases.Baseproducts):
     quantity: _int
     producttypeid: _int
     product_types: Optional['models.product_types'] = None
+    items_bought: Optional[List['models.items_bought']] = None
+    items_sold: Optional[List['models.items_sold']] = None
 
     # take *args and **kwargs so that other metaclasses can define arguments
     def __init_subclass__(
@@ -2218,6 +2298,7 @@ _clients_fields: Dict['types.clientsKeys', PartialModelField] = OrderedDict(
 _earnings_relational_fields: Set[str] = {
         'clients',
         'invoices',
+        'items_sold',
     }
 _earnings_fields: Dict['types.earningsKeys', PartialModelField] = OrderedDict(
     [
@@ -2282,6 +2363,14 @@ _earnings_fields: Dict['types.earningsKeys', PartialModelField] = OrderedDict(
             'is_list': True,
             'optional': True,
             'type': 'List[\'models.invoices\']',
+            'is_relational': True,
+            'documentation': None,
+        }),
+        ('items_sold', {
+            'name': 'items_sold',
+            'is_list': True,
+            'optional': True,
+            'type': 'List[\'models.items_sold\']',
             'is_relational': True,
             'documentation': None,
         }),
@@ -2410,7 +2499,9 @@ _events_fields: Dict['types.eventsKeys', PartialModelField] = OrderedDict(
     ],
 )
 
-_expenses_relational_fields: Set[str] = set()  # pyright: ignore[reportUnusedVariable]
+_expenses_relational_fields: Set[str] = {
+        'items_bought',
+    }
 _expenses_fields: Dict['types.expensesKeys', PartialModelField] = OrderedDict(
     [
         ('expenseid', {
@@ -2443,6 +2534,14 @@ _expenses_fields: Dict['types.expensesKeys', PartialModelField] = OrderedDict(
             'optional': False,
             'type': 'datetime.datetime',
             'is_relational': False,
+            'documentation': None,
+        }),
+        ('items_bought', {
+            'name': 'items_bought',
+            'is_list': True,
+            'optional': True,
+            'type': 'List[\'models.items_bought\']',
+            'is_relational': True,
             'documentation': None,
         }),
     ],
@@ -2521,7 +2620,10 @@ _invoices_fields: Dict['types.invoicesKeys', PartialModelField] = OrderedDict(
     ],
 )
 
-_items_bought_relational_fields: Set[str] = set()  # pyright: ignore[reportUnusedVariable]
+_items_bought_relational_fields: Set[str] = {
+        'expense',
+        'product',
+    }
 _items_bought_fields: Dict['types.items_boughtKeys', PartialModelField] = OrderedDict(
     [
         ('expenseid', {
@@ -2548,10 +2650,29 @@ _items_bought_fields: Dict['types.items_boughtKeys', PartialModelField] = Ordere
             'is_relational': False,
             'documentation': None,
         }),
+        ('expense', {
+            'name': 'expense',
+            'is_list': False,
+            'optional': True,
+            'type': 'models.expenses',
+            'is_relational': True,
+            'documentation': None,
+        }),
+        ('product', {
+            'name': 'product',
+            'is_list': False,
+            'optional': True,
+            'type': 'models.products',
+            'is_relational': True,
+            'documentation': None,
+        }),
     ],
 )
 
-_items_sold_relational_fields: Set[str] = set()  # pyright: ignore[reportUnusedVariable]
+_items_sold_relational_fields: Set[str] = {
+        'earning',
+        'product',
+    }
 _items_sold_fields: Dict['types.items_soldKeys', PartialModelField] = OrderedDict(
     [
         ('earningid', {
@@ -2576,6 +2697,22 @@ _items_sold_fields: Dict['types.items_soldKeys', PartialModelField] = OrderedDic
             'optional': False,
             'type': '_int',
             'is_relational': False,
+            'documentation': None,
+        }),
+        ('earning', {
+            'name': 'earning',
+            'is_list': False,
+            'optional': True,
+            'type': 'models.earnings',
+            'is_relational': True,
+            'documentation': None,
+        }),
+        ('product', {
+            'name': 'product',
+            'is_list': False,
+            'optional': True,
+            'type': 'models.products',
+            'is_relational': True,
             'documentation': None,
         }),
     ],
@@ -2844,6 +2981,8 @@ _product_types_fields: Dict['types.product_typesKeys', PartialModelField] = Orde
 
 _products_relational_fields: Set[str] = {
         'product_types',
+        'items_bought',
+        'items_sold',
     }
 _products_fields: Dict['types.productsKeys', PartialModelField] = OrderedDict(
     [
@@ -2916,6 +3055,22 @@ _products_fields: Dict['types.productsKeys', PartialModelField] = OrderedDict(
             'is_list': False,
             'optional': True,
             'type': 'models.product_types',
+            'is_relational': True,
+            'documentation': None,
+        }),
+        ('items_bought', {
+            'name': 'items_bought',
+            'is_list': True,
+            'optional': True,
+            'type': 'List[\'models.items_bought\']',
+            'is_relational': True,
+            'documentation': None,
+        }),
+        ('items_sold', {
+            'name': 'items_sold',
+            'is_list': True,
+            'optional': True,
+            'type': 'List[\'models.items_sold\']',
             'is_relational': True,
             'documentation': None,
         }),

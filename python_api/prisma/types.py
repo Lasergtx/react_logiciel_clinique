@@ -1911,24 +1911,28 @@ class earningsIncludeFromallergies(TypedDict, total=False):
     """Relational arguments for allergies"""
     clients: Union[bool, 'clientsArgsFromallergiesRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromallergiesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive1']
 
 
 class earningsIncludeFromallergiesRecursive1(TypedDict, total=False):
     """Relational arguments for allergies"""
     clients: Union[bool, 'clientsArgsFromallergiesRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromallergiesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive2']
 
 
 class earningsIncludeFromallergiesRecursive2(TypedDict, total=False):
     """Relational arguments for allergies"""
     clients: Union[bool, 'clientsArgsFromallergiesRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromallergiesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive3']
 
 
 class earningsIncludeFromallergiesRecursive3(TypedDict, total=False):
     """Relational arguments for allergies"""
     clients: Union[bool, 'clientsArgsFromallergiesRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromallergiesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive4']
 
 
 class earningsIncludeFromallergiesRecursive4(TypedDict, total=False):
@@ -2131,18 +2135,22 @@ class FindManyeventsArgsFromallergiesRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromallergies(TypedDict, total=False):
     """Relational arguments for allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive1']
 
 
 class expensesIncludeFromallergiesRecursive1(TypedDict, total=False):
     """Relational arguments for allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive2']
 
 
 class expensesIncludeFromallergiesRecursive2(TypedDict, total=False):
     """Relational arguments for allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive3']
 
 
 class expensesIncludeFromallergiesRecursive3(TypedDict, total=False):
     """Relational arguments for allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive4']
 
 
 class expensesIncludeFromallergiesRecursive4(TypedDict, total=False):
@@ -2341,18 +2349,26 @@ class FindManyinvoicesArgsFromallergiesRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromallergies(TypedDict, total=False):
     """Relational arguments for allergies"""
+    expense: Union[bool, 'expensesArgsFromallergiesRecursive1']
+    product: Union[bool, 'productsArgsFromallergiesRecursive1']
 
 
 class items_boughtIncludeFromallergiesRecursive1(TypedDict, total=False):
     """Relational arguments for allergies"""
+    expense: Union[bool, 'expensesArgsFromallergiesRecursive2']
+    product: Union[bool, 'productsArgsFromallergiesRecursive2']
 
 
 class items_boughtIncludeFromallergiesRecursive2(TypedDict, total=False):
     """Relational arguments for allergies"""
+    expense: Union[bool, 'expensesArgsFromallergiesRecursive3']
+    product: Union[bool, 'productsArgsFromallergiesRecursive3']
 
 
 class items_boughtIncludeFromallergiesRecursive3(TypedDict, total=False):
     """Relational arguments for allergies"""
+    expense: Union[bool, 'expensesArgsFromallergiesRecursive4']
+    product: Union[bool, 'productsArgsFromallergiesRecursive4']
 
 
 class items_boughtIncludeFromallergiesRecursive4(TypedDict, total=False):
@@ -2442,18 +2458,26 @@ class FindManyitems_boughtArgsFromallergiesRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromallergies(TypedDict, total=False):
     """Relational arguments for allergies"""
+    earning: Union[bool, 'earningsArgsFromallergiesRecursive1']
+    product: Union[bool, 'productsArgsFromallergiesRecursive1']
 
 
 class items_soldIncludeFromallergiesRecursive1(TypedDict, total=False):
     """Relational arguments for allergies"""
+    earning: Union[bool, 'earningsArgsFromallergiesRecursive2']
+    product: Union[bool, 'productsArgsFromallergiesRecursive2']
 
 
 class items_soldIncludeFromallergiesRecursive2(TypedDict, total=False):
     """Relational arguments for allergies"""
+    earning: Union[bool, 'earningsArgsFromallergiesRecursive3']
+    product: Union[bool, 'productsArgsFromallergiesRecursive3']
 
 
 class items_soldIncludeFromallergiesRecursive3(TypedDict, total=False):
     """Relational arguments for allergies"""
+    earning: Union[bool, 'earningsArgsFromallergiesRecursive4']
+    product: Union[bool, 'productsArgsFromallergiesRecursive4']
 
 
 class items_soldIncludeFromallergiesRecursive4(TypedDict, total=False):
@@ -2984,21 +3008,29 @@ class FindManyproduct_typesArgsFromallergiesRecursive4(TypedDict, total=False):
 class productsIncludeFromallergies(TypedDict, total=False):
     """Relational arguments for allergies"""
     product_types: Union[bool, 'product_typesArgsFromallergiesRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive1']
 
 
 class productsIncludeFromallergiesRecursive1(TypedDict, total=False):
     """Relational arguments for allergies"""
     product_types: Union[bool, 'product_typesArgsFromallergiesRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive2']
 
 
 class productsIncludeFromallergiesRecursive2(TypedDict, total=False):
     """Relational arguments for allergies"""
     product_types: Union[bool, 'product_typesArgsFromallergiesRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive3']
 
 
 class productsIncludeFromallergiesRecursive3(TypedDict, total=False):
     """Relational arguments for allergies"""
     product_types: Union[bool, 'product_typesArgsFromallergiesRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromallergiesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromallergiesRecursive4']
 
 
 class productsIncludeFromallergiesRecursive4(TypedDict, total=False):
@@ -3964,24 +3996,28 @@ class earningsIncludeFrombooster_shots(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     clients: Union[bool, 'clientsArgsFrombooster_shotsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFrombooster_shotsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive1']
 
 
 class earningsIncludeFrombooster_shotsRecursive1(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     clients: Union[bool, 'clientsArgsFrombooster_shotsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFrombooster_shotsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive2']
 
 
 class earningsIncludeFrombooster_shotsRecursive2(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     clients: Union[bool, 'clientsArgsFrombooster_shotsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFrombooster_shotsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive3']
 
 
 class earningsIncludeFrombooster_shotsRecursive3(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     clients: Union[bool, 'clientsArgsFrombooster_shotsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFrombooster_shotsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive4']
 
 
 class earningsIncludeFrombooster_shotsRecursive4(TypedDict, total=False):
@@ -4184,18 +4220,22 @@ class FindManyeventsArgsFrombooster_shotsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFrombooster_shots(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive1']
 
 
 class expensesIncludeFrombooster_shotsRecursive1(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive2']
 
 
 class expensesIncludeFrombooster_shotsRecursive2(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive3']
 
 
 class expensesIncludeFrombooster_shotsRecursive3(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive4']
 
 
 class expensesIncludeFrombooster_shotsRecursive4(TypedDict, total=False):
@@ -4394,18 +4434,26 @@ class FindManyinvoicesArgsFrombooster_shotsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFrombooster_shots(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    expense: Union[bool, 'expensesArgsFrombooster_shotsRecursive1']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive1']
 
 
 class items_boughtIncludeFrombooster_shotsRecursive1(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    expense: Union[bool, 'expensesArgsFrombooster_shotsRecursive2']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive2']
 
 
 class items_boughtIncludeFrombooster_shotsRecursive2(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    expense: Union[bool, 'expensesArgsFrombooster_shotsRecursive3']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive3']
 
 
 class items_boughtIncludeFrombooster_shotsRecursive3(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    expense: Union[bool, 'expensesArgsFrombooster_shotsRecursive4']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive4']
 
 
 class items_boughtIncludeFrombooster_shotsRecursive4(TypedDict, total=False):
@@ -4495,18 +4543,26 @@ class FindManyitems_boughtArgsFrombooster_shotsRecursive4(TypedDict, total=False
 
 class items_soldIncludeFrombooster_shots(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    earning: Union[bool, 'earningsArgsFrombooster_shotsRecursive1']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive1']
 
 
 class items_soldIncludeFrombooster_shotsRecursive1(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    earning: Union[bool, 'earningsArgsFrombooster_shotsRecursive2']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive2']
 
 
 class items_soldIncludeFrombooster_shotsRecursive2(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    earning: Union[bool, 'earningsArgsFrombooster_shotsRecursive3']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive3']
 
 
 class items_soldIncludeFrombooster_shotsRecursive3(TypedDict, total=False):
     """Relational arguments for booster_shots"""
+    earning: Union[bool, 'earningsArgsFrombooster_shotsRecursive4']
+    product: Union[bool, 'productsArgsFrombooster_shotsRecursive4']
 
 
 class items_soldIncludeFrombooster_shotsRecursive4(TypedDict, total=False):
@@ -5037,21 +5093,29 @@ class FindManyproduct_typesArgsFrombooster_shotsRecursive4(TypedDict, total=Fals
 class productsIncludeFrombooster_shots(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     product_types: Union[bool, 'product_typesArgsFrombooster_shotsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive1']
 
 
 class productsIncludeFrombooster_shotsRecursive1(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     product_types: Union[bool, 'product_typesArgsFrombooster_shotsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive2']
 
 
 class productsIncludeFrombooster_shotsRecursive2(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     product_types: Union[bool, 'product_typesArgsFrombooster_shotsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive3']
 
 
 class productsIncludeFrombooster_shotsRecursive3(TypedDict, total=False):
     """Relational arguments for booster_shots"""
     product_types: Union[bool, 'product_typesArgsFrombooster_shotsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrombooster_shotsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrombooster_shotsRecursive4']
 
 
 class productsIncludeFrombooster_shotsRecursive4(TypedDict, total=False):
@@ -6124,24 +6188,28 @@ class earningsIncludeFromclients(TypedDict, total=False):
     """Relational arguments for clients"""
     clients: Union[bool, 'clientsArgsFromclientsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromclientsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive1']
 
 
 class earningsIncludeFromclientsRecursive1(TypedDict, total=False):
     """Relational arguments for clients"""
     clients: Union[bool, 'clientsArgsFromclientsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromclientsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive2']
 
 
 class earningsIncludeFromclientsRecursive2(TypedDict, total=False):
     """Relational arguments for clients"""
     clients: Union[bool, 'clientsArgsFromclientsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromclientsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive3']
 
 
 class earningsIncludeFromclientsRecursive3(TypedDict, total=False):
     """Relational arguments for clients"""
     clients: Union[bool, 'clientsArgsFromclientsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromclientsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive4']
 
 
 class earningsIncludeFromclientsRecursive4(TypedDict, total=False):
@@ -6344,18 +6412,22 @@ class FindManyeventsArgsFromclientsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromclients(TypedDict, total=False):
     """Relational arguments for clients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive1']
 
 
 class expensesIncludeFromclientsRecursive1(TypedDict, total=False):
     """Relational arguments for clients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive2']
 
 
 class expensesIncludeFromclientsRecursive2(TypedDict, total=False):
     """Relational arguments for clients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive3']
 
 
 class expensesIncludeFromclientsRecursive3(TypedDict, total=False):
     """Relational arguments for clients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive4']
 
 
 class expensesIncludeFromclientsRecursive4(TypedDict, total=False):
@@ -6554,18 +6626,26 @@ class FindManyinvoicesArgsFromclientsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromclients(TypedDict, total=False):
     """Relational arguments for clients"""
+    expense: Union[bool, 'expensesArgsFromclientsRecursive1']
+    product: Union[bool, 'productsArgsFromclientsRecursive1']
 
 
 class items_boughtIncludeFromclientsRecursive1(TypedDict, total=False):
     """Relational arguments for clients"""
+    expense: Union[bool, 'expensesArgsFromclientsRecursive2']
+    product: Union[bool, 'productsArgsFromclientsRecursive2']
 
 
 class items_boughtIncludeFromclientsRecursive2(TypedDict, total=False):
     """Relational arguments for clients"""
+    expense: Union[bool, 'expensesArgsFromclientsRecursive3']
+    product: Union[bool, 'productsArgsFromclientsRecursive3']
 
 
 class items_boughtIncludeFromclientsRecursive3(TypedDict, total=False):
     """Relational arguments for clients"""
+    expense: Union[bool, 'expensesArgsFromclientsRecursive4']
+    product: Union[bool, 'productsArgsFromclientsRecursive4']
 
 
 class items_boughtIncludeFromclientsRecursive4(TypedDict, total=False):
@@ -6655,18 +6735,26 @@ class FindManyitems_boughtArgsFromclientsRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromclients(TypedDict, total=False):
     """Relational arguments for clients"""
+    earning: Union[bool, 'earningsArgsFromclientsRecursive1']
+    product: Union[bool, 'productsArgsFromclientsRecursive1']
 
 
 class items_soldIncludeFromclientsRecursive1(TypedDict, total=False):
     """Relational arguments for clients"""
+    earning: Union[bool, 'earningsArgsFromclientsRecursive2']
+    product: Union[bool, 'productsArgsFromclientsRecursive2']
 
 
 class items_soldIncludeFromclientsRecursive2(TypedDict, total=False):
     """Relational arguments for clients"""
+    earning: Union[bool, 'earningsArgsFromclientsRecursive3']
+    product: Union[bool, 'productsArgsFromclientsRecursive3']
 
 
 class items_soldIncludeFromclientsRecursive3(TypedDict, total=False):
     """Relational arguments for clients"""
+    earning: Union[bool, 'earningsArgsFromclientsRecursive4']
+    product: Union[bool, 'productsArgsFromclientsRecursive4']
 
 
 class items_soldIncludeFromclientsRecursive4(TypedDict, total=False):
@@ -7197,21 +7285,29 @@ class FindManyproduct_typesArgsFromclientsRecursive4(TypedDict, total=False):
 class productsIncludeFromclients(TypedDict, total=False):
     """Relational arguments for clients"""
     product_types: Union[bool, 'product_typesArgsFromclientsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive1']
 
 
 class productsIncludeFromclientsRecursive1(TypedDict, total=False):
     """Relational arguments for clients"""
     product_types: Union[bool, 'product_typesArgsFromclientsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive2']
 
 
 class productsIncludeFromclientsRecursive2(TypedDict, total=False):
     """Relational arguments for clients"""
     product_types: Union[bool, 'product_typesArgsFromclientsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive3']
 
 
 class productsIncludeFromclientsRecursive3(TypedDict, total=False):
     """Relational arguments for clients"""
     product_types: Union[bool, 'product_typesArgsFromclientsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromclientsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromclientsRecursive4']
 
 
 class productsIncludeFromclientsRecursive4(TypedDict, total=False):
@@ -7767,6 +7863,7 @@ class earningsOptionalCreateInput(TypedDict, total=False):
     clientid: _int
     clients: 'clientsCreateNestedWithoutRelationsInput'
     invoices: 'invoicesCreateManyNestedWithoutRelationsInput'
+    items_sold: 'items_soldCreateManyNestedWithoutRelationsInput'
 
 
 class earningsCreateInput(earningsOptionalCreateInput):
@@ -7825,6 +7922,7 @@ class earningsUpdateInput(TypedDict, total=False):
     paymentstatus: Optional['enums.payment']
     clients: 'clientsUpdateOneWithoutRelationsInput'
     invoices: 'invoicesUpdateManyWithoutRelationsInput'
+    items_sold: 'items_soldUpdateManyWithoutRelationsInput'
 
 
 class earningsUpdateManyMutationInput(TypedDict, total=False):
@@ -7974,6 +8072,7 @@ class earningsInclude(TypedDict, total=False):
     """earnings relational arguments"""
     clients: Union[bool, 'clientsArgsFromearnings']
     invoices: Union[bool, 'FindManyinvoicesArgsFromearnings']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearnings']
 
 
     
@@ -8309,24 +8408,28 @@ class earningsIncludeFromearnings(TypedDict, total=False):
     """Relational arguments for earnings"""
     clients: Union[bool, 'clientsArgsFromearningsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromearningsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive1']
 
 
 class earningsIncludeFromearningsRecursive1(TypedDict, total=False):
     """Relational arguments for earnings"""
     clients: Union[bool, 'clientsArgsFromearningsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromearningsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive2']
 
 
 class earningsIncludeFromearningsRecursive2(TypedDict, total=False):
     """Relational arguments for earnings"""
     clients: Union[bool, 'clientsArgsFromearningsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromearningsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive3']
 
 
 class earningsIncludeFromearningsRecursive3(TypedDict, total=False):
     """Relational arguments for earnings"""
     clients: Union[bool, 'clientsArgsFromearningsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromearningsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive4']
 
 
 class earningsIncludeFromearningsRecursive4(TypedDict, total=False):
@@ -8529,18 +8632,22 @@ class FindManyeventsArgsFromearningsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromearnings(TypedDict, total=False):
     """Relational arguments for earnings"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive1']
 
 
 class expensesIncludeFromearningsRecursive1(TypedDict, total=False):
     """Relational arguments for earnings"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive2']
 
 
 class expensesIncludeFromearningsRecursive2(TypedDict, total=False):
     """Relational arguments for earnings"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive3']
 
 
 class expensesIncludeFromearningsRecursive3(TypedDict, total=False):
     """Relational arguments for earnings"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive4']
 
 
 class expensesIncludeFromearningsRecursive4(TypedDict, total=False):
@@ -8739,18 +8846,26 @@ class FindManyinvoicesArgsFromearningsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromearnings(TypedDict, total=False):
     """Relational arguments for earnings"""
+    expense: Union[bool, 'expensesArgsFromearningsRecursive1']
+    product: Union[bool, 'productsArgsFromearningsRecursive1']
 
 
 class items_boughtIncludeFromearningsRecursive1(TypedDict, total=False):
     """Relational arguments for earnings"""
+    expense: Union[bool, 'expensesArgsFromearningsRecursive2']
+    product: Union[bool, 'productsArgsFromearningsRecursive2']
 
 
 class items_boughtIncludeFromearningsRecursive2(TypedDict, total=False):
     """Relational arguments for earnings"""
+    expense: Union[bool, 'expensesArgsFromearningsRecursive3']
+    product: Union[bool, 'productsArgsFromearningsRecursive3']
 
 
 class items_boughtIncludeFromearningsRecursive3(TypedDict, total=False):
     """Relational arguments for earnings"""
+    expense: Union[bool, 'expensesArgsFromearningsRecursive4']
+    product: Union[bool, 'productsArgsFromearningsRecursive4']
 
 
 class items_boughtIncludeFromearningsRecursive4(TypedDict, total=False):
@@ -8840,18 +8955,26 @@ class FindManyitems_boughtArgsFromearningsRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromearnings(TypedDict, total=False):
     """Relational arguments for earnings"""
+    earning: Union[bool, 'earningsArgsFromearningsRecursive1']
+    product: Union[bool, 'productsArgsFromearningsRecursive1']
 
 
 class items_soldIncludeFromearningsRecursive1(TypedDict, total=False):
     """Relational arguments for earnings"""
+    earning: Union[bool, 'earningsArgsFromearningsRecursive2']
+    product: Union[bool, 'productsArgsFromearningsRecursive2']
 
 
 class items_soldIncludeFromearningsRecursive2(TypedDict, total=False):
     """Relational arguments for earnings"""
+    earning: Union[bool, 'earningsArgsFromearningsRecursive3']
+    product: Union[bool, 'productsArgsFromearningsRecursive3']
 
 
 class items_soldIncludeFromearningsRecursive3(TypedDict, total=False):
     """Relational arguments for earnings"""
+    earning: Union[bool, 'earningsArgsFromearningsRecursive4']
+    product: Union[bool, 'productsArgsFromearningsRecursive4']
 
 
 class items_soldIncludeFromearningsRecursive4(TypedDict, total=False):
@@ -9382,21 +9505,29 @@ class FindManyproduct_typesArgsFromearningsRecursive4(TypedDict, total=False):
 class productsIncludeFromearnings(TypedDict, total=False):
     """Relational arguments for earnings"""
     product_types: Union[bool, 'product_typesArgsFromearningsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive1']
 
 
 class productsIncludeFromearningsRecursive1(TypedDict, total=False):
     """Relational arguments for earnings"""
     product_types: Union[bool, 'product_typesArgsFromearningsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive2']
 
 
 class productsIncludeFromearningsRecursive2(TypedDict, total=False):
     """Relational arguments for earnings"""
     product_types: Union[bool, 'product_typesArgsFromearningsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive3']
 
 
 class productsIncludeFromearningsRecursive3(TypedDict, total=False):
     """Relational arguments for earnings"""
     product_types: Union[bool, 'product_typesArgsFromearningsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromearningsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromearningsRecursive4']
 
 
 class productsIncludeFromearningsRecursive4(TypedDict, total=False):
@@ -9605,6 +9736,7 @@ class earningsWhereInput(TypedDict, total=False):
     clientid: Union[_int, 'types.IntFilter']
     clients: 'clientsRelationFilter'
     invoices: 'invoicesListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['earningsWhereInputRecursive1', List['earningsWhereInputRecursive1']]
     # but this causes mypy to hang :/
@@ -9623,6 +9755,7 @@ class earningsWhereInputRecursive1(TypedDict, total=False):
     clientid: Union[_int, 'types.IntFilter']
     clients: 'clientsRelationFilter'
     invoices: 'invoicesListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['earningsWhereInputRecursive2', List['earningsWhereInputRecursive2']]
     # but this causes mypy to hang :/
@@ -9641,6 +9774,7 @@ class earningsWhereInputRecursive2(TypedDict, total=False):
     clientid: Union[_int, 'types.IntFilter']
     clients: 'clientsRelationFilter'
     invoices: 'invoicesListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['earningsWhereInputRecursive3', List['earningsWhereInputRecursive3']]
     # but this causes mypy to hang :/
@@ -9659,6 +9793,7 @@ class earningsWhereInputRecursive3(TypedDict, total=False):
     clientid: Union[_int, 'types.IntFilter']
     clients: 'clientsRelationFilter'
     invoices: 'invoicesListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['earningsWhereInputRecursive4', List['earningsWhereInputRecursive4']]
     # but this causes mypy to hang :/
@@ -9677,6 +9812,7 @@ class earningsWhereInputRecursive4(TypedDict, total=False):
     clientid: Union[_int, 'types.IntFilter']
     clients: 'clientsRelationFilter'
     invoices: 'invoicesListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
 
 
@@ -9860,6 +9996,7 @@ earningsKeys = Literal[
     'clientid',
     'clients',
     'invoices',
+    'items_sold',
 ]
 earningsScalarFieldKeys = Literal[
     'earningid',
@@ -9874,6 +10011,7 @@ earningsScalarFieldKeysT = TypeVar('earningsScalarFieldKeysT', bound=earningsSca
 earningsRelationalFieldKeys = Literal[
         'clients',
         'invoices',
+        'items_sold',
     ]
 
 # events types
@@ -10493,24 +10631,28 @@ class earningsIncludeFromevents(TypedDict, total=False):
     """Relational arguments for events"""
     clients: Union[bool, 'clientsArgsFromeventsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromeventsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive1']
 
 
 class earningsIncludeFromeventsRecursive1(TypedDict, total=False):
     """Relational arguments for events"""
     clients: Union[bool, 'clientsArgsFromeventsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromeventsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive2']
 
 
 class earningsIncludeFromeventsRecursive2(TypedDict, total=False):
     """Relational arguments for events"""
     clients: Union[bool, 'clientsArgsFromeventsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromeventsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive3']
 
 
 class earningsIncludeFromeventsRecursive3(TypedDict, total=False):
     """Relational arguments for events"""
     clients: Union[bool, 'clientsArgsFromeventsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromeventsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive4']
 
 
 class earningsIncludeFromeventsRecursive4(TypedDict, total=False):
@@ -10713,18 +10855,22 @@ class FindManyeventsArgsFromeventsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromevents(TypedDict, total=False):
     """Relational arguments for events"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive1']
 
 
 class expensesIncludeFromeventsRecursive1(TypedDict, total=False):
     """Relational arguments for events"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive2']
 
 
 class expensesIncludeFromeventsRecursive2(TypedDict, total=False):
     """Relational arguments for events"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive3']
 
 
 class expensesIncludeFromeventsRecursive3(TypedDict, total=False):
     """Relational arguments for events"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive4']
 
 
 class expensesIncludeFromeventsRecursive4(TypedDict, total=False):
@@ -10923,18 +11069,26 @@ class FindManyinvoicesArgsFromeventsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromevents(TypedDict, total=False):
     """Relational arguments for events"""
+    expense: Union[bool, 'expensesArgsFromeventsRecursive1']
+    product: Union[bool, 'productsArgsFromeventsRecursive1']
 
 
 class items_boughtIncludeFromeventsRecursive1(TypedDict, total=False):
     """Relational arguments for events"""
+    expense: Union[bool, 'expensesArgsFromeventsRecursive2']
+    product: Union[bool, 'productsArgsFromeventsRecursive2']
 
 
 class items_boughtIncludeFromeventsRecursive2(TypedDict, total=False):
     """Relational arguments for events"""
+    expense: Union[bool, 'expensesArgsFromeventsRecursive3']
+    product: Union[bool, 'productsArgsFromeventsRecursive3']
 
 
 class items_boughtIncludeFromeventsRecursive3(TypedDict, total=False):
     """Relational arguments for events"""
+    expense: Union[bool, 'expensesArgsFromeventsRecursive4']
+    product: Union[bool, 'productsArgsFromeventsRecursive4']
 
 
 class items_boughtIncludeFromeventsRecursive4(TypedDict, total=False):
@@ -11024,18 +11178,26 @@ class FindManyitems_boughtArgsFromeventsRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromevents(TypedDict, total=False):
     """Relational arguments for events"""
+    earning: Union[bool, 'earningsArgsFromeventsRecursive1']
+    product: Union[bool, 'productsArgsFromeventsRecursive1']
 
 
 class items_soldIncludeFromeventsRecursive1(TypedDict, total=False):
     """Relational arguments for events"""
+    earning: Union[bool, 'earningsArgsFromeventsRecursive2']
+    product: Union[bool, 'productsArgsFromeventsRecursive2']
 
 
 class items_soldIncludeFromeventsRecursive2(TypedDict, total=False):
     """Relational arguments for events"""
+    earning: Union[bool, 'earningsArgsFromeventsRecursive3']
+    product: Union[bool, 'productsArgsFromeventsRecursive3']
 
 
 class items_soldIncludeFromeventsRecursive3(TypedDict, total=False):
     """Relational arguments for events"""
+    earning: Union[bool, 'earningsArgsFromeventsRecursive4']
+    product: Union[bool, 'productsArgsFromeventsRecursive4']
 
 
 class items_soldIncludeFromeventsRecursive4(TypedDict, total=False):
@@ -11566,21 +11728,29 @@ class FindManyproduct_typesArgsFromeventsRecursive4(TypedDict, total=False):
 class productsIncludeFromevents(TypedDict, total=False):
     """Relational arguments for events"""
     product_types: Union[bool, 'product_typesArgsFromeventsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive1']
 
 
 class productsIncludeFromeventsRecursive1(TypedDict, total=False):
     """Relational arguments for events"""
     product_types: Union[bool, 'product_typesArgsFromeventsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive2']
 
 
 class productsIncludeFromeventsRecursive2(TypedDict, total=False):
     """Relational arguments for events"""
     product_types: Union[bool, 'product_typesArgsFromeventsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive3']
 
 
 class productsIncludeFromeventsRecursive3(TypedDict, total=False):
     """Relational arguments for events"""
     product_types: Union[bool, 'product_typesArgsFromeventsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromeventsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromeventsRecursive4']
 
 
 class productsIncludeFromeventsRecursive4(TypedDict, total=False):
@@ -12170,6 +12340,7 @@ class expensesOptionalCreateInput(TypedDict, total=False):
     expenseid: _int
     description: Optional[_str]
     created_at: datetime.datetime
+    items_bought: 'items_boughtCreateManyNestedWithoutRelationsInput'
 
 
 class expensesCreateInput(expensesOptionalCreateInput):
@@ -12223,6 +12394,7 @@ class expensesUpdateInput(TypedDict, total=False):
     amount: decimal.Decimal
     description: Optional[_str]
     created_at: datetime.datetime
+    items_bought: 'items_boughtUpdateManyWithoutRelationsInput'
 
 
 class expensesUpdateManyMutationInput(TypedDict, total=False):
@@ -12351,6 +12523,7 @@ class expensesListRelationFilter(TypedDict, total=False):
 
 class expensesInclude(TypedDict, total=False):
     """expenses relational arguments"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpenses']
 
 
     
@@ -12686,24 +12859,28 @@ class earningsIncludeFromexpenses(TypedDict, total=False):
     """Relational arguments for expenses"""
     clients: Union[bool, 'clientsArgsFromexpensesRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromexpensesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive1']
 
 
 class earningsIncludeFromexpensesRecursive1(TypedDict, total=False):
     """Relational arguments for expenses"""
     clients: Union[bool, 'clientsArgsFromexpensesRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromexpensesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive2']
 
 
 class earningsIncludeFromexpensesRecursive2(TypedDict, total=False):
     """Relational arguments for expenses"""
     clients: Union[bool, 'clientsArgsFromexpensesRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromexpensesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive3']
 
 
 class earningsIncludeFromexpensesRecursive3(TypedDict, total=False):
     """Relational arguments for expenses"""
     clients: Union[bool, 'clientsArgsFromexpensesRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromexpensesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive4']
 
 
 class earningsIncludeFromexpensesRecursive4(TypedDict, total=False):
@@ -12906,18 +13083,22 @@ class FindManyeventsArgsFromexpensesRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromexpenses(TypedDict, total=False):
     """Relational arguments for expenses"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive1']
 
 
 class expensesIncludeFromexpensesRecursive1(TypedDict, total=False):
     """Relational arguments for expenses"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive2']
 
 
 class expensesIncludeFromexpensesRecursive2(TypedDict, total=False):
     """Relational arguments for expenses"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive3']
 
 
 class expensesIncludeFromexpensesRecursive3(TypedDict, total=False):
     """Relational arguments for expenses"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive4']
 
 
 class expensesIncludeFromexpensesRecursive4(TypedDict, total=False):
@@ -13116,18 +13297,26 @@ class FindManyinvoicesArgsFromexpensesRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromexpenses(TypedDict, total=False):
     """Relational arguments for expenses"""
+    expense: Union[bool, 'expensesArgsFromexpensesRecursive1']
+    product: Union[bool, 'productsArgsFromexpensesRecursive1']
 
 
 class items_boughtIncludeFromexpensesRecursive1(TypedDict, total=False):
     """Relational arguments for expenses"""
+    expense: Union[bool, 'expensesArgsFromexpensesRecursive2']
+    product: Union[bool, 'productsArgsFromexpensesRecursive2']
 
 
 class items_boughtIncludeFromexpensesRecursive2(TypedDict, total=False):
     """Relational arguments for expenses"""
+    expense: Union[bool, 'expensesArgsFromexpensesRecursive3']
+    product: Union[bool, 'productsArgsFromexpensesRecursive3']
 
 
 class items_boughtIncludeFromexpensesRecursive3(TypedDict, total=False):
     """Relational arguments for expenses"""
+    expense: Union[bool, 'expensesArgsFromexpensesRecursive4']
+    product: Union[bool, 'productsArgsFromexpensesRecursive4']
 
 
 class items_boughtIncludeFromexpensesRecursive4(TypedDict, total=False):
@@ -13217,18 +13406,26 @@ class FindManyitems_boughtArgsFromexpensesRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromexpenses(TypedDict, total=False):
     """Relational arguments for expenses"""
+    earning: Union[bool, 'earningsArgsFromexpensesRecursive1']
+    product: Union[bool, 'productsArgsFromexpensesRecursive1']
 
 
 class items_soldIncludeFromexpensesRecursive1(TypedDict, total=False):
     """Relational arguments for expenses"""
+    earning: Union[bool, 'earningsArgsFromexpensesRecursive2']
+    product: Union[bool, 'productsArgsFromexpensesRecursive2']
 
 
 class items_soldIncludeFromexpensesRecursive2(TypedDict, total=False):
     """Relational arguments for expenses"""
+    earning: Union[bool, 'earningsArgsFromexpensesRecursive3']
+    product: Union[bool, 'productsArgsFromexpensesRecursive3']
 
 
 class items_soldIncludeFromexpensesRecursive3(TypedDict, total=False):
     """Relational arguments for expenses"""
+    earning: Union[bool, 'earningsArgsFromexpensesRecursive4']
+    product: Union[bool, 'productsArgsFromexpensesRecursive4']
 
 
 class items_soldIncludeFromexpensesRecursive4(TypedDict, total=False):
@@ -13759,21 +13956,29 @@ class FindManyproduct_typesArgsFromexpensesRecursive4(TypedDict, total=False):
 class productsIncludeFromexpenses(TypedDict, total=False):
     """Relational arguments for expenses"""
     product_types: Union[bool, 'product_typesArgsFromexpensesRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive1']
 
 
 class productsIncludeFromexpensesRecursive1(TypedDict, total=False):
     """Relational arguments for expenses"""
     product_types: Union[bool, 'product_typesArgsFromexpensesRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive2']
 
 
 class productsIncludeFromexpensesRecursive2(TypedDict, total=False):
     """Relational arguments for expenses"""
     product_types: Union[bool, 'product_typesArgsFromexpensesRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive3']
 
 
 class productsIncludeFromexpensesRecursive3(TypedDict, total=False):
     """Relational arguments for expenses"""
     product_types: Union[bool, 'product_typesArgsFromexpensesRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromexpensesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromexpensesRecursive4']
 
 
 class productsIncludeFromexpensesRecursive4(TypedDict, total=False):
@@ -13978,6 +14183,7 @@ class expensesWhereInput(TypedDict, total=False):
     amount: Union[decimal.Decimal, 'types.DecimalFilter']
     description: Union[None, _str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
+    items_bought: 'items_boughtListRelationFilter'
 
     # should be noted that AND and NOT should be Union['expensesWhereInputRecursive1', List['expensesWhereInputRecursive1']]
     # but this causes mypy to hang :/
@@ -13992,6 +14198,7 @@ class expensesWhereInputRecursive1(TypedDict, total=False):
     amount: Union[decimal.Decimal, 'types.DecimalFilter']
     description: Union[None, _str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
+    items_bought: 'items_boughtListRelationFilter'
 
     # should be noted that AND and NOT should be Union['expensesWhereInputRecursive2', List['expensesWhereInputRecursive2']]
     # but this causes mypy to hang :/
@@ -14006,6 +14213,7 @@ class expensesWhereInputRecursive2(TypedDict, total=False):
     amount: Union[decimal.Decimal, 'types.DecimalFilter']
     description: Union[None, _str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
+    items_bought: 'items_boughtListRelationFilter'
 
     # should be noted that AND and NOT should be Union['expensesWhereInputRecursive3', List['expensesWhereInputRecursive3']]
     # but this causes mypy to hang :/
@@ -14020,6 +14228,7 @@ class expensesWhereInputRecursive3(TypedDict, total=False):
     amount: Union[decimal.Decimal, 'types.DecimalFilter']
     description: Union[None, _str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
+    items_bought: 'items_boughtListRelationFilter'
 
     # should be noted that AND and NOT should be Union['expensesWhereInputRecursive4', List['expensesWhereInputRecursive4']]
     # but this causes mypy to hang :/
@@ -14034,6 +14243,7 @@ class expensesWhereInputRecursive4(TypedDict, total=False):
     amount: Union[decimal.Decimal, 'types.DecimalFilter']
     description: Union[None, _str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
+    items_bought: 'items_boughtListRelationFilter'
 
 
 
@@ -14188,6 +14398,7 @@ expensesKeys = Literal[
     'amount',
     'description',
     'created_at',
+    'items_bought',
 ]
 expensesScalarFieldKeys = Literal[
     'expenseid',
@@ -14197,7 +14408,9 @@ expensesScalarFieldKeys = Literal[
 ]
 expensesScalarFieldKeysT = TypeVar('expensesScalarFieldKeysT', bound=expensesScalarFieldKeys)
 
-expensesRelationalFieldKeys = _NoneType
+expensesRelationalFieldKeys = Literal[
+        'items_bought',
+    ]
 
 # invoices types
 
@@ -14750,24 +14963,28 @@ class earningsIncludeFrominvoices(TypedDict, total=False):
     """Relational arguments for invoices"""
     clients: Union[bool, 'clientsArgsFrominvoicesRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFrominvoicesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive1']
 
 
 class earningsIncludeFrominvoicesRecursive1(TypedDict, total=False):
     """Relational arguments for invoices"""
     clients: Union[bool, 'clientsArgsFrominvoicesRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFrominvoicesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive2']
 
 
 class earningsIncludeFrominvoicesRecursive2(TypedDict, total=False):
     """Relational arguments for invoices"""
     clients: Union[bool, 'clientsArgsFrominvoicesRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFrominvoicesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive3']
 
 
 class earningsIncludeFrominvoicesRecursive3(TypedDict, total=False):
     """Relational arguments for invoices"""
     clients: Union[bool, 'clientsArgsFrominvoicesRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFrominvoicesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive4']
 
 
 class earningsIncludeFrominvoicesRecursive4(TypedDict, total=False):
@@ -14970,18 +15187,22 @@ class FindManyeventsArgsFrominvoicesRecursive4(TypedDict, total=False):
 
 class expensesIncludeFrominvoices(TypedDict, total=False):
     """Relational arguments for invoices"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive1']
 
 
 class expensesIncludeFrominvoicesRecursive1(TypedDict, total=False):
     """Relational arguments for invoices"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive2']
 
 
 class expensesIncludeFrominvoicesRecursive2(TypedDict, total=False):
     """Relational arguments for invoices"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive3']
 
 
 class expensesIncludeFrominvoicesRecursive3(TypedDict, total=False):
     """Relational arguments for invoices"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive4']
 
 
 class expensesIncludeFrominvoicesRecursive4(TypedDict, total=False):
@@ -15180,18 +15401,26 @@ class FindManyinvoicesArgsFrominvoicesRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFrominvoices(TypedDict, total=False):
     """Relational arguments for invoices"""
+    expense: Union[bool, 'expensesArgsFrominvoicesRecursive1']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive1']
 
 
 class items_boughtIncludeFrominvoicesRecursive1(TypedDict, total=False):
     """Relational arguments for invoices"""
+    expense: Union[bool, 'expensesArgsFrominvoicesRecursive2']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive2']
 
 
 class items_boughtIncludeFrominvoicesRecursive2(TypedDict, total=False):
     """Relational arguments for invoices"""
+    expense: Union[bool, 'expensesArgsFrominvoicesRecursive3']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive3']
 
 
 class items_boughtIncludeFrominvoicesRecursive3(TypedDict, total=False):
     """Relational arguments for invoices"""
+    expense: Union[bool, 'expensesArgsFrominvoicesRecursive4']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive4']
 
 
 class items_boughtIncludeFrominvoicesRecursive4(TypedDict, total=False):
@@ -15281,18 +15510,26 @@ class FindManyitems_boughtArgsFrominvoicesRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFrominvoices(TypedDict, total=False):
     """Relational arguments for invoices"""
+    earning: Union[bool, 'earningsArgsFrominvoicesRecursive1']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive1']
 
 
 class items_soldIncludeFrominvoicesRecursive1(TypedDict, total=False):
     """Relational arguments for invoices"""
+    earning: Union[bool, 'earningsArgsFrominvoicesRecursive2']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive2']
 
 
 class items_soldIncludeFrominvoicesRecursive2(TypedDict, total=False):
     """Relational arguments for invoices"""
+    earning: Union[bool, 'earningsArgsFrominvoicesRecursive3']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive3']
 
 
 class items_soldIncludeFrominvoicesRecursive3(TypedDict, total=False):
     """Relational arguments for invoices"""
+    earning: Union[bool, 'earningsArgsFrominvoicesRecursive4']
+    product: Union[bool, 'productsArgsFrominvoicesRecursive4']
 
 
 class items_soldIncludeFrominvoicesRecursive4(TypedDict, total=False):
@@ -15823,21 +16060,29 @@ class FindManyproduct_typesArgsFrominvoicesRecursive4(TypedDict, total=False):
 class productsIncludeFrominvoices(TypedDict, total=False):
     """Relational arguments for invoices"""
     product_types: Union[bool, 'product_typesArgsFrominvoicesRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive1']
 
 
 class productsIncludeFrominvoicesRecursive1(TypedDict, total=False):
     """Relational arguments for invoices"""
     product_types: Union[bool, 'product_typesArgsFrominvoicesRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive2']
 
 
 class productsIncludeFrominvoicesRecursive2(TypedDict, total=False):
     """Relational arguments for invoices"""
     product_types: Union[bool, 'product_typesArgsFrominvoicesRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive3']
 
 
 class productsIncludeFrominvoicesRecursive3(TypedDict, total=False):
     """Relational arguments for invoices"""
     product_types: Union[bool, 'product_typesArgsFrominvoicesRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrominvoicesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrominvoicesRecursive4']
 
 
 class productsIncludeFrominvoicesRecursive4(TypedDict, total=False):
@@ -16324,12 +16569,14 @@ invoicesRelationalFieldKeys = Literal[
 
 class items_boughtOptionalCreateInput(TypedDict, total=False):
     """Optional arguments to the items_bought create method"""
+    expenseid: _int
+    productid: _int
+    expense: 'expensesCreateNestedWithoutRelationsInput'
+    product: 'productsCreateNestedWithoutRelationsInput'
 
 
 class items_boughtCreateInput(items_boughtOptionalCreateInput):
     """Required arguments to the items_bought create method"""
-    expenseid: _int
-    productid: _int
     quantity: _int
 
 
@@ -16338,12 +16585,12 @@ class items_boughtCreateInput(items_boughtOptionalCreateInput):
 
 class items_boughtOptionalCreateWithoutRelationsInput(TypedDict, total=False):
     """Optional arguments to the items_bought create method, without relations"""
+    expenseid: _int
+    productid: _int
 
 
 class items_boughtCreateWithoutRelationsInput(items_boughtOptionalCreateWithoutRelationsInput):
     """Required arguments to the items_bought create method, without relations"""
-    expenseid: _int
-    productid: _int
     quantity: _int
 
 class items_boughtConnectOrCreateWithoutRelationsInput(TypedDict):
@@ -16383,15 +16630,13 @@ items_boughtWhereUniqueInput = _items_boughtCompoundPrimaryKey
 
 class items_boughtUpdateInput(TypedDict, total=False):
     """Optional arguments for updating a record"""
-    expenseid: Union[AtomicIntInput, _int]
-    productid: Union[AtomicIntInput, _int]
     quantity: Union[AtomicIntInput, _int]
+    expense: 'expensesUpdateOneWithoutRelationsInput'
+    product: 'productsUpdateOneWithoutRelationsInput'
 
 
 class items_boughtUpdateManyMutationInput(TypedDict, total=False):
     """Arguments for updating many records"""
-    expenseid: Union[AtomicIntInput, _int]
-    productid: Union[AtomicIntInput, _int]
     quantity: Union[AtomicIntInput, _int]
 
 
@@ -16504,6 +16749,8 @@ class items_boughtListRelationFilter(TypedDict, total=False):
 
 class items_boughtInclude(TypedDict, total=False):
     """items_bought relational arguments"""
+    expense: Union[bool, 'expensesArgsFromitems_bought']
+    product: Union[bool, 'productsArgsFromitems_bought']
 
 
     
@@ -16839,24 +17086,28 @@ class earningsIncludeFromitems_bought(TypedDict, total=False):
     """Relational arguments for items_bought"""
     clients: Union[bool, 'clientsArgsFromitems_boughtRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_boughtRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive1']
 
 
 class earningsIncludeFromitems_boughtRecursive1(TypedDict, total=False):
     """Relational arguments for items_bought"""
     clients: Union[bool, 'clientsArgsFromitems_boughtRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_boughtRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive2']
 
 
 class earningsIncludeFromitems_boughtRecursive2(TypedDict, total=False):
     """Relational arguments for items_bought"""
     clients: Union[bool, 'clientsArgsFromitems_boughtRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_boughtRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive3']
 
 
 class earningsIncludeFromitems_boughtRecursive3(TypedDict, total=False):
     """Relational arguments for items_bought"""
     clients: Union[bool, 'clientsArgsFromitems_boughtRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_boughtRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive4']
 
 
 class earningsIncludeFromitems_boughtRecursive4(TypedDict, total=False):
@@ -17059,18 +17310,22 @@ class FindManyeventsArgsFromitems_boughtRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromitems_bought(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive1']
 
 
 class expensesIncludeFromitems_boughtRecursive1(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive2']
 
 
 class expensesIncludeFromitems_boughtRecursive2(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive3']
 
 
 class expensesIncludeFromitems_boughtRecursive3(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive4']
 
 
 class expensesIncludeFromitems_boughtRecursive4(TypedDict, total=False):
@@ -17269,18 +17524,26 @@ class FindManyinvoicesArgsFromitems_boughtRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromitems_bought(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    expense: Union[bool, 'expensesArgsFromitems_boughtRecursive1']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive1']
 
 
 class items_boughtIncludeFromitems_boughtRecursive1(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    expense: Union[bool, 'expensesArgsFromitems_boughtRecursive2']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive2']
 
 
 class items_boughtIncludeFromitems_boughtRecursive2(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    expense: Union[bool, 'expensesArgsFromitems_boughtRecursive3']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive3']
 
 
 class items_boughtIncludeFromitems_boughtRecursive3(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    expense: Union[bool, 'expensesArgsFromitems_boughtRecursive4']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive4']
 
 
 class items_boughtIncludeFromitems_boughtRecursive4(TypedDict, total=False):
@@ -17370,18 +17633,26 @@ class FindManyitems_boughtArgsFromitems_boughtRecursive4(TypedDict, total=False)
 
 class items_soldIncludeFromitems_bought(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    earning: Union[bool, 'earningsArgsFromitems_boughtRecursive1']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive1']
 
 
 class items_soldIncludeFromitems_boughtRecursive1(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    earning: Union[bool, 'earningsArgsFromitems_boughtRecursive2']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive2']
 
 
 class items_soldIncludeFromitems_boughtRecursive2(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    earning: Union[bool, 'earningsArgsFromitems_boughtRecursive3']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive3']
 
 
 class items_soldIncludeFromitems_boughtRecursive3(TypedDict, total=False):
     """Relational arguments for items_bought"""
+    earning: Union[bool, 'earningsArgsFromitems_boughtRecursive4']
+    product: Union[bool, 'productsArgsFromitems_boughtRecursive4']
 
 
 class items_soldIncludeFromitems_boughtRecursive4(TypedDict, total=False):
@@ -17912,21 +18183,29 @@ class FindManyproduct_typesArgsFromitems_boughtRecursive4(TypedDict, total=False
 class productsIncludeFromitems_bought(TypedDict, total=False):
     """Relational arguments for items_bought"""
     product_types: Union[bool, 'product_typesArgsFromitems_boughtRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive1']
 
 
 class productsIncludeFromitems_boughtRecursive1(TypedDict, total=False):
     """Relational arguments for items_bought"""
     product_types: Union[bool, 'product_typesArgsFromitems_boughtRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive2']
 
 
 class productsIncludeFromitems_boughtRecursive2(TypedDict, total=False):
     """Relational arguments for items_bought"""
     product_types: Union[bool, 'product_typesArgsFromitems_boughtRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive3']
 
 
 class productsIncludeFromitems_boughtRecursive3(TypedDict, total=False):
     """Relational arguments for items_bought"""
     product_types: Union[bool, 'product_typesArgsFromitems_boughtRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_boughtRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_boughtRecursive4']
 
 
 class productsIncludeFromitems_boughtRecursive4(TypedDict, total=False):
@@ -18130,6 +18409,8 @@ class items_boughtWhereInput(TypedDict, total=False):
     expenseid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    expense: 'expensesRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_boughtWhereInputRecursive1', List['items_boughtWhereInputRecursive1']]
     # but this causes mypy to hang :/
@@ -18143,6 +18424,8 @@ class items_boughtWhereInputRecursive1(TypedDict, total=False):
     expenseid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    expense: 'expensesRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_boughtWhereInputRecursive2', List['items_boughtWhereInputRecursive2']]
     # but this causes mypy to hang :/
@@ -18156,6 +18439,8 @@ class items_boughtWhereInputRecursive2(TypedDict, total=False):
     expenseid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    expense: 'expensesRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_boughtWhereInputRecursive3', List['items_boughtWhereInputRecursive3']]
     # but this causes mypy to hang :/
@@ -18169,6 +18454,8 @@ class items_boughtWhereInputRecursive3(TypedDict, total=False):
     expenseid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    expense: 'expensesRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_boughtWhereInputRecursive4', List['items_boughtWhereInputRecursive4']]
     # but this causes mypy to hang :/
@@ -18182,6 +18469,8 @@ class items_boughtWhereInputRecursive4(TypedDict, total=False):
     expenseid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    expense: 'expensesRelationFilter'
+    product: 'productsRelationFilter'
 
 
 
@@ -18330,6 +18619,8 @@ items_boughtKeys = Literal[
     'expenseid',
     'productid',
     'quantity',
+    'expense',
+    'product',
 ]
 items_boughtScalarFieldKeys = Literal[
     'expenseid',
@@ -18338,18 +18629,23 @@ items_boughtScalarFieldKeys = Literal[
 ]
 items_boughtScalarFieldKeysT = TypeVar('items_boughtScalarFieldKeysT', bound=items_boughtScalarFieldKeys)
 
-items_boughtRelationalFieldKeys = _NoneType
+items_boughtRelationalFieldKeys = Literal[
+        'expense',
+        'product',
+    ]
 
 # items_sold types
 
 class items_soldOptionalCreateInput(TypedDict, total=False):
     """Optional arguments to the items_sold create method"""
+    earningid: _int
+    productid: _int
+    earning: 'earningsCreateNestedWithoutRelationsInput'
+    product: 'productsCreateNestedWithoutRelationsInput'
 
 
 class items_soldCreateInput(items_soldOptionalCreateInput):
     """Required arguments to the items_sold create method"""
-    earningid: _int
-    productid: _int
     quantity: _int
 
 
@@ -18358,12 +18654,12 @@ class items_soldCreateInput(items_soldOptionalCreateInput):
 
 class items_soldOptionalCreateWithoutRelationsInput(TypedDict, total=False):
     """Optional arguments to the items_sold create method, without relations"""
+    earningid: _int
+    productid: _int
 
 
 class items_soldCreateWithoutRelationsInput(items_soldOptionalCreateWithoutRelationsInput):
     """Required arguments to the items_sold create method, without relations"""
-    earningid: _int
-    productid: _int
     quantity: _int
 
 class items_soldConnectOrCreateWithoutRelationsInput(TypedDict):
@@ -18403,15 +18699,13 @@ items_soldWhereUniqueInput = _items_soldCompoundPrimaryKey
 
 class items_soldUpdateInput(TypedDict, total=False):
     """Optional arguments for updating a record"""
-    earningid: Union[AtomicIntInput, _int]
-    productid: Union[AtomicIntInput, _int]
     quantity: Union[AtomicIntInput, _int]
+    earning: 'earningsUpdateOneWithoutRelationsInput'
+    product: 'productsUpdateOneWithoutRelationsInput'
 
 
 class items_soldUpdateManyMutationInput(TypedDict, total=False):
     """Arguments for updating many records"""
-    earningid: Union[AtomicIntInput, _int]
-    productid: Union[AtomicIntInput, _int]
     quantity: Union[AtomicIntInput, _int]
 
 
@@ -18524,6 +18818,8 @@ class items_soldListRelationFilter(TypedDict, total=False):
 
 class items_soldInclude(TypedDict, total=False):
     """items_sold relational arguments"""
+    earning: Union[bool, 'earningsArgsFromitems_sold']
+    product: Union[bool, 'productsArgsFromitems_sold']
 
 
     
@@ -18859,24 +19155,28 @@ class earningsIncludeFromitems_sold(TypedDict, total=False):
     """Relational arguments for items_sold"""
     clients: Union[bool, 'clientsArgsFromitems_soldRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_soldRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive1']
 
 
 class earningsIncludeFromitems_soldRecursive1(TypedDict, total=False):
     """Relational arguments for items_sold"""
     clients: Union[bool, 'clientsArgsFromitems_soldRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_soldRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive2']
 
 
 class earningsIncludeFromitems_soldRecursive2(TypedDict, total=False):
     """Relational arguments for items_sold"""
     clients: Union[bool, 'clientsArgsFromitems_soldRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_soldRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive3']
 
 
 class earningsIncludeFromitems_soldRecursive3(TypedDict, total=False):
     """Relational arguments for items_sold"""
     clients: Union[bool, 'clientsArgsFromitems_soldRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromitems_soldRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive4']
 
 
 class earningsIncludeFromitems_soldRecursive4(TypedDict, total=False):
@@ -19079,18 +19379,22 @@ class FindManyeventsArgsFromitems_soldRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromitems_sold(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive1']
 
 
 class expensesIncludeFromitems_soldRecursive1(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive2']
 
 
 class expensesIncludeFromitems_soldRecursive2(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive3']
 
 
 class expensesIncludeFromitems_soldRecursive3(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive4']
 
 
 class expensesIncludeFromitems_soldRecursive4(TypedDict, total=False):
@@ -19289,18 +19593,26 @@ class FindManyinvoicesArgsFromitems_soldRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromitems_sold(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    expense: Union[bool, 'expensesArgsFromitems_soldRecursive1']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive1']
 
 
 class items_boughtIncludeFromitems_soldRecursive1(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    expense: Union[bool, 'expensesArgsFromitems_soldRecursive2']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive2']
 
 
 class items_boughtIncludeFromitems_soldRecursive2(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    expense: Union[bool, 'expensesArgsFromitems_soldRecursive3']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive3']
 
 
 class items_boughtIncludeFromitems_soldRecursive3(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    expense: Union[bool, 'expensesArgsFromitems_soldRecursive4']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive4']
 
 
 class items_boughtIncludeFromitems_soldRecursive4(TypedDict, total=False):
@@ -19390,18 +19702,26 @@ class FindManyitems_boughtArgsFromitems_soldRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromitems_sold(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    earning: Union[bool, 'earningsArgsFromitems_soldRecursive1']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive1']
 
 
 class items_soldIncludeFromitems_soldRecursive1(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    earning: Union[bool, 'earningsArgsFromitems_soldRecursive2']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive2']
 
 
 class items_soldIncludeFromitems_soldRecursive2(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    earning: Union[bool, 'earningsArgsFromitems_soldRecursive3']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive3']
 
 
 class items_soldIncludeFromitems_soldRecursive3(TypedDict, total=False):
     """Relational arguments for items_sold"""
+    earning: Union[bool, 'earningsArgsFromitems_soldRecursive4']
+    product: Union[bool, 'productsArgsFromitems_soldRecursive4']
 
 
 class items_soldIncludeFromitems_soldRecursive4(TypedDict, total=False):
@@ -19932,21 +20252,29 @@ class FindManyproduct_typesArgsFromitems_soldRecursive4(TypedDict, total=False):
 class productsIncludeFromitems_sold(TypedDict, total=False):
     """Relational arguments for items_sold"""
     product_types: Union[bool, 'product_typesArgsFromitems_soldRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive1']
 
 
 class productsIncludeFromitems_soldRecursive1(TypedDict, total=False):
     """Relational arguments for items_sold"""
     product_types: Union[bool, 'product_typesArgsFromitems_soldRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive2']
 
 
 class productsIncludeFromitems_soldRecursive2(TypedDict, total=False):
     """Relational arguments for items_sold"""
     product_types: Union[bool, 'product_typesArgsFromitems_soldRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive3']
 
 
 class productsIncludeFromitems_soldRecursive3(TypedDict, total=False):
     """Relational arguments for items_sold"""
     product_types: Union[bool, 'product_typesArgsFromitems_soldRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromitems_soldRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromitems_soldRecursive4']
 
 
 class productsIncludeFromitems_soldRecursive4(TypedDict, total=False):
@@ -20150,6 +20478,8 @@ class items_soldWhereInput(TypedDict, total=False):
     earningid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    earning: 'earningsRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_soldWhereInputRecursive1', List['items_soldWhereInputRecursive1']]
     # but this causes mypy to hang :/
@@ -20163,6 +20493,8 @@ class items_soldWhereInputRecursive1(TypedDict, total=False):
     earningid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    earning: 'earningsRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_soldWhereInputRecursive2', List['items_soldWhereInputRecursive2']]
     # but this causes mypy to hang :/
@@ -20176,6 +20508,8 @@ class items_soldWhereInputRecursive2(TypedDict, total=False):
     earningid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    earning: 'earningsRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_soldWhereInputRecursive3', List['items_soldWhereInputRecursive3']]
     # but this causes mypy to hang :/
@@ -20189,6 +20523,8 @@ class items_soldWhereInputRecursive3(TypedDict, total=False):
     earningid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    earning: 'earningsRelationFilter'
+    product: 'productsRelationFilter'
 
     # should be noted that AND and NOT should be Union['items_soldWhereInputRecursive4', List['items_soldWhereInputRecursive4']]
     # but this causes mypy to hang :/
@@ -20202,6 +20538,8 @@ class items_soldWhereInputRecursive4(TypedDict, total=False):
     earningid: Union[_int, 'types.IntFilter']
     productid: Union[_int, 'types.IntFilter']
     quantity: Union[_int, 'types.IntFilter']
+    earning: 'earningsRelationFilter'
+    product: 'productsRelationFilter'
 
 
 
@@ -20350,6 +20688,8 @@ items_soldKeys = Literal[
     'earningid',
     'productid',
     'quantity',
+    'earning',
+    'product',
 ]
 items_soldScalarFieldKeys = Literal[
     'earningid',
@@ -20358,7 +20698,10 @@ items_soldScalarFieldKeys = Literal[
 ]
 items_soldScalarFieldKeysT = TypeVar('items_soldScalarFieldKeysT', bound=items_soldScalarFieldKeys)
 
-items_soldRelationalFieldKeys = _NoneType
+items_soldRelationalFieldKeys = Literal[
+        'earning',
+        'product',
+    ]
 
 # patients types
 
@@ -20961,24 +21304,28 @@ class earningsIncludeFrompatients(TypedDict, total=False):
     """Relational arguments for patients"""
     clients: Union[bool, 'clientsArgsFrompatientsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatientsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive1']
 
 
 class earningsIncludeFrompatientsRecursive1(TypedDict, total=False):
     """Relational arguments for patients"""
     clients: Union[bool, 'clientsArgsFrompatientsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatientsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive2']
 
 
 class earningsIncludeFrompatientsRecursive2(TypedDict, total=False):
     """Relational arguments for patients"""
     clients: Union[bool, 'clientsArgsFrompatientsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatientsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive3']
 
 
 class earningsIncludeFrompatientsRecursive3(TypedDict, total=False):
     """Relational arguments for patients"""
     clients: Union[bool, 'clientsArgsFrompatientsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatientsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive4']
 
 
 class earningsIncludeFrompatientsRecursive4(TypedDict, total=False):
@@ -21181,18 +21528,22 @@ class FindManyeventsArgsFrompatientsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFrompatients(TypedDict, total=False):
     """Relational arguments for patients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive1']
 
 
 class expensesIncludeFrompatientsRecursive1(TypedDict, total=False):
     """Relational arguments for patients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive2']
 
 
 class expensesIncludeFrompatientsRecursive2(TypedDict, total=False):
     """Relational arguments for patients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive3']
 
 
 class expensesIncludeFrompatientsRecursive3(TypedDict, total=False):
     """Relational arguments for patients"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive4']
 
 
 class expensesIncludeFrompatientsRecursive4(TypedDict, total=False):
@@ -21391,18 +21742,26 @@ class FindManyinvoicesArgsFrompatientsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFrompatients(TypedDict, total=False):
     """Relational arguments for patients"""
+    expense: Union[bool, 'expensesArgsFrompatientsRecursive1']
+    product: Union[bool, 'productsArgsFrompatientsRecursive1']
 
 
 class items_boughtIncludeFrompatientsRecursive1(TypedDict, total=False):
     """Relational arguments for patients"""
+    expense: Union[bool, 'expensesArgsFrompatientsRecursive2']
+    product: Union[bool, 'productsArgsFrompatientsRecursive2']
 
 
 class items_boughtIncludeFrompatientsRecursive2(TypedDict, total=False):
     """Relational arguments for patients"""
+    expense: Union[bool, 'expensesArgsFrompatientsRecursive3']
+    product: Union[bool, 'productsArgsFrompatientsRecursive3']
 
 
 class items_boughtIncludeFrompatientsRecursive3(TypedDict, total=False):
     """Relational arguments for patients"""
+    expense: Union[bool, 'expensesArgsFrompatientsRecursive4']
+    product: Union[bool, 'productsArgsFrompatientsRecursive4']
 
 
 class items_boughtIncludeFrompatientsRecursive4(TypedDict, total=False):
@@ -21492,18 +21851,26 @@ class FindManyitems_boughtArgsFrompatientsRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFrompatients(TypedDict, total=False):
     """Relational arguments for patients"""
+    earning: Union[bool, 'earningsArgsFrompatientsRecursive1']
+    product: Union[bool, 'productsArgsFrompatientsRecursive1']
 
 
 class items_soldIncludeFrompatientsRecursive1(TypedDict, total=False):
     """Relational arguments for patients"""
+    earning: Union[bool, 'earningsArgsFrompatientsRecursive2']
+    product: Union[bool, 'productsArgsFrompatientsRecursive2']
 
 
 class items_soldIncludeFrompatientsRecursive2(TypedDict, total=False):
     """Relational arguments for patients"""
+    earning: Union[bool, 'earningsArgsFrompatientsRecursive3']
+    product: Union[bool, 'productsArgsFrompatientsRecursive3']
 
 
 class items_soldIncludeFrompatientsRecursive3(TypedDict, total=False):
     """Relational arguments for patients"""
+    earning: Union[bool, 'earningsArgsFrompatientsRecursive4']
+    product: Union[bool, 'productsArgsFrompatientsRecursive4']
 
 
 class items_soldIncludeFrompatientsRecursive4(TypedDict, total=False):
@@ -22034,21 +22401,29 @@ class FindManyproduct_typesArgsFrompatientsRecursive4(TypedDict, total=False):
 class productsIncludeFrompatients(TypedDict, total=False):
     """Relational arguments for patients"""
     product_types: Union[bool, 'product_typesArgsFrompatientsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive1']
 
 
 class productsIncludeFrompatientsRecursive1(TypedDict, total=False):
     """Relational arguments for patients"""
     product_types: Union[bool, 'product_typesArgsFrompatientsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive2']
 
 
 class productsIncludeFrompatientsRecursive2(TypedDict, total=False):
     """Relational arguments for patients"""
     product_types: Union[bool, 'product_typesArgsFrompatientsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive3']
 
 
 class productsIncludeFrompatientsRecursive3(TypedDict, total=False):
     """Relational arguments for patients"""
     product_types: Union[bool, 'product_typesArgsFrompatientsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatientsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatientsRecursive4']
 
 
 class productsIncludeFrompatientsRecursive4(TypedDict, total=False):
@@ -23127,24 +23502,28 @@ class earningsIncludeFrompatients_allergies(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     clients: Union[bool, 'clientsArgsFrompatients_allergiesRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatients_allergiesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive1']
 
 
 class earningsIncludeFrompatients_allergiesRecursive1(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     clients: Union[bool, 'clientsArgsFrompatients_allergiesRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatients_allergiesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive2']
 
 
 class earningsIncludeFrompatients_allergiesRecursive2(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     clients: Union[bool, 'clientsArgsFrompatients_allergiesRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatients_allergiesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive3']
 
 
 class earningsIncludeFrompatients_allergiesRecursive3(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     clients: Union[bool, 'clientsArgsFrompatients_allergiesRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFrompatients_allergiesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive4']
 
 
 class earningsIncludeFrompatients_allergiesRecursive4(TypedDict, total=False):
@@ -23347,18 +23726,22 @@ class FindManyeventsArgsFrompatients_allergiesRecursive4(TypedDict, total=False)
 
 class expensesIncludeFrompatients_allergies(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive1']
 
 
 class expensesIncludeFrompatients_allergiesRecursive1(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive2']
 
 
 class expensesIncludeFrompatients_allergiesRecursive2(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive3']
 
 
 class expensesIncludeFrompatients_allergiesRecursive3(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive4']
 
 
 class expensesIncludeFrompatients_allergiesRecursive4(TypedDict, total=False):
@@ -23557,18 +23940,26 @@ class FindManyinvoicesArgsFrompatients_allergiesRecursive4(TypedDict, total=Fals
 
 class items_boughtIncludeFrompatients_allergies(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    expense: Union[bool, 'expensesArgsFrompatients_allergiesRecursive1']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive1']
 
 
 class items_boughtIncludeFrompatients_allergiesRecursive1(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    expense: Union[bool, 'expensesArgsFrompatients_allergiesRecursive2']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive2']
 
 
 class items_boughtIncludeFrompatients_allergiesRecursive2(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    expense: Union[bool, 'expensesArgsFrompatients_allergiesRecursive3']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive3']
 
 
 class items_boughtIncludeFrompatients_allergiesRecursive3(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    expense: Union[bool, 'expensesArgsFrompatients_allergiesRecursive4']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive4']
 
 
 class items_boughtIncludeFrompatients_allergiesRecursive4(TypedDict, total=False):
@@ -23658,18 +24049,26 @@ class FindManyitems_boughtArgsFrompatients_allergiesRecursive4(TypedDict, total=
 
 class items_soldIncludeFrompatients_allergies(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    earning: Union[bool, 'earningsArgsFrompatients_allergiesRecursive1']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive1']
 
 
 class items_soldIncludeFrompatients_allergiesRecursive1(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    earning: Union[bool, 'earningsArgsFrompatients_allergiesRecursive2']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive2']
 
 
 class items_soldIncludeFrompatients_allergiesRecursive2(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    earning: Union[bool, 'earningsArgsFrompatients_allergiesRecursive3']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive3']
 
 
 class items_soldIncludeFrompatients_allergiesRecursive3(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
+    earning: Union[bool, 'earningsArgsFrompatients_allergiesRecursive4']
+    product: Union[bool, 'productsArgsFrompatients_allergiesRecursive4']
 
 
 class items_soldIncludeFrompatients_allergiesRecursive4(TypedDict, total=False):
@@ -24200,21 +24599,29 @@ class FindManyproduct_typesArgsFrompatients_allergiesRecursive4(TypedDict, total
 class productsIncludeFrompatients_allergies(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     product_types: Union[bool, 'product_typesArgsFrompatients_allergiesRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive1']
 
 
 class productsIncludeFrompatients_allergiesRecursive1(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     product_types: Union[bool, 'product_typesArgsFrompatients_allergiesRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive2']
 
 
 class productsIncludeFrompatients_allergiesRecursive2(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     product_types: Union[bool, 'product_typesArgsFrompatients_allergiesRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive3']
 
 
 class productsIncludeFrompatients_allergiesRecursive3(TypedDict, total=False):
     """Relational arguments for patients_allergies"""
     product_types: Union[bool, 'product_typesArgsFrompatients_allergiesRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFrompatients_allergiesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFrompatients_allergiesRecursive4']
 
 
 class productsIncludeFrompatients_allergiesRecursive4(TypedDict, total=False):
@@ -25177,24 +25584,28 @@ class earningsIncludeFromprescriptions(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     clients: Union[bool, 'clientsArgsFromprescriptionsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromprescriptionsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive1']
 
 
 class earningsIncludeFromprescriptionsRecursive1(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     clients: Union[bool, 'clientsArgsFromprescriptionsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromprescriptionsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive2']
 
 
 class earningsIncludeFromprescriptionsRecursive2(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     clients: Union[bool, 'clientsArgsFromprescriptionsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromprescriptionsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive3']
 
 
 class earningsIncludeFromprescriptionsRecursive3(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     clients: Union[bool, 'clientsArgsFromprescriptionsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromprescriptionsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive4']
 
 
 class earningsIncludeFromprescriptionsRecursive4(TypedDict, total=False):
@@ -25397,18 +25808,22 @@ class FindManyeventsArgsFromprescriptionsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromprescriptions(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive1']
 
 
 class expensesIncludeFromprescriptionsRecursive1(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive2']
 
 
 class expensesIncludeFromprescriptionsRecursive2(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive3']
 
 
 class expensesIncludeFromprescriptionsRecursive3(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive4']
 
 
 class expensesIncludeFromprescriptionsRecursive4(TypedDict, total=False):
@@ -25607,18 +26022,26 @@ class FindManyinvoicesArgsFromprescriptionsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromprescriptions(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    expense: Union[bool, 'expensesArgsFromprescriptionsRecursive1']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive1']
 
 
 class items_boughtIncludeFromprescriptionsRecursive1(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    expense: Union[bool, 'expensesArgsFromprescriptionsRecursive2']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive2']
 
 
 class items_boughtIncludeFromprescriptionsRecursive2(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    expense: Union[bool, 'expensesArgsFromprescriptionsRecursive3']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive3']
 
 
 class items_boughtIncludeFromprescriptionsRecursive3(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    expense: Union[bool, 'expensesArgsFromprescriptionsRecursive4']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive4']
 
 
 class items_boughtIncludeFromprescriptionsRecursive4(TypedDict, total=False):
@@ -25708,18 +26131,26 @@ class FindManyitems_boughtArgsFromprescriptionsRecursive4(TypedDict, total=False
 
 class items_soldIncludeFromprescriptions(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    earning: Union[bool, 'earningsArgsFromprescriptionsRecursive1']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive1']
 
 
 class items_soldIncludeFromprescriptionsRecursive1(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    earning: Union[bool, 'earningsArgsFromprescriptionsRecursive2']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive2']
 
 
 class items_soldIncludeFromprescriptionsRecursive2(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    earning: Union[bool, 'earningsArgsFromprescriptionsRecursive3']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive3']
 
 
 class items_soldIncludeFromprescriptionsRecursive3(TypedDict, total=False):
     """Relational arguments for prescriptions"""
+    earning: Union[bool, 'earningsArgsFromprescriptionsRecursive4']
+    product: Union[bool, 'productsArgsFromprescriptionsRecursive4']
 
 
 class items_soldIncludeFromprescriptionsRecursive4(TypedDict, total=False):
@@ -26250,21 +26681,29 @@ class FindManyproduct_typesArgsFromprescriptionsRecursive4(TypedDict, total=Fals
 class productsIncludeFromprescriptions(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     product_types: Union[bool, 'product_typesArgsFromprescriptionsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive1']
 
 
 class productsIncludeFromprescriptionsRecursive1(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     product_types: Union[bool, 'product_typesArgsFromprescriptionsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive2']
 
 
 class productsIncludeFromprescriptionsRecursive2(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     product_types: Union[bool, 'product_typesArgsFromprescriptionsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive3']
 
 
 class productsIncludeFromprescriptionsRecursive3(TypedDict, total=False):
     """Relational arguments for prescriptions"""
     product_types: Union[bool, 'product_typesArgsFromprescriptionsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromprescriptionsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromprescriptionsRecursive4']
 
 
 class productsIncludeFromprescriptionsRecursive4(TypedDict, total=False):
@@ -27219,24 +27658,28 @@ class earningsIncludeFromproduct_types(TypedDict, total=False):
     """Relational arguments for product_types"""
     clients: Union[bool, 'clientsArgsFromproduct_typesRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproduct_typesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive1']
 
 
 class earningsIncludeFromproduct_typesRecursive1(TypedDict, total=False):
     """Relational arguments for product_types"""
     clients: Union[bool, 'clientsArgsFromproduct_typesRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproduct_typesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive2']
 
 
 class earningsIncludeFromproduct_typesRecursive2(TypedDict, total=False):
     """Relational arguments for product_types"""
     clients: Union[bool, 'clientsArgsFromproduct_typesRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproduct_typesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive3']
 
 
 class earningsIncludeFromproduct_typesRecursive3(TypedDict, total=False):
     """Relational arguments for product_types"""
     clients: Union[bool, 'clientsArgsFromproduct_typesRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproduct_typesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive4']
 
 
 class earningsIncludeFromproduct_typesRecursive4(TypedDict, total=False):
@@ -27439,18 +27882,22 @@ class FindManyeventsArgsFromproduct_typesRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromproduct_types(TypedDict, total=False):
     """Relational arguments for product_types"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive1']
 
 
 class expensesIncludeFromproduct_typesRecursive1(TypedDict, total=False):
     """Relational arguments for product_types"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive2']
 
 
 class expensesIncludeFromproduct_typesRecursive2(TypedDict, total=False):
     """Relational arguments for product_types"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive3']
 
 
 class expensesIncludeFromproduct_typesRecursive3(TypedDict, total=False):
     """Relational arguments for product_types"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive4']
 
 
 class expensesIncludeFromproduct_typesRecursive4(TypedDict, total=False):
@@ -27649,18 +28096,26 @@ class FindManyinvoicesArgsFromproduct_typesRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromproduct_types(TypedDict, total=False):
     """Relational arguments for product_types"""
+    expense: Union[bool, 'expensesArgsFromproduct_typesRecursive1']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive1']
 
 
 class items_boughtIncludeFromproduct_typesRecursive1(TypedDict, total=False):
     """Relational arguments for product_types"""
+    expense: Union[bool, 'expensesArgsFromproduct_typesRecursive2']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive2']
 
 
 class items_boughtIncludeFromproduct_typesRecursive2(TypedDict, total=False):
     """Relational arguments for product_types"""
+    expense: Union[bool, 'expensesArgsFromproduct_typesRecursive3']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive3']
 
 
 class items_boughtIncludeFromproduct_typesRecursive3(TypedDict, total=False):
     """Relational arguments for product_types"""
+    expense: Union[bool, 'expensesArgsFromproduct_typesRecursive4']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive4']
 
 
 class items_boughtIncludeFromproduct_typesRecursive4(TypedDict, total=False):
@@ -27750,18 +28205,26 @@ class FindManyitems_boughtArgsFromproduct_typesRecursive4(TypedDict, total=False
 
 class items_soldIncludeFromproduct_types(TypedDict, total=False):
     """Relational arguments for product_types"""
+    earning: Union[bool, 'earningsArgsFromproduct_typesRecursive1']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive1']
 
 
 class items_soldIncludeFromproduct_typesRecursive1(TypedDict, total=False):
     """Relational arguments for product_types"""
+    earning: Union[bool, 'earningsArgsFromproduct_typesRecursive2']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive2']
 
 
 class items_soldIncludeFromproduct_typesRecursive2(TypedDict, total=False):
     """Relational arguments for product_types"""
+    earning: Union[bool, 'earningsArgsFromproduct_typesRecursive3']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive3']
 
 
 class items_soldIncludeFromproduct_typesRecursive3(TypedDict, total=False):
     """Relational arguments for product_types"""
+    earning: Union[bool, 'earningsArgsFromproduct_typesRecursive4']
+    product: Union[bool, 'productsArgsFromproduct_typesRecursive4']
 
 
 class items_soldIncludeFromproduct_typesRecursive4(TypedDict, total=False):
@@ -28292,21 +28755,29 @@ class FindManyproduct_typesArgsFromproduct_typesRecursive4(TypedDict, total=Fals
 class productsIncludeFromproduct_types(TypedDict, total=False):
     """Relational arguments for product_types"""
     product_types: Union[bool, 'product_typesArgsFromproduct_typesRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive1']
 
 
 class productsIncludeFromproduct_typesRecursive1(TypedDict, total=False):
     """Relational arguments for product_types"""
     product_types: Union[bool, 'product_typesArgsFromproduct_typesRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive2']
 
 
 class productsIncludeFromproduct_typesRecursive2(TypedDict, total=False):
     """Relational arguments for product_types"""
     product_types: Union[bool, 'product_typesArgsFromproduct_typesRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive3']
 
 
 class productsIncludeFromproduct_typesRecursive3(TypedDict, total=False):
     """Relational arguments for product_types"""
     product_types: Union[bool, 'product_typesArgsFromproduct_typesRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproduct_typesRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproduct_typesRecursive4']
 
 
 class productsIncludeFromproduct_typesRecursive4(TypedDict, total=False):
@@ -28712,6 +29183,8 @@ class productsOptionalCreateInput(TypedDict, total=False):
     description: Optional[_str]
     producttypeid: _int
     product_types: 'product_typesCreateNestedWithoutRelationsInput'
+    items_bought: 'items_boughtCreateManyNestedWithoutRelationsInput'
+    items_sold: 'items_soldCreateManyNestedWithoutRelationsInput'
 
 
 class productsCreateInput(productsOptionalCreateInput):
@@ -28777,6 +29250,8 @@ class productsUpdateInput(TypedDict, total=False):
     tva: decimal.Decimal
     quantity: Union[AtomicIntInput, _int]
     product_types: 'product_typesUpdateOneWithoutRelationsInput'
+    items_bought: 'items_boughtUpdateManyWithoutRelationsInput'
+    items_sold: 'items_soldUpdateManyWithoutRelationsInput'
 
 
 class productsUpdateManyMutationInput(TypedDict, total=False):
@@ -28945,6 +29420,8 @@ class productsListRelationFilter(TypedDict, total=False):
 class productsInclude(TypedDict, total=False):
     """products relational arguments"""
     product_types: Union[bool, 'product_typesArgsFromproducts']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproducts']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproducts']
 
 
     
@@ -29280,24 +29757,28 @@ class earningsIncludeFromproducts(TypedDict, total=False):
     """Relational arguments for products"""
     clients: Union[bool, 'clientsArgsFromproductsRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproductsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive1']
 
 
 class earningsIncludeFromproductsRecursive1(TypedDict, total=False):
     """Relational arguments for products"""
     clients: Union[bool, 'clientsArgsFromproductsRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproductsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive2']
 
 
 class earningsIncludeFromproductsRecursive2(TypedDict, total=False):
     """Relational arguments for products"""
     clients: Union[bool, 'clientsArgsFromproductsRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproductsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive3']
 
 
 class earningsIncludeFromproductsRecursive3(TypedDict, total=False):
     """Relational arguments for products"""
     clients: Union[bool, 'clientsArgsFromproductsRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromproductsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive4']
 
 
 class earningsIncludeFromproductsRecursive4(TypedDict, total=False):
@@ -29500,18 +29981,22 @@ class FindManyeventsArgsFromproductsRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromproducts(TypedDict, total=False):
     """Relational arguments for products"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive1']
 
 
 class expensesIncludeFromproductsRecursive1(TypedDict, total=False):
     """Relational arguments for products"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive2']
 
 
 class expensesIncludeFromproductsRecursive2(TypedDict, total=False):
     """Relational arguments for products"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive3']
 
 
 class expensesIncludeFromproductsRecursive3(TypedDict, total=False):
     """Relational arguments for products"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive4']
 
 
 class expensesIncludeFromproductsRecursive4(TypedDict, total=False):
@@ -29710,18 +30195,26 @@ class FindManyinvoicesArgsFromproductsRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromproducts(TypedDict, total=False):
     """Relational arguments for products"""
+    expense: Union[bool, 'expensesArgsFromproductsRecursive1']
+    product: Union[bool, 'productsArgsFromproductsRecursive1']
 
 
 class items_boughtIncludeFromproductsRecursive1(TypedDict, total=False):
     """Relational arguments for products"""
+    expense: Union[bool, 'expensesArgsFromproductsRecursive2']
+    product: Union[bool, 'productsArgsFromproductsRecursive2']
 
 
 class items_boughtIncludeFromproductsRecursive2(TypedDict, total=False):
     """Relational arguments for products"""
+    expense: Union[bool, 'expensesArgsFromproductsRecursive3']
+    product: Union[bool, 'productsArgsFromproductsRecursive3']
 
 
 class items_boughtIncludeFromproductsRecursive3(TypedDict, total=False):
     """Relational arguments for products"""
+    expense: Union[bool, 'expensesArgsFromproductsRecursive4']
+    product: Union[bool, 'productsArgsFromproductsRecursive4']
 
 
 class items_boughtIncludeFromproductsRecursive4(TypedDict, total=False):
@@ -29811,18 +30304,26 @@ class FindManyitems_boughtArgsFromproductsRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromproducts(TypedDict, total=False):
     """Relational arguments for products"""
+    earning: Union[bool, 'earningsArgsFromproductsRecursive1']
+    product: Union[bool, 'productsArgsFromproductsRecursive1']
 
 
 class items_soldIncludeFromproductsRecursive1(TypedDict, total=False):
     """Relational arguments for products"""
+    earning: Union[bool, 'earningsArgsFromproductsRecursive2']
+    product: Union[bool, 'productsArgsFromproductsRecursive2']
 
 
 class items_soldIncludeFromproductsRecursive2(TypedDict, total=False):
     """Relational arguments for products"""
+    earning: Union[bool, 'earningsArgsFromproductsRecursive3']
+    product: Union[bool, 'productsArgsFromproductsRecursive3']
 
 
 class items_soldIncludeFromproductsRecursive3(TypedDict, total=False):
     """Relational arguments for products"""
+    earning: Union[bool, 'earningsArgsFromproductsRecursive4']
+    product: Union[bool, 'productsArgsFromproductsRecursive4']
 
 
 class items_soldIncludeFromproductsRecursive4(TypedDict, total=False):
@@ -30353,21 +30854,29 @@ class FindManyproduct_typesArgsFromproductsRecursive4(TypedDict, total=False):
 class productsIncludeFromproducts(TypedDict, total=False):
     """Relational arguments for products"""
     product_types: Union[bool, 'product_typesArgsFromproductsRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive1']
 
 
 class productsIncludeFromproductsRecursive1(TypedDict, total=False):
     """Relational arguments for products"""
     product_types: Union[bool, 'product_typesArgsFromproductsRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive2']
 
 
 class productsIncludeFromproductsRecursive2(TypedDict, total=False):
     """Relational arguments for products"""
     product_types: Union[bool, 'product_typesArgsFromproductsRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive3']
 
 
 class productsIncludeFromproductsRecursive3(TypedDict, total=False):
     """Relational arguments for products"""
     product_types: Union[bool, 'product_typesArgsFromproductsRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromproductsRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromproductsRecursive4']
 
 
 class productsIncludeFromproductsRecursive4(TypedDict, total=False):
@@ -30577,6 +31086,8 @@ class productsWhereInput(TypedDict, total=False):
     quantity: Union[_int, 'types.IntFilter']
     producttypeid: Union[_int, 'types.IntFilter']
     product_types: 'product_typesRelationFilter'
+    items_bought: 'items_boughtListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['productsWhereInputRecursive1', List['productsWhereInputRecursive1']]
     # but this causes mypy to hang :/
@@ -30596,6 +31107,8 @@ class productsWhereInputRecursive1(TypedDict, total=False):
     quantity: Union[_int, 'types.IntFilter']
     producttypeid: Union[_int, 'types.IntFilter']
     product_types: 'product_typesRelationFilter'
+    items_bought: 'items_boughtListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['productsWhereInputRecursive2', List['productsWhereInputRecursive2']]
     # but this causes mypy to hang :/
@@ -30615,6 +31128,8 @@ class productsWhereInputRecursive2(TypedDict, total=False):
     quantity: Union[_int, 'types.IntFilter']
     producttypeid: Union[_int, 'types.IntFilter']
     product_types: 'product_typesRelationFilter'
+    items_bought: 'items_boughtListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['productsWhereInputRecursive3', List['productsWhereInputRecursive3']]
     # but this causes mypy to hang :/
@@ -30634,6 +31149,8 @@ class productsWhereInputRecursive3(TypedDict, total=False):
     quantity: Union[_int, 'types.IntFilter']
     producttypeid: Union[_int, 'types.IntFilter']
     product_types: 'product_typesRelationFilter'
+    items_bought: 'items_boughtListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
     # should be noted that AND and NOT should be Union['productsWhereInputRecursive4', List['productsWhereInputRecursive4']]
     # but this causes mypy to hang :/
@@ -30653,6 +31170,8 @@ class productsWhereInputRecursive4(TypedDict, total=False):
     quantity: Union[_int, 'types.IntFilter']
     producttypeid: Union[_int, 'types.IntFilter']
     product_types: 'product_typesRelationFilter'
+    items_bought: 'items_boughtListRelationFilter'
+    items_sold: 'items_soldListRelationFilter'
 
 
 
@@ -30862,6 +31381,8 @@ productsKeys = Literal[
     'quantity',
     'producttypeid',
     'product_types',
+    'items_bought',
+    'items_sold',
 ]
 productsScalarFieldKeys = Literal[
     'productid',
@@ -30877,6 +31398,8 @@ productsScalarFieldKeysT = TypeVar('productsScalarFieldKeysT', bound=productsSca
 
 productsRelationalFieldKeys = Literal[
         'product_types',
+        'items_bought',
+        'items_sold',
     ]
 
 # users types
@@ -31405,24 +31928,28 @@ class earningsIncludeFromusers(TypedDict, total=False):
     """Relational arguments for users"""
     clients: Union[bool, 'clientsArgsFromusersRecursive1']
     invoices: Union[bool, 'FindManyinvoicesArgsFromusersRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive1']
 
 
 class earningsIncludeFromusersRecursive1(TypedDict, total=False):
     """Relational arguments for users"""
     clients: Union[bool, 'clientsArgsFromusersRecursive2']
     invoices: Union[bool, 'FindManyinvoicesArgsFromusersRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive2']
 
 
 class earningsIncludeFromusersRecursive2(TypedDict, total=False):
     """Relational arguments for users"""
     clients: Union[bool, 'clientsArgsFromusersRecursive3']
     invoices: Union[bool, 'FindManyinvoicesArgsFromusersRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive3']
 
 
 class earningsIncludeFromusersRecursive3(TypedDict, total=False):
     """Relational arguments for users"""
     clients: Union[bool, 'clientsArgsFromusersRecursive4']
     invoices: Union[bool, 'FindManyinvoicesArgsFromusersRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive4']
 
 
 class earningsIncludeFromusersRecursive4(TypedDict, total=False):
@@ -31625,18 +32152,22 @@ class FindManyeventsArgsFromusersRecursive4(TypedDict, total=False):
 
 class expensesIncludeFromusers(TypedDict, total=False):
     """Relational arguments for users"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive1']
 
 
 class expensesIncludeFromusersRecursive1(TypedDict, total=False):
     """Relational arguments for users"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive2']
 
 
 class expensesIncludeFromusersRecursive2(TypedDict, total=False):
     """Relational arguments for users"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive3']
 
 
 class expensesIncludeFromusersRecursive3(TypedDict, total=False):
     """Relational arguments for users"""
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive4']
 
 
 class expensesIncludeFromusersRecursive4(TypedDict, total=False):
@@ -31835,18 +32366,26 @@ class FindManyinvoicesArgsFromusersRecursive4(TypedDict, total=False):
 
 class items_boughtIncludeFromusers(TypedDict, total=False):
     """Relational arguments for users"""
+    expense: Union[bool, 'expensesArgsFromusersRecursive1']
+    product: Union[bool, 'productsArgsFromusersRecursive1']
 
 
 class items_boughtIncludeFromusersRecursive1(TypedDict, total=False):
     """Relational arguments for users"""
+    expense: Union[bool, 'expensesArgsFromusersRecursive2']
+    product: Union[bool, 'productsArgsFromusersRecursive2']
 
 
 class items_boughtIncludeFromusersRecursive2(TypedDict, total=False):
     """Relational arguments for users"""
+    expense: Union[bool, 'expensesArgsFromusersRecursive3']
+    product: Union[bool, 'productsArgsFromusersRecursive3']
 
 
 class items_boughtIncludeFromusersRecursive3(TypedDict, total=False):
     """Relational arguments for users"""
+    expense: Union[bool, 'expensesArgsFromusersRecursive4']
+    product: Union[bool, 'productsArgsFromusersRecursive4']
 
 
 class items_boughtIncludeFromusersRecursive4(TypedDict, total=False):
@@ -31936,18 +32475,26 @@ class FindManyitems_boughtArgsFromusersRecursive4(TypedDict, total=False):
 
 class items_soldIncludeFromusers(TypedDict, total=False):
     """Relational arguments for users"""
+    earning: Union[bool, 'earningsArgsFromusersRecursive1']
+    product: Union[bool, 'productsArgsFromusersRecursive1']
 
 
 class items_soldIncludeFromusersRecursive1(TypedDict, total=False):
     """Relational arguments for users"""
+    earning: Union[bool, 'earningsArgsFromusersRecursive2']
+    product: Union[bool, 'productsArgsFromusersRecursive2']
 
 
 class items_soldIncludeFromusersRecursive2(TypedDict, total=False):
     """Relational arguments for users"""
+    earning: Union[bool, 'earningsArgsFromusersRecursive3']
+    product: Union[bool, 'productsArgsFromusersRecursive3']
 
 
 class items_soldIncludeFromusersRecursive3(TypedDict, total=False):
     """Relational arguments for users"""
+    earning: Union[bool, 'earningsArgsFromusersRecursive4']
+    product: Union[bool, 'productsArgsFromusersRecursive4']
 
 
 class items_soldIncludeFromusersRecursive4(TypedDict, total=False):
@@ -32478,21 +33025,29 @@ class FindManyproduct_typesArgsFromusersRecursive4(TypedDict, total=False):
 class productsIncludeFromusers(TypedDict, total=False):
     """Relational arguments for users"""
     product_types: Union[bool, 'product_typesArgsFromusersRecursive1']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive1']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive1']
 
 
 class productsIncludeFromusersRecursive1(TypedDict, total=False):
     """Relational arguments for users"""
     product_types: Union[bool, 'product_typesArgsFromusersRecursive2']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive2']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive2']
 
 
 class productsIncludeFromusersRecursive2(TypedDict, total=False):
     """Relational arguments for users"""
     product_types: Union[bool, 'product_typesArgsFromusersRecursive3']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive3']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive3']
 
 
 class productsIncludeFromusersRecursive3(TypedDict, total=False):
     """Relational arguments for users"""
     product_types: Union[bool, 'product_typesArgsFromusersRecursive4']
+    items_bought: Union[bool, 'FindManyitems_boughtArgsFromusersRecursive4']
+    items_sold: Union[bool, 'FindManyitems_soldArgsFromusersRecursive4']
 
 
 class productsIncludeFromusersRecursive4(TypedDict, total=False):

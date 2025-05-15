@@ -18,3 +18,7 @@ class ItemsSoldService:
     @staticmethod
     async def get_by_productid(id: int):
         return await ItemsSoldRepository().get_by_productid(id)
+
+    @staticmethod
+    async def get_by_amount_sold(id: int):
+        return await ItemsSoldRepository().get_by_amount_sold(id)
