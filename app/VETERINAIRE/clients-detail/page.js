@@ -1,4 +1,4 @@
-"use client"; // a rendre dynamique
+"use client"; // Directive pour indiquer que ce code doit être exécuté côté client
 
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState, useRef } from "react";
@@ -401,15 +401,19 @@ function ClientDetailComponent({ clientId }) {
   );
 }
 
-function NewClientDetailComponent() {
-  const searchParams = useSearchParams();
-  const clientId = searchParams.get('id');
-
+function ClientDetailPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ClientDetailComponent clientId={clientId} />
+    <Suspense fallback={<div>Chargement...</div>}>
+      <ClientDetailComponentWrapper />
     </Suspense>
   );
 }
 
-export default NewClientDetailComponent;
+function ClientDetailComponentWrapper() {
+  const searchParams = useSearchParams();
+  const clientId = searchParams.get('id');
+
+  return <ClientDetailComponent clientId={clientId} />;
+}
+
+export default ClientDetailPage;

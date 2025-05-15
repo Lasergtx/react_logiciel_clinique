@@ -9,6 +9,7 @@ function DetailRdvComponent() {
   const id = searchParams.get("id");
 
   const [appointment, setAppointment] = useState(null);
+  const [error, setError] = useState(null);
 
   const appointmentsData = [
     {
@@ -46,8 +47,20 @@ function DetailRdvComponent() {
 
   useEffect(() => {
     const found = appointmentsData.find(app => app.id === id);
-    setAppointment(found);
+    if (found) {
+      setAppointment(found);
+    } else {
+      setError("Rendez-vous introuvable.");
+    }
   }, [id]);
+
+  if (error) {
+    return (
+      <div className="p-10 text-center text-red-500">
+        {error}
+      </div>
+    );
+  }
 
   if (!appointment) {
     return (
@@ -127,7 +140,7 @@ function DetailItem({ label, value }) {
 
 export default function DetailRdv() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Chargement...</div>}>
       <DetailRdvComponent />
     </Suspense>
   );
