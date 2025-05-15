@@ -1,14 +1,27 @@
 "use client";  // DYNAMIQUE
 
 import RoleGuard from "@/components/RoleGuard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function CollaborateursPage({ collaborators: initialCollaborators }) {
-  const [collaborators, setCollaborators] = useState(initialCollaborators);
+export default function CollaborateursPage() {
+  const [collaborators, setCollaborators] = useState([]);
   const [roleFilter, setRoleFilter] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedToDelete, setSelectedToDelete] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/users", { cache: 'no-store' }); // Remplacez par l'URL de votre API
+        const data = await response.json();
+        setCollaborators(data.result);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleDelete = () => {
     if (selectedToDelete) {
@@ -98,23 +111,4 @@ export default function CollaborateursPage({ collaborators: initialCollaborators
       </main>
     </RoleGuard>
   );
-}
-
-export async function getServerSideProps() {
-  try {
-    const response = await fetch("http://127.0.0.1:8000/users"); // Remplacez par l'URL de votre API
-    const data = await response.json();
-    return {
-      props: {
-        collaborators: data.result,
-      },
-    };
-  } catch (error) {
-    console.error("Erreur lors de la récupération des données :", error);
-    return {
-      props: {
-        collaborators: [],
-      },
-    };
-  }
 }
