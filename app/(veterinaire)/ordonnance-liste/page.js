@@ -5,35 +5,6 @@ import { useRouter } from "next/navigation";
 import jsPDF from "jspdf";
 
 const logoPath = "/images/logo_avec_titre.png";
-const prescriptionsData = [
-  {
-    id: "001",
-    type: "Vaccin",
-    initialdate: "2025-05-15",
-    executiondate: "2025-05-15",
-    status: "AVENIR",
-    patientid: 1,
-    patient: "Jean Dupont"
-  },
-  {
-    id: "002",
-    type: "Antibiotique",
-    initialdate: "2025-05-16",
-    executiondate: "2025-05-16",
-    status: "AVENIR",
-    patientid: 2,
-    patient: "Marie Martin"
-  },
-  {
-    id: "003",
-    type: "Analgésique",
-    initialdate: "2025-05-17",
-    executiondate: "2025-05-17",
-    status: "AVENIR",
-    patientid: 3,
-    patient: "Luc Picard"
-  }
-];
 
 export default function Ordonnances() {
   const router = useRouter();
@@ -41,8 +12,26 @@ export default function Ordonnances() {
   const [searchTerm, setSearchTerm] = useState("");
   const [dateFilter, setDateFilter] = useState("");
   const [selectedPrescription, setSelectedPrescription] = useState(null);
+  const [prescriptionsData, setPrescriptionsData] = useState([]);
   const modalRef = useRef(null);
   const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    const fetchPrescriptions = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/prescriptions", { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setPrescriptionsData(data.result);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des ordonnances :", error);
+      }
+    };
+
+    fetchPrescriptions();
+  }, []);
 
   const openModal = (prescription) => {
     setSelectedPrescription(prescription);
@@ -66,11 +55,11 @@ export default function Ordonnances() {
 
       doc.setFontSize(14);
       doc.setTextColor("#555");
-      doc.text(`Patient: ${patient}`, 20, 50);
-      doc.text(`Type: ${type}`, 20, 60);
-      doc.text(`Date initiale: ${initialdate}`, 20, 70);
-      doc.text(`Date d'exécution: ${executiondate}`, 20, 80);
-      doc.text(`Statut: ${status}`, 20, 90);
+      doc.text(`Patient: ${patient || ''}`, 20, 50);
+      doc.text(`Type: ${type || ''}`, 20, 60);
+      doc.text(`Date initiale: ${initialdate || ''}`, 20, 70);
+      doc.text(`Date d'exécution: ${executiondate || ''}`, 20, 80);
+      doc.text(`Statut: ${status || ''}`, 20, 90);
       doc.line(20, 95, 190, 95);
 
       doc.save(`ordonnance_${prescription.id}.pdf`);
@@ -141,17 +130,17 @@ export default function Ordonnances() {
         <tbody>
           {prescriptionsData
             .filter((prescription) =>
-              prescription.patient.toLowerCase().includes(searchTerm.toLowerCase()) &&
-              (dateFilter ? prescription.initialdate.startsWith(dateFilter) : true)
+              (prescription.patient || '').toLowerCase().includes(searchTerm.toLowerCase()) &&
+              (dateFilter ? (prescription.initialdate || '').startsWith(dateFilter) : true)
             )
             .map((prescription) => (
               <tr key={prescription.id} className="border-t">
                 <td className="p-2">{prescription.id}</td>
-                <td className="p-2">{prescription.patient}</td>
-                <td className="p-2">{prescription.type}</td>
-                <td className="p-2">{prescription.initialdate}</td>
-                <td className="p-2">{prescription.executiondate}</td>
-                <td className="p-2">{prescription.status}</td>
+                <td className="p-2">{prescription.patient || ''}</td>
+                <td className="p-2">{prescription.type || ''}</td>
+                <td className="p-2">{prescription.initialdate || ''}</td>
+                <td className="p-2">{prescription.executiondate || ''}</td>
+                <td className="p-2">{prescription.status || ''}</td>
                 <td className="p-2 flex gap-2 justify-center">
                   <button onClick={() => openModal(prescription)} className="text-green-600 bg-green-100 px-3 py-1 rounded text-xs">
                     Détail
@@ -173,11 +162,11 @@ export default function Ordonnances() {
               className="absolute top-4 right-4 text-red-600 text-xl"
             >×</button>
             <h2 className="text-xl font-bold mb-4">Détails de l&apos;Ordonnance</h2>
-            <p className="mb-2">Patient : {selectedPrescription.patient}</p>
-            <p className="mb-2">Type : {selectedPrescription.type}</p>
-            <p className="mb-2">Date initiale : {selectedPrescription.initialdate}</p>
-            <p className="mb-2">Date d&apos;exécution : {selectedPrescription.executiondate}</p>
-            <p className="mb-2">Statut : {selectedPrescription.status}</p>
+            <p className="mb-2">Patient : {selectedPrescription.patient || ''}</p>
+            <p className="mb-2">Type : {selectedPrescription.type || ''}</p>
+            <p className="mb-2">Date initiale : {selectedPrescription.initialdate || ''}</p>
+            <p className="mb-2">Date d&apos;exécution : {selectedPrescription.executiondate || ''}</p>
+            <p className="mb-2">Statut : {selectedPrescription.status || ''}</p>
 
             <div className="mt-6 text-right">
               <button onClick={closeModal} className="bg-blue-600 text-white px-4 py-2 rounded">
