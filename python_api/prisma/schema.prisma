@@ -3,6 +3,7 @@ generator client {
   interface                   = "asyncio"
   recursive_type_depth        = "5"
   enable_experimental_decimal = true
+  output                      = "../prisma"
 }
 
 datasource db {
@@ -44,14 +45,15 @@ model clients {
 }
 
 model earnings {
-  earningid     Int        @id @default(autoincrement())
-  amount        Decimal    @db.Decimal(4, 2)
-  description   String?    @db.VarChar(255)
-  created_at    DateTime   @default(now()) @db.Timestamp(6)
+  earningid     Int          @id @default(autoincrement())
+  amount        Decimal      @db.Decimal(6, 2)
+  description   String?      @db.VarChar(255)
+  created_at    DateTime     @default(now()) @db.Timestamp(6)
   paymentstatus payment?
   clientid      Int
-  clients       clients    @relation(fields: [clientid], references: [clientid], onDelete: NoAction, onUpdate: NoAction)
+  clients       clients      @relation(fields: [clientid], references: [clientid], onDelete: NoAction, onUpdate: NoAction)
   invoices      invoices[]
+  items_sold    items_sold[]
 }
 
 model events {
@@ -62,6 +64,7 @@ model events {
   eventdate   DateTime   @db.Date
   starthour   DateTime   @db.Time(6)
   endhour     DateTime   @db.Time(6)
+  status      statuts
   userid      Int
   patientid   Int?
   clientid    Int?
@@ -71,15 +74,16 @@ model events {
 }
 
 model expenses {
-  expenseid   Int      @id @default(autoincrement())
-  amount      Decimal  @db.Decimal(4, 2)
-  description String?  @db.VarChar(255)
-  created_at  DateTime @default(now()) @db.Timestamp(6)
+  expenseid    Int            @id @default(autoincrement())
+  amount       Decimal        @db.Decimal(6, 2)
+  description  String?        @db.VarChar(255)
+  created_at   DateTime       @default(now()) @db.Timestamp(6)
+  items_bought items_bought[]
 }
 
 model invoices {
   invoiceid   Int      @id @default(autoincrement())
-  amount      Decimal  @db.Decimal(4, 2)
+  amount      Decimal  @db.Decimal(6, 2)
   invoicelink String   @db.VarChar(512)
   created_at  DateTime @default(now()) @db.Timestamp(6)
   clientid    Int
@@ -92,6 +96,8 @@ model items_bought {
   expenseid Int
   productid Int
   quantity  Int
+  expense   expenses @relation(fields: [expenseid], references: [expenseid], onDelete: Cascade)
+  product   products @relation(fields: [productid], references: [productid], onDelete: Cascade)
 
   @@id([expenseid, productid])
 }
@@ -100,6 +106,8 @@ model items_sold {
   earningid Int
   productid Int
   quantity  Int
+  earning   earnings @relation(fields: [earningid], references: [earningid], onDelete: Cascade)
+  product   products @relation(fields: [productid], references: [productid], onDelete: Cascade)
 
   @@id([earningid, productid])
 }
@@ -147,15 +155,17 @@ model product_types {
 }
 
 model products {
-  productid     Int           @id @default(autoincrement())
-  name          String        @db.VarChar(50)
-  description   String?       @db.VarChar(512)
-  sellingprice  Decimal       @db.Decimal(4, 2)
-  cost          Decimal       @db.Decimal(4, 2)
-  tva           Decimal       @db.Decimal(2, 2)
+  productid     Int            @id @default(autoincrement())
+  name          String         @db.VarChar(50)
+  description   String?        @db.VarChar(512)
+  sellingprice  Decimal        @db.Decimal(6, 2)
+  cost          Decimal        @db.Decimal(6, 2)
+  tva           Decimal        @db.Decimal(6, 2)
   quantity      Int
   producttypeid Int
-  product_types product_types @relation(fields: [producttypeid], references: [producttypeid], onDelete: NoAction, onUpdate: NoAction)
+  product_types product_types  @relation(fields: [producttypeid], references: [producttypeid], onDelete: NoAction, onUpdate: NoAction)
+  items_bought  items_bought[]
+  items_sold    items_sold[]
 }
 
 model users {
@@ -167,7 +177,7 @@ model users {
 }
 
 enum event_type {
-  RENDEZ_VOUS @map("RENDEZ-VOUS")
+  RENDEZVOUS
   OPERATION
   AUTRE
 }
@@ -175,14 +185,14 @@ enum event_type {
 enum genders {
   M
   F
-  N_A @map("N/A")
+  NA
 }
 
 enum payment {
   PAYER
-  A_PAYER              @map("A PAYER")
-  EN_COURS_DE_PAIEMENT @map("EN COURS DE PAIEMENT")
-  NON_PAYER            @map("NON PAYER")
+  APAYER
+  ENCOURSDEPAIEMENT
+  NONPAYER
 }
 
 enum roles {
@@ -197,7 +207,7 @@ enum statuses {
 }
 
 enum statuts {
-  A_FAIRE  @map("A-FAIRE")
+  AVENIR
   REPORTER
   ANNULER
   TERMINER
